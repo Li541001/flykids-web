@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飛童動知覺｜兒童動作感知覺整合教育</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@400;500;600;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-deep: #0D6E7A;
+    --teal-mid: #1A8FA0;
+    --teal-light: #2DB8CC;
+    --teal-pale: #E8F7FA;
+    --navy: #0A2E35;
+    --white: #FAFCFC;
+    --text: #1A2E31;
+    --text-muted: #5A7A80;
+    --gold: #C4933F;
+    --gold-light: #F0C96B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,252,252,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,110,122,0.08);
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--teal-deep);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal-deep); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--teal-deep);
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.12em !important;
+    transition: background 0.25s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-mid) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 100px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(45,184,204,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(13,110,122,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(13,110,122,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13,110,122,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title .accent {
+    color: var(--teal-deep);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 44px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--teal-deep);
+    color: white;
+    padding: 16px 36px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--teal-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(13,110,122,0.25);
+  }
+
+  .btn-ghost {
+    color: var(--teal-deep);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.25s;
+  }
+  .btn-ghost:hover { gap: 14px; }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.6s forwards;
+  }
+
+  /* --- Logo Animation Integrated Styles --- */
+  .logo-animation-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    cursor: pointer;
+    animation: antiGravityFloat 4s ease-in-out 3s infinite alternate;
+  }
+
+  .anim-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: translate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                scale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                rotate 0.4s ease, 
+                filter 0.4s ease;
+  }
+
+  .anim-layer.base-layer {
+    position: relative; 
+  }
+
+  .block {
+    animation: dropDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .star {
+    animation: 
+      popOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+      logoPulse 2s ease-in-out 2s infinite alternate;
+  }
+
+  .person {
+    animation: popOut 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .ball {
+    animation: bounceBall 0.8s cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+  .delay-5 { animation-delay: 0.7s; }
+  .delay-6 { animation-delay: 0.85s; }
+  .delay-7 { animation-delay: 1.0s; }
+  .delay-8 { animation-delay: 1.2s; }
+  .delay-9 { animation-delay: 1.3s; }
+  .delay-10 { animation-delay: 1.5s; }
+  .delay-11 { animation-delay: 1.6s; }
+  .delay-12 { animation-delay: 1.7s; }
+  .delay-13 { animation-delay: 1.8s; }
+  .delay-14 { animation-delay: 2.0s; }
+
+  @keyframes dropDown {
+    0% { transform: translateY(-60px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes popOut {
+    0% { transform: scale(0.5) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  @keyframes bounceBall {
+    0% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+    50% { transform: translateY(10px) scale(1.1); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  @keyframes logoPulse {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.6; transform: scale(0.9); }
+  }
+
+  @keyframes antiGravityFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+  }
+
+  .logo-animation-wrapper:hover .block {
+    translate: 0 -6px;
+    scale: 1.02;
+    filter: brightness(1.08) drop-shadow(0px 8px 10px rgba(0,0,0,0.15));
+  }
+
+  .logo-animation-wrapper:hover .person, 
+  .logo-animation-wrapper:hover .ball {
+    translate: 0 -15px;
+    scale: 1.1;
+    rotate: 6deg;
+    filter: drop-shadow(0px 10px 12px rgba(0,0,0,0.25));
+  }
+
+  .logo-animation-wrapper:hover .star {
+    scale: 1.4;
+    rotate: 45deg;
+    filter: brightness(1.3) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
+  }
+  /* --- End Logo Animation Integrated Styles --- */
+
+  .hero-stats {
+    position: absolute;
+    bottom: 32px;
+    left: 60px;
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--teal-deep);
+    line-height: 1;
+    display: block;
+  }
+  .stat-num span { font-size: 1.2rem; }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .scroll-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--teal-light), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 100px 60px; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 100px 60px;
+  }
+
+  #about .section-title { color: var(--white); }
+  #about .section-desc { color: rgba(255,255,255,0.6); max-width: 100%; }
+  #about .section-label { color: var(--gold-light); }
+  #about .section-label::before { background: var(--gold-light); }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 2;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .about-highlight {
+    margin-top: 40px;
+    padding: 28px 36px;
+    border-left: 3px solid var(--gold);
+    background: rgba(196,147,63,0.08);
+    border-radius: 0 4px 4px 0;
+  }
+  .about-highlight p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9) !important;
+    line-height: 1.8 !important;
+    margin: 0 !important;
+  }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .pillar-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .pillar-card:hover {
+    background: rgba(45,184,204,0.1);
+    border-color: rgba(45,184,204,0.3);
+    transform: translateY(-4px);
+  }
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .pillar-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .pillar-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+
+  /* ─── COURSES ─── */
+  #courses {
+    background: var(--white);
+  }
+
+  .courses-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(13,110,122,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .course-card {
+    background: var(--white);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal-light), var(--teal-deep));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .course-card:hover { background: var(--teal-pale); }
+  .course-card:hover::before { transform: scaleX(1); }
+
+  .course-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: rgba(13,110,122,0.1);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+    transition: color 0.4s;
+  }
+  .course-card:hover .course-num { color: rgba(13,110,122,0.2); }
+
+  .course-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(196,147,63,0.1);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .course-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .course-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .course-ages {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--teal-deep);
+    font-weight: 500;
+  }
+  .course-ages::before { content: '👶'; font-size: 0.9rem; }
+
+  /* ─── TEAM ─── */
+  #team {
+    background: #F4F8F9;
+  }
+
+  .team-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .team-header .section-desc {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .team-header .section-label {
+    justify-content: center;
+  }
+  .team-header .section-label::before { display: none; }
+  .team-header .section-label::after {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .team-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(13,110,122,0.1);
+  }
+
+  .team-avatar {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--teal-pale), rgba(45,184,204,0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal-light), var(--gold));
+  }
+
+  .team-info {
+    padding: 24px 20px;
+  }
+  .team-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-size: 0.75rem;
+    color: var(--teal-mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .team-bio {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── WHY ─── */
+  #why {
+    background: var(--teal-deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    padding: 100px 60px;
+  }
+
+  #why .section-title { color: white; }
+  #why .section-label { color: var(--gold-light); }
+  #why .section-label::before { background: var(--gold-light); }
+
+  .why-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .why-point {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: padding-left 0.3s;
+  }
+  .why-point:first-child { padding-top: 0; }
+  .why-point:last-child { border-bottom: none; }
+  .why-point:hover { padding-left: 8px; }
+
+  .why-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+    line-height: 1;
+    min-width: 36px;
+  }
+
+  .why-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .why-desc {
+    font-size: 0.855rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--white);
+    text-align: center;
+    padding: 100px 60px;
+  }
+
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-inner .section-label { justify-content: center; }
+  .cta-inner .section-label::before { display: none; }
+  .cta-inner .section-label::after { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+  .cta-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+  .cta-title .accent{ color: var(--teal-deep); font-style: italic; }
+
+  .cta-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--teal-deep);
+    color: var(--teal-deep);
+    padding: 15px 32px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover {
+    background: var(--teal-deep);
+    color: white;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    padding: 64px 60px 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: white;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li {
+    margin-bottom: 12px;
+  }
+  .footer-col ul li a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.25s;
+    font-weight: 300;
+  }
+  .footer-col ul li a:hover { color: var(--teal-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7) translateY(-8px); }
+    50% { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 18px 32px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 32px 80px; text-align: center; }
+    .hero-right { margin-top: 48px; }
+    .hero-desc { margin: 0 auto 44px; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { left: 32px; gap: 36px; }
+    #about { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
+    .courses-grid { grid-template-columns: 1fr; }
+    .courses-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    section { padding: 80px 32px; }
+    #courses { padding: 80px 32px; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    #why { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="static/logo.png" style="height: 60px;"/></div>
+  <ul class="nav-links">
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#courses">課程介紹</a></li>
+    <li><a href="#team">師資團隊</a></li>
+    <li><a href="#why">為什麼選擇我們</a></li>
+    <li><a href="#cta" class="nav-cta">立即預約</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <!-- <div class="hero-grid-lines"></div> -->
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">兒童動作感知覺整合教育</div>
+    <h1 class="hero-title">
+      讓每個孩子<br>
+      都能<span class="accent">飛翔</span>的<br>
+      起點
+    </h1>
+    <p class="hero-desc">
+      結合神經科學與動作教育，透過系統性的感覺統合訓練，幫助孩子建立健全的身體認知、動作協調與專注力，奠定學習的堅實基礎。
+    </p>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+        <div class="logo-animation-wrapper">
+            <img src="static/lego7.png" class="anim-layer block delay-7" alt="積木7">
+            <img src="static/lego1.png" class="anim-layer base-layer block delay-1" alt="積木1">
+            <img src="static/lego6.png" class="anim-layer block delay-6" alt="積木6">
+            
+            <img src="static/lego5.png" class="anim-layer block delay-5" alt="積木5">
+            
+            <img src="static/lego2.png" class="anim-layer block delay-2" alt="積木2">
+            <img src="static/lego3.png" class="anim-layer block delay-3" alt="積木3">
+            <img src="static/lego4.png" class="anim-layer block delay-4" alt="積木4">
+            
+            <img src="static/star1.png" class="anim-layer star delay-8" alt="星星1">
+            <img src="static/star2.png" class="anim-layer star delay-9" alt="星星2">
+
+            <img src="static/person1.png" class="anim-layer person delay-10" alt="小人1">
+            <img src="static/person2.png" class="anim-layer person delay-11" alt="小人2">
+            <img src="static/person3.png" class="anim-layer person delay-12" alt="小人3">
+            <img src="static/person4.png" class="anim-layer person delay-13" alt="小人4">
+            <img src="static/ball.png"   class="anim-layer ball delay-14" alt="球">
+        </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">SCROLL</span>
+  </div>
+</section>
+
+<!-- NEW STATS SECTION -->
+<section id="achievements" style="background: var(--teal-pale); padding: 80px 60px;">
+  <div class="stats-container" style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; text-align: center;">
+    <div class="stat-item reveal">
+      <span class="stat-num" style="font-size: 3.5rem; margin-bottom: 8px;">500<span>+</span></span>
+      <span class="stat-label" style="font-size: 0.9rem; letter-spacing: 0.2em; font-weight: 600; color: var(--teal-deep);">服務兒童人數</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1" style="border-left: 1px solid rgba(13,110,122,0.1); border-right: 1px solid rgba(13,110,122,0.1); padding: 0 60px;">
+      <span class="stat-num" style="font-size: 3.5rem; margin-bottom: 8px;">8<span>年</span></span>
+      <span class="stat-label" style="font-size: 0.9rem; letter-spacing: 0.2em; font-weight: 600; color: var(--teal-deep);">專業臨床經驗</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-num" style="font-size: 3.5rem; margin-bottom: 8px;">98<span>%</span></span>
+      <span class="stat-label" style="font-size: 0.9rem; letter-spacing: 0.2em; font-weight: 600; color: var(--teal-deep);">家長信任滿意度</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label">關於我們</div>
+    <h2 class="section-title">科學為根，<br>愛為翼</h2>
+    <p>「飛童動知覺」由一群深耕兒童發展領域的治療師與教育工作者創立，專注於將感覺統合理論落地於日常教學中。</p>
+    <p>我們相信，每個孩子都有自己的學習節奏。透過精心設計的動作課程，我們幫助孩子認識自己的身體，建立與世界連結的信心。</p>
+    <div class="about-highlight">
+      <p>「動作是兒童學習的第一語言——當身體準備好了，心智的成長自然跟上。」</p>
+    </div>
+  </div>
+
+  <div class="about-visual reveal reveal-delay-2">
+    <div class="about-pillars">
+      <div class="pillar-card">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-name">神經科學基礎</div>
+        <div class="pillar-desc">課程設計依據最新腦科學研究，精準刺激神經發展</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🎯</span>
+        <div class="pillar-name">個別化評估</div>
+        <div class="pillar-desc">每位孩子獨立評估，量身打造最適合的訓練計畫</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🤸</span>
+        <div class="pillar-name">動作整合訓練</div>
+        <div class="pillar-desc">系統性提升粗大動作、精細動作與身體協調能力</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">💬</span>
+        <div class="pillar-name">親師密切合作</div>
+        <div class="pillar-desc">定期回饋與家長工作坊，延伸訓練效果至日常生活</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="courses-header">
+    <div>
+      <div class="section-label reveal">課程介紹</div>
+      <h2 class="section-title reveal">為每個成長階段<br>量身打造</h2>
+    </div>
+    <a href="#cta" class="btn-ghost reveal">查看所有課程</a>
+  </div>
+
+  <div class="courses-grid">
+    <div class="course-card reveal">
+      <span class="course-num">01</span>
+      <span class="course-tag">感覺統合</span>
+      <h3 class="course-title">感覺統合基礎班</h3>
+      <p class="course-desc">針對觸覺、前庭覺、本體覺進行系統性刺激，協助孩子建立穩定的感覺處理能力，改善情緒調節與專注力表現。</p>
+      <div class="course-ages">適合 2 – 6 歲</div>
+    </div>
+    <div class="course-card reveal reveal-delay-1">
+      <span class="course-num">02</span>
+      <span class="course-tag">動作發展</span>
+      <h3 class="course-title">動作協調進階班</h3>
+      <p class="course-desc">以闖關遊戲形式訓練雙側協調、視動整合與身體姿態控制，為學齡孩子的書寫、體育表現奠定基礎。</p>
+      <div class="course-ages">適合 5 – 10 歲</div>
+    </div>
+    <div class="course-card reveal reveal-delay-2">
+      <span class="course-num">03</span>
+      <span class="course-tag">親子課程</span>
+      <h3 class="course-title">親子動知覺探索</h3>
+      <p class="course-desc">由專業師資帶領親子共同完成動作任務，強化親子連結，同時教導家長如何在家中持續支持孩子的感官發展。</p>
+      <div class="course-ages">適合 1.5 – 4 歲</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-header">
+    <div class="section-label reveal">師資團隊</div>
+    <h2 class="section-title reveal">專業陪伴，值得信賴</h2>
+    <p class="section-desc reveal">每位師資均具備職能治療師執照或兒童發展相關專業認證，持續進修以提供最前沿的教學方法。</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">👩‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">陳雅婷 院長</div>
+        <div class="team-role">職能治療師 · 創辦人</div>
+        <p class="team-bio">陽明交通大學職能治療研究所畢業，專精感覺統合療法，擁有逾12年兒童早期療育臨床經驗。</p>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-avatar">👩‍🏫</div>
+      <div class="team-info">
+        <div class="team-name">林佳穎 老師</div>
+        <div class="team-role">動作發展專家</div>
+        <p class="team-bio">台師大體育系碩士，取得感統進階認證，擅長設計融入運動遊戲的動作整合課程。</p>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-avatar">🧑‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">王明哲 老師</div>
+        <div class="team-role">神經發展治療師</div>
+        <p class="team-bio">馬偕醫院神經科職能治療師出身，專注於發展遲緩及注意力問題兒童的早期介入方案。</p>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-delay-3">
+      <div class="team-avatar">👩‍💼</div>
+      <div class="team-info">
+        <div class="team-name">黃淑芬 老師</div>
+        <div class="team-role">親子課程講師</div>
+        <p class="team-bio">親職教育碩士，曾任幼兒園資深教師，致力於將感統概念融入家庭日常互動。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-left reveal">
+    <div class="section-label">為什麼選擇我們</div>
+    <h2 class="section-title">不只是課程，<br>是陪伴成長<br>的旅程</h2>
+  </div>
+
+  <div class="why-points reveal reveal-delay-2">
+    <div class="why-point">
+      <div class="why-num">01</div>
+      <div class="why-content">
+        <div class="why-title">專業評估，精準介入</div>
+        <p class="why-desc">課程前進行完整動作發展評估，由治療師解讀結果並與家長共同擬定個別化目標，確保每一堂課都有明確方向。</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-num">02</div>
+      <div class="why-content">
+        <div class="why-title">小班精緻教學</div>
+        <p class="why-desc">每班最多6位孩子，師生比不超過 1:3，確保每位孩子獲得充足的個別關注與即時回饋。</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-num">03</div>
+      <div class="why-content">
+        <div class="why-title">定期追蹤成效</div>
+        <p class="why-desc">每學期末提供詳細進步報告，以客觀量表記錄孩子的成長軌跡，讓進步有憑有據。</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-num">04</div>
+      <div class="why-content">
+        <div class="why-title">溫暖的學習環境</div>
+        <p class="why-desc">精心設計的感統設備教室，搭配充滿包容與鼓勵的課堂氛圍，讓孩子在安全中勇於嘗試。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div class="section-label">開始旅程</div>
+    <h2 class="cta-title">
+      準備好讓孩子<br>
+      <span class="accent">展翅高飛</span>了嗎？
+    </h2>
+    <p class="cta-desc">
+      預約免費初步諮詢，由專業治療師為您的孩子評估發展現況，並說明最適合的課程方向。
+    </p>
+    <div class="cta-actions">
+      <a href="tel:+886" class="btn-primary">立即預約諮詢</a>
+      <a href="mailto:info@feitong-edu.com" class="btn-outline">寄送詢問信</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">飛童<span>動知覺</span></span>
+      <p class="footer-tagline">以科學為根，以愛為翼，幫助每個孩子在動作探索中，找到屬於自己的飛翔方式。</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速連結</h4>
+      <ul>
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#courses">課程介紹</a></li>
+        <li><a href="#team">師資團隊</a></li>
+        <li><a href="#why">為什麼選我們</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>聯絡資訊</h4>
+      <ul>
+        <li><a href="#">📍 台北市信義區</a></li>
+        <li><a href="tel:+886">📞 (02) XXXX-XXXX</a></li>
+        <li><a href="mailto:info@feitong-edu.com">✉️ info@feitong-edu.com</a></li>
+        <li><a href="#">🕘 週一至週六 9:00–18:00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 飛童動知覺. All rights reserved.</p>
+    <p class="footer-copy">飛童動知覺兒童動作感知覺整合教育</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll behavior
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+  });
+</script>
+</body>
+</html>
