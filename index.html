@@ -6,8 +6,6 @@
 <title>飛童動知覺｜兒童動作感知覺整合教育</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -21,13 +19,11 @@
     --white: #FAFCFC;
     --text: #31241a;        /* #1A2E31 */
     --text-muted: #80715a;
+    --text-main: #F4EBE1;
     --gold: #C4933F;
     --gold-light: #F0C96B;
     --yellow: #FFCB74;
     --yellow-2: #ffa53f;
-    --yellow-3: #f7a03c;
-    --yellow-11: #FFB300;
-
     --yellow-3: #B38640;
     --yellow-4: #8C642A;
     --yellow-5: #66451A;
@@ -36,6 +32,7 @@
     --yellow-8: #FFE6BC;
     --yellow-9: #FFF1D9;
     --yellow-10: #FFFAED;
+    --yellow-11: #FFB300;
     
     --gray-1: #f1f1f1;
     --cream-1: #F2EAE0;
@@ -49,9 +46,11 @@
     --c-blue:   #4455AD;
     --c-purple: #8E6399;
 
-    --highlight: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    
     --grad-rainbow: linear-gradient(90deg, #E15244, #ED9C40, #F8BE5D, #6BC959, #59B7D1, #4455AD, #8E6399);
-    --grad-warm:    linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --grad-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --grad-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --grad-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     
     
   }
@@ -60,17 +59,8 @@
 
   html { scroll-behavior: smooth; }
 
-  @font-face {
-  font-family: 'jf-open-huninn';
-  src: url('https://cdn.jsdelivr.net/gh/justfont/open-huninn-font/font/jf-openhuninn-1.1/jf-openhuninn-1.1.woff2') format('woff2');
-  font-display: swap;
-}
-
   body {
     font-family: 'Chocolate Classical Sans', 'Noto Sans TC', sans-serif;
-    /* font-family: 'jf-open-huninn', 'Noto Sans TC', sans-serif; */
-    /* font-family: 'PingFang TC', sans-serif; */
-    /* font-family: 'Taipei Sans TC', sans-serif; */
     background: var(--white);
     color: var(--text);
     overflow-x: hidden;
@@ -125,7 +115,7 @@
     transition: width 0.3s;
   }
   .nav-links a:hover { 
-    background-image: var(--highlight); 
+    background-image: var(--grad-warm-90); 
     color: transparent;
     background-clip: text; 
   }
@@ -147,7 +137,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--highlight); /* 套用您的漸層變數 */
+    background: var(--grad-warm-90); /* 套用您的漸層變數 */
     opacity: 0; /* 預設完全透明 */
     z-index: -1; /* 墊在文字下方 */
     transition: opacity 1s ease; /* 針對透明度做順滑的過渡動畫 */
@@ -176,15 +166,7 @@
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    /* background:
-      radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 50% 10%, rgba(77,192,212,0.2) 0%, transparent 55%); */
     pointer-events: none;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
   }
 
   .hero-left {
@@ -200,7 +182,7 @@
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.2em;
-    background: var(--grad-warm); -webkit-background-clip: text;
+    background: var(--grad-warm-135); -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; background-clip: text;
     text-transform: uppercase;
     margin-bottom: 28px;
@@ -211,7 +193,7 @@
     content: '';
     display: block;
     width: 32px; height: 1px;
-    background: var(--grad-warm);
+    background: var(--grad-warm-135);
     -webkit-text-fill-color: transparent; 
   }
 
@@ -286,10 +268,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: calc(100vh - 72px); */
-    /* background: var(--cream-1); */
-    /* clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 6% 100%); */
-    
   }
 
   .hero-visual {
@@ -412,39 +390,6 @@
   /* ─── SECTION COMMONS ─── */
   section { padding: 100px 60px; }
 
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .section-label::before {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--gold);
-  }
-
-  .section-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 900;
-    color: var(--navy);
-    line-height: 1.25;
-    margin-bottom: 24px;
-  }
-
-  .section-desc {
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--text-muted);
-    font-weight: 300;
-    max-width: 560px;
-  }
-
 
 /* ══════════════════════════════════════════
     RAINBOW DIVIDER
@@ -469,47 +414,12 @@
   padding: 100px 72px;
   position: relative; overflow: hidden;
 }
-
-.courses-intro::after{
-  content: '';
-  position: absolute;
-  top: -10px;
-  right: 0px;
-  width: 100px;
-  height: 20px;
-  background: linear-gradient(transparent,transparent);
-  z-index: 10;
-}
-
-/* 背景浮動彩圈 */
-.courses-bg-orb {
-  position: absolute; border-radius: 50%;
-  pointer-events: none; filter: blur(60px); opacity: 0.55;
-  animation: orbFloat var(--dur, 8s) ease-in-out infinite alternate;
-}
-.orb-1 { width:320px; height:320px; top:-80px; right:5%;  background:rgba(89,183,209,0.15); --dur:7s; }
-.orb-2 { width:240px; height:240px; bottom:0; left:3%;    background:rgba(237,156,64,0.12); --dur:9s; animation-delay:-3s; }
-.orb-3 { width:180px; height:180px; top:40%; left:42%;    background:rgba(107,201,89,0.1);  --dur:11s; animation-delay:-5s; }
-
-@keyframes orbFloat {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(18px, -22px) scale(1.08); }
-}
-/* 浮動背景幾何 */
-.why-geo {
-  position: absolute; pointer-events: none;
-  border-radius: 50%;
-  animation: whyGeoFloat var(--dur,10s) ease-in-out infinite alternate;
-}
-.wg1 { width:500px; height:500px; top:-150px; right:-100px;
-       background: radial-gradient(circle, rgba(89,183,209,0.25) 0%, transparent 65%); --dur:9s; }
-.wg2 { width:350px; height:350px; bottom:-80px; left:-60px;
-       background: radial-gradient(circle, rgba(237,156,64,0.3) 0%, transparent 65%); --dur:12s; animation-delay:-4s; }
-.wg3 { width:250px; height:250px; top:35%; left:35%;
-       background: radial-gradient(circle, rgba(107,201,89,0.4) 0%, transparent 65%); --dur:14s; animation-delay:-7s; }
-@keyframes whyGeoFloat {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(24px,-20px) scale(1.1); }
+.courses-intro::before{
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.3) 0%, transparent 55%);
+  pointer-events: none;
 }
 
 .courses-hd {
@@ -520,20 +430,20 @@
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
   font-weight: 700; margin-bottom: 14px;
-  background: var(--grad-warm); -webkit-background-clip: text;
+  background: var(--grad-warm-135); -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; background-clip: text;
 }
 .courses-eyebrow::before { content: ''; width: 24px; height: 2px; border-radius: 1px;
-  background: var(--grad-warm); flex-shrink:0; -webkit-text-fill-color: unset; }
+  background: var(--grad-warm-135); flex-shrink:0; -webkit-text-fill-color: unset; }
 .courses-title {
   font-family: 'Noto Serif TC', serif;
   font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900;
-  color: var(--dur); line-height: 1.25;
+  color: var(--navy); line-height: 1.25;
 }
 .btn-ghost-warm {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 0.875rem; font-weight: 600;
-  background: var(--grad-warm); -webkit-background-clip: text;
+  background: var(--grad-warm-135); -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; background-clip: text;
   text-decoration: none;
   border-bottom: 2px solid var(--c-orange); padding-bottom: 3px;
@@ -542,512 +452,210 @@
 .btn-ghost-warm::after { content: '→'; }
 .btn-ghost-warm:hover { gap: 14px; border-color: var(--c-red); }
 
-/* ─ 課程卡片 grid ─ */
-.courses-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  position: relative; z-index: 1;
+/* ─ Carousel 輪播容器 ─ */
+.courses-container {
+  position: relative;
+  width: 100%;
+  padding: 40px 0 320px; /* 為下方展開面板留空間 */
+  overflow: hidden;
 }
 
-/* 通用卡片 */
-.ccard {
-  border-radius: 20px; overflow: hidden; position: relative;
-  background: white;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275),
-              box-shadow 0.45s ease;
-  cursor: default;
-}
-.ccard:hover {
-  transform: translateY(-14px) scale(1.02);
-  box-shadow: 0 32px 64px rgba(0,0,0,0.13);
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: continuousScroll 60s linear infinite;
+  padding-left: 30px;
 }
 
-/* 頂部彩色橫幅 */
-.ccard-banner {
-  padding: 40px 32px 32px;
-  position: relative; overflow: hidden; min-height: 200px;
-  display: flex; flex-direction: column; justify-content: flex-end;
+.carousel-track:hover {
+  animation-play-state: paused;
 }
-.cc1 .ccard-banner { background: linear-gradient(135deg, var(--c-cyan) 0%, var(--c-blue) 100%); }
-.cc2 .ccard-banner { background: linear-gradient(135deg, var(--c-orange) 0%, var(--c-red) 100%); }
-.cc3 .ccard-banner { background: linear-gradient(135deg, var(--c-green) 0%, var(--c-cyan) 100%); }
 
-/* 大 emoji 背景裝飾 */
-.ccard-deco {
-  position: absolute; top: -12px; right: -8px;
-  font-size: 9rem; line-height: 1; opacity: 0.12; pointer-events: none;
-  transition: transform 0.5s ease, opacity 0.4s;
-  filter: grayscale(0.1);
+@keyframes continuousScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 捲動一半的路徑（即一組卡片的寬度） */
 }
-.ccard:hover .ccard-deco { transform: scale(1.12) rotate(8deg); opacity: 0.22; }
 
-.ccard-icon {
-  font-size: 2.8rem; display: block; margin-bottom: 14px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
-  transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275);
+/* ─ 恢復原本的卡片樣式 (已移除 v5 命名) ─ */
+.course-card {
+  position: relative;
+  flex: 0 0 360px;
+  height: 360px;
+  margin-right: 30px;
+  z-index: 1;
 }
-.ccard:hover .ccard-icon { transform: scale(1.18) rotate(-6deg); }
 
-.ccard-pill {
-  display: inline-block; font-size: 0.6rem; letter-spacing: 0.18em;
-  text-transform: uppercase; font-weight: 700;
-  background: rgba(255,255,255,0.22); color: white;
-  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+.course-card:hover {
+  z-index: 10;
+}
+
+.card-inner {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 360px;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s;
+}
+
+.course-card:hover .card-inner {
+  height: 640px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.card-img-wrap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 360px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.card-img {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.course-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(31, 45, 56, 0.95) 0%, rgba(31, 45, 56, 0.3) 50%, transparent 100%);
+}
+
+.card-header-content {
+  position: absolute;
+  top: 250px;
+  left: 24px;
+  right: 24px;
+  z-index: 3;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.course-card:hover .card-header-content {
+  transform: translateY(115px);
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
   backdrop-filter: blur(4px);
+  transition: background 0.5s, color 0.5s;
 }
-.ccard-top-title {
+
+.course-card:hover .card-tag {
+  background: var(--teal-pale);
+  color: var(--teal-mid);
+}
+
+.card-title {
   font-family: 'Noto Serif TC', serif;
-  font-size: 1.55rem; font-weight: 900; color: white; line-height: 1.25;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin: 0;
+  font-size: 1.6rem;
+  color: white;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: color 0.5s, text-shadow 0.5s;
 }
 
-/* 卡片內容區 */
-.ccard-body {
-  padding: 28px 32px 32px;
-  border: 1px solid rgba(0,0,0,0.05); border-top: none;
-  border-radius: 0 0 20px 20px;
-}
-.ccard-desc {
-  font-size: 0.9rem; color: var(--text-muted); line-height: 1.85;
-  font-weight: 300; margin-bottom: 20px;
-}
-.ccard-dots {
-  display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px;
-}
-.ccard-dot {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 0.82rem; color: var(--text-muted);
-}
-.dot-mark {
-  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-  transition: transform 0.3s;
-}
-.ccard:hover .dot-mark { transform: scale(1.4); }
-.cc1 .dot-mark { background: var(--c-cyan); }
-.cc2 .dot-mark { background: var(--c-orange); }
-.cc3 .dot-mark { background: var(--c-green); }
-
-.ccard-footer {
-  display: flex; align-items: center; justify-content: space-between;
-}
-.ccard-age {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 0.78rem; font-weight: 600;
-  padding: 7px 14px; border-radius: 8px;
-}
-.cc1 .ccard-age { background: rgba(89,183,209,0.1); color: var(--c-blue); }
-.cc2 .ccard-age { background: rgba(237,156,64,0.1); color: var(--c-red); }
-.cc3 .ccard-age { background: rgba(107,201,89,0.1); color: #3A8A2E; }
-
-.ccard-btn {
-  width: 38px; height: 38px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), background 0.3s;
-}
-.cc1 .ccard-btn { background: rgba(89,183,209,0.1); color: var(--c-blue); }
-.cc2 .ccard-btn { background: rgba(237,156,64,0.1); color: var(--c-orange); }
-.cc3 .ccard-btn { background: rgba(107,201,89,0.1); color: #3A8A2E; }
-.cc1:hover .ccard-btn { background: var(--c-cyan); color: white; transform: translateX(4px) scale(1.15); }
-.cc2:hover .ccard-btn { background: var(--c-orange); color: white; transform: translateX(4px) scale(1.15); }
-.cc3:hover .ccard-btn { background: var(--c-green); color: white; transform: translateX(4px) scale(1.15); }
-
-  /* ─── ABOUT ─── */
-  #about {
-    background: var(--navy);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    padding: 100px 60px;
-  }
-
-  #about .section-title { color: var(--white); }
-  #about .section-desc { color: rgba(255,255,255,0.6); max-width: 100%; }
-  #about .section-label { color: var(--gold-light); }
-  #about .section-label::before { background: var(--gold-light); }
-
-  .about-text p {
-    font-size: 1rem;
-    line-height: 2;
-    color: rgba(255,255,255,0.65);
-    font-weight: 300;
-    margin-bottom: 16px;
-  }
-
-  .about-highlight {
-    margin-top: 40px;
-    padding: 28px 36px;
-    border-left: 3px solid var(--gold);
-    background: rgba(196,147,63,0.08);
-    border-radius: 0 4px 4px 0;
-  }
-  .about-highlight p {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.9) !important;
-    line-height: 1.8 !important;
-    margin: 0 !important;
-  }
-
-  .about-pillars {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .pillar-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 4px;
-    padding: 28px 24px;
-    transition: background 0.3s, border-color 0.3s, transform 0.3s;
-    cursor: default;
-  }
-  .pillar-card:hover {
-    background: rgba(204, 146, 45, 0.1);
-    border-color: rgba(204, 162, 45, 0.3);
-    transform: translateY(-4px);
-  }
-  .pillar-icon {
-    font-size: 2rem;
-    margin-bottom: 14px;
-    display: block;
-  }
-  .pillar-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-  }
-  .pillar-desc {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.7;
-  }
-
-/* ══════════════════════════════════════════
-   TICKER（滾動統計數字條）
-══════════════════════════════════════════ */
-.stats-ticker {
-  background: white; overflow: hidden;
-  padding: 0; line-height: 1;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-.ticker-wrap {
-  
-  display: flex; width: fit-content;
-  animation: tickerMove 22s linear infinite;
-  gap: 10px;
-}
-.ticker-wrap:hover { animation-play-state: paused; }
-.ticker-item {
-  background: #1A1208;
-  display: inline-flex; align-items: center; gap: 14px;
-  padding: 24px 52px; flex-shrink: 0;
-  font-size: 16px;
-  border-right: 1px solid rgba(255,255,255,0.05);
-}
-.ticker-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem; line-height: 1;
-}
-.ticker-text {
-  font-size: 0.72rem; letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.35); text-transform: uppercase; line-height: 1.4;
-}
-.t1 { color: var(--c-orange); }
-.t2 { color: var(--c-cyan); }
-.t3 { color: var(--c-green); }
-.t4 { color: var(--c-yellow); }
-.t5 { color: var(--c-purple); }
-
-@keyframes tickerMove {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.course-card:hover .card-title {
+  color: var(--navy);
+  text-shadow: none;
 }
 
-  /* ─── COURSES ─── */
-  /* #courses {
-    background: var(--white);
-  }
+.card-detail-panel {
+  position: absolute;
+  top: 360px;
+  left: 0; right: 0;
+  padding: 85px 24px 24px 24px;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
 
-  .courses-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 64px;
-  }
+.course-card:hover .card-detail-panel {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
 
-  .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(13,110,122,0.08);
-    border-radius: 4px;
-    overflow: hidden;
-  }
+.card-detail-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
 
-  .course-card {
-    background: var(--white);
-    padding: 48px 36px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.4s;
-    cursor: default;
-  }
-  .course-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--teal-light), var(--teal-deep));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .course-card:hover { background: var(--teal-pale); }
-  .course-card:hover::before { transform: scaleX(1); }
+.card-detail-list {
+  list-style: none; padding: 0; margin: 0 0 20px 0;
+}
 
-  .course-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3.5rem;
-    color: rgba(13,110,122,0.1);
-    line-height: 1;
-    margin-bottom: 20px;
-    display: block;
-    transition: color 0.4s;
-  }
-  .course-card:hover .course-num { color: rgba(13,110,122,0.2); }
+.card-detail-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.85rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
 
-  .course-tag {
-    display: inline-block;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(196,147,63,0.1);
-    padding: 4px 10px;
-    border-radius: 2px;
-    margin-bottom: 16px;
-  }
+.card-detail-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
 
-  .course-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 14px;
-    line-height: 1.4;
-  }
+.card-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
 
-  .course-desc {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.85;
-    margin-bottom: 24px;
-    font-weight: 300;
-  }
+.card-age-tag {
+  background: var(--teal-pale);
+  color: var(--teal-mid);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
 
-  .course-ages {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    color: var(--teal-deep);
-    font-weight: 500;
-  }
-  .course-ages::before { content: '👶'; font-size: 0.9rem; } */
+.card-arrow-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--yellow-9);
+  color: var(--yellow-3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
 
-  /* ─── TEAM ─── */
-  #team {
-    background: #F4F8F9;
-  }
-
-  .team-header {
-    text-align: center;
-    margin-bottom: 72px;
-  }
-  .team-header .section-desc {
-    margin: 0 auto;
-    text-align: center;
-  }
-  .team-header .section-label {
-    justify-content: center;
-  }
-  .team-header .section-label::before { display: none; }
-  .team-header .section-label::after {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--gold);
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-
-  .team-card {
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .team-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(13,110,122,0.1);
-  }
-
-  .team-avatar {
-    width: 100%;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--teal-pale), rgba(45,184,204,0.15));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .team-avatar::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--teal-light), var(--gold));
-  }
-
-  .team-info {
-    padding: 24px 20px;
-  }
-  .team-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 4px;
-  }
-  .team-role {
-    font-size: 0.75rem;
-    color: var(--teal-mid);
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-  .team-bio {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  /* ─── WHY ─── */
-  #why {
-    background: var(--teal-deep);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-    padding: 100px 60px;
-  }
-
-  #why .section-title { color: white; }
-  #why .section-label { color: var(--gold-light); }
-  #why .section-label::before { background: var(--gold-light); }
-
-  .why-points {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .why-point {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: padding-left 0.3s;
-  }
-  .why-point:first-child { padding-top: 0; }
-  .why-point:last-child { border-bottom: none; }
-  .why-point:hover { padding-left: 8px; }
-
-  .why-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.8rem;
-    color: rgba(255,255,255,0.15);
-    flex-shrink: 0;
-    line-height: 1;
-    min-width: 36px;
-  }
-
-  .why-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-  }
-  .why-desc {
-    font-size: 0.855rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  /* ─── CTA ─── */
-  #cta {
-    background: var(--white);
-    text-align: center;
-    padding: 100px 60px;
-  }
-
-  .cta-inner {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .cta-inner .section-label { justify-content: center; }
-  .cta-inner .section-label::before { display: none; }
-  .cta-inner .section-label::after { content: ''; width: 24px; height: 1px; background: var(--gold); }
-
-  .cta-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 900;
-    color: var(--navy);
-    line-height: 1.3;
-    margin-bottom: 24px;
-  }
-  .cta-title .accent{ color: var(--teal-deep); font-style: italic; }
-
-  .cta-desc {
-    font-size: 1rem;
-    color: var(--text-muted);
-    line-height: 1.9;
-    font-weight: 300;
-    margin-bottom: 48px;
-  }
-
-  .btn-outline {
-    border: 1.5px solid var(--teal-deep);
-    color: var(--teal-deep);
-    padding: 15px 32px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.25s;
-  }
-  .btn-outline:hover {
-    background: var(--teal-deep);
-    color: white;
-  }
+.course-card:hover .card-arrow-btn {
+  background: var(--yellow-3);
+  color: white;
+  transform: translateX(4px);
+}
 
   /* ─── FOOTER ─── */
   footer {
@@ -1136,9 +744,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
@@ -1152,10 +757,275 @@
     .courses-header { flex-direction: column; align-items: flex-start; gap: 24px; }
     section { padding: 80px 32px; }
     #courses { padding: 80px 32px; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
-    #why { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .nav-links { display: none; }
+  }
+
+   /* =========================================
+     ✨ 黃金發展階段 (Sticky Timeline) ✨
+     ========================================= */
+  .timeline-section {
+    padding: 120px 20px;
+    /* background: linear-gradient(180deg, var(--white) 0%, var(--cream-1) 100%); */
+    background: #1A1208;
+    position: relative;
+    /* 取消這裡的 overflow: hidden，改用獨立的 bg-orb-container 來裁切背景 */
+  }
+
+  /* 專門用來裝飾背景圓球的容器，負責隱藏超出的圓球，但「不干擾」定位 */
+  .bg-orb-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 背景漂浮裝飾球 */
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    animation: floatOrb 10s infinite alternate ease-in-out;
+  }
+  .orb-1 { width: 300px; height: 300px; background: var(--c-cyan); top: 5%; left: -100px; }
+  .orb-2 { width: 400px; height: 400px; background: var(--c-yellow); top: 40%; right: -150px; animation-delay: -3s; }
+  .orb-3 { width: 350px; height: 350px; background: var(--c-purple); bottom: 5%; left: 10%; animation-delay: -6s; }
+
+  @keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -50px) scale(1.1); }
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .section-label {
+    background: var(--grad-warm-135); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .section-label::before, .section-label::after {
+    content: ''; width: 24px; height: 2px;  
+    border-radius: 2px;
+  }
+  .section-label::before {
+    background: #F89938;
+  }
+  .section-label::after {
+    background: #973B9F;
+  }
+  .section-title {
+    color: var(--white); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; line-height: 1.3; margin: 0;
+  }
+
+  /* --- 時間線核心佈局 --- */
+  .timeline {
+    position: relative;
+    padding-bottom: 40px;
+  }
+
+  /* 中央軌道 (偏左放置，比例設定為 25%) */
+  .timeline-spine {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 25%;
+    width: 8px;
+    background: rgb(74, 74, 74);
+    transform: translateX(-50%);
+    border-radius: 8px;
+    z-index: 1; 
+  }
+
+  /* 動態七色軌跡 */
+  .timeline-progress {
+    position: absolute;
+    top: 0; left: 25%;
+    width: 8px;
+    background: var(--grad-warm-180); /* 套用新漸層色 */
+    transform: translateX(-50%);
+    border-radius: 8px;
+    z-index: 2;
+    height: 0%; 
+    transition: none; 
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  }
+
+  /* --- 每一列的佈局 --- */
+  .timeline-item {
+    display: flex;
+    align-items: stretch; /* 讓左側軌道跟右側卡片一樣高，Sticky 才有足夠空間滑動 */
+    padding-bottom: 120px; 
+    position: relative;
+    z-index: 3;
+    opacity: 0; /* 預設隱藏，由 JS 觸發滑入 */
+  }
+
+  /* 左側：黏性月份與圓球 */
+  .timeline-left {
+    flex: 0 0 25%; /* 鎖死 25% 寬度，徹底解決 Flexbox 彈性導致的球球對齊誤差 */
+    width: 25%;
+    position: relative;
+  }
+  
+  /* ⭐️ 核心特效：CSS Sticky 黏性定位 ⭐️ */
+  .sticky-container {
+    position: sticky;
+    top: 50vh; /* 當滾動到螢幕正中央時，釘住不放！ */
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%; /* 確保容器寬度剛好貼齊 25% 邊界，讓圓球精準定位 */
+    z-index: 10;
+  }
+
+  .sticky-text {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-align: right;
+    letter-spacing: 0.05em;
+    color: var(--text-muted); /* 預設暗色 */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding-right: 40px; /* 把間距移到文字上，才不會干擾右側圓球的中心點 */
+    transition: transform 0.4s ease, color 0.4s ease;
+  }
+
+  /* 🌑 內凹質感球球 (與軌道同色 + 指定內陰影) */
+  .sticky-ball {
+    position: absolute;
+    right: -10px; /* 精準置中：往右推移自身寬度的一半 (24px / 2 = 12px) */
+    /* 移除 transform，徹底避免瀏覽器渲染小數點像素造成的對齊誤差 */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--white);
+    z-index: 10;
+  }
+
+  /* 右側：卡片內容 */
+  .timeline-right {
+    flex: 0 0 75%; /* 對應左邊，鎖死 75% 寬度 */
+    width: 75%;
+    padding-left: 60px;
+  }
+
+  /* --- 玻璃質感卡片設計 --- */
+  .timeline-card {
+    /* 改用低透明度的白色，才能在深色背景呈現磨砂感 */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 40px;
+    /* 外陰影改為深黑色，讓卡片有浮起感 */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* 上緣亮、下緣暗的玻璃切邊反光效果 */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.2);
+    border-left-color: rgba(255, 255, 255, 0.15);
+    position: relative;
+    transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* =========================================
+     🎯 到達時的文字特效 (Active State)
+     ========================================= */
+  
+  /* 抵達中間時，取消卡片抖動與發光，僅保留文字變色與微放大 */
+  .item-stage-1.active .sticky-text { color: var(--c-green); transform: scale(1.1); }
+  .item-stage-2.active .sticky-text { color: var(--c-orange); transform: scale(1.1); }
+  .item-stage-3.active .sticky-text { color: var(--c-cyan); transform: scale(1.1); }
+
+  /* =========================================
+     ✨ Hover 時才發光的強烈特效 ✨
+     ========================================= */
+
+  /* Stage 1: 綠色系 */
+  .item-stage-1:hover .timeline-card { 
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08); /* Hover時稍微提亮 */
+    /* 在深色背景下，光暈改為更柔和的擴散 */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(107, 201, 89, 0.15) inset; 
+    border-color: rgba(107, 201, 89, 0.4); 
+  }
+
+  /* Stage 2: 橘黃系 */
+  .item-stage-2:hover .timeline-card { 
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(237, 156, 64, 0.15) inset; 
+    border-color: rgba(237, 156, 64, 0.4); 
+  }
+
+  /* Stage 3: 藍紫色系 */
+  .item-stage-3:hover .timeline-card { 
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(89, 183, 209, 0.15) inset; 
+    border-color: rgba(89, 183, 209, 0.4); 
+  }
+
+
+  /* --- 卡片內部排版 --- */
+  .timeline-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin: 0 0 16px 0;
+  }
+
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .skill-pill {
+    font-size: 0.85rem; font-weight: 500; 
+    color: var(--text-main);
+    /* 膠囊改為半透明底色 */
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 14px; border-radius: 8px;
+  }
+
+  .timeline-desc { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin: 0 0 20px 0; }
+  .timeline-desc:last-child { margin-bottom: 0; }
+
+  .highlight-box {
+    background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 16px 20px;
+    border-left: 4px solid var(--c-yellow); font-size: 1rem; font-weight: 400; color: var(--text-main);
+  }
+
+  /* --- 進場動畫 --- */
+  .animate-slide-up { animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes slideInUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RWD 手機版響應式 ─── */
+  @media (max-width: 768px) {
+    .timeline-spine, .timeline-progress { left: 80px; }
+    .timeline-left { flex: 0 0 80px; width: 80px; }
+    .timeline-right { flex: 0 0 calc(100% - 80px); width: calc(100% - 80px); padding-left: 24px; }
+    
+    .sticky-container { padding-right: 25px; }
+    .sticky-text { font-size: 1.1rem; }
+    
+    .timeline-card { padding: 24px; border-radius: 16px; }
+    .timeline-card h3 { font-size: 1.3rem; }
   }
 </style>
 </head>
@@ -1167,15 +1037,12 @@
   <ul class="nav-links">
     <li><a href="#about">關於我們</a></li>
     <li><a href="#courses">課程介紹</a></li>
-    <li><a href="#team">師資團隊</a></li>
-    <li><a href="#why">為什麼選擇我們</a></li>
     <li><a href="#cta" class="nav-cta">立即預約</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
 
   <div class="hero-left">
     <div class="hero-eyebrow">Profession</div>
@@ -1218,289 +1085,325 @@
 
 <!-- ══ COURSES ══ -->
 <section id="courses" class="courses-intro">
-  <!-- <div class="courses-bg-orb orb-1"></div>
-  <div class="courses-bg-orb orb-2"></div>
-  <div class="courses-bg-orb orb-3"></div> -->
 
   <div class="courses-hd reveal">
     <div>
-      <div class="courses-eyebrow">courses</div>
-      <h2 class="courses-title">為每個孩子<br>打造專屬課程</h2>
+      <div class="courses-eyebrow">case</div>
+      <h2 class="courses-title">為不同孩子<br>打造專屬課程</h2>
     </div>
-    <a href="#cta" class="btn-ghost-warm">探索所有課程</a>
+    <a href="#cta" class="btn-ghost-warm">探索所有案例</a>
+  </div>
+  <!-- Carousel -->
+  <div class="courses-container">
+    <div class="carousel-track">
+      <!-- Set 1 -->
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('static/course1.jpg');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">感覺統合 ‧ 動作發展</span>
+            <h3 class="card-title">動知覺課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">結合神經科學與動作教育，透過系統性感官統合訓練，強化觸覺、前庭覺與本體覺整合，提升專注力。</p>
+            <ul class="card-detail-list">
+              <li>感覺統合基礎 & 進階訓練</li>
+              <li>粗大動作 & 身體協調發展</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">👶 2-10 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">邏輯思維 ‧ 創意程式</span>
+            <h3 class="card-title">程式課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">以遊戲化方式引導探索程式世界，從積木到文字編碼，培養運算思維、邏輯分析與解決問題能力。</p>
+            <ul class="card-detail-list">
+              <li>Scratch 積木程式設計</li>
+              <li>運算思維與邏輯訓練</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">🧒 6-14 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1454165833767-027ffea10c3b?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">個別化 ‧ 全科輔導</span>
+            <h3 class="card-title">學業輔導</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">結合動知覺評估與學習策略，依孩子特質提供一對一輔導，有效提升學習效率、成績與自我信心。</p>
+            <ul class="card-detail-list">
+              <li>國英數個別化輔導</li>
+              <li>學習策略與記憶技巧</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">📖 國小-高中</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">體適能 ‧ 專注力提升</span>
+            <h3 class="card-title">體適能課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">專業教練指導，透過趣味遊戲與肌力訓練，提升心肺耐力、肌耐力與動作協調，讓孩子愛上運動。</p>
+            <ul class="card-detail-list">
+              <li>趣味體能遊戲開發</li>
+              <li>核心肌力與協調訓練</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">🏃 4-12 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set 2 (Duplicate for seamless loop) -->
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('static/course1.jpg');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">感覺統合 ‧ 動作發展</span>
+            <h3 class="card-title">動知覺課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">結合神經科學與動作教育，透過系統性感官統合訓練，強化觸覺、前庭覺與本體覺整合，提升專注力。</p>
+            <ul class="card-detail-list">
+              <li>感覺統合基礎 & 進階訓練</li>
+              <li>粗大動作 & 身體協調發展</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">👶 2-10 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">邏輯思維 ‧ 創意程式</span>
+            <h3 class="card-title">程式課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">以遊戲化方式引導探索程式世界，從積木到文字編碼，培養運算思維、邏輯分析與解決問題能力。</p>
+            <ul class="card-detail-list">
+              <li>Scratch 積木程式設計</li>
+              <li>運算思維與邏輯訓練</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">🧒 6-14 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1454165833767-027ffea10c3b?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">個別化 ‧ 全科輔導</span>
+            <h3 class="card-title">學業輔導</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">結合動知覺評估與學習策略，依孩子特質提供一對一輔導，有效提升學習效率、成績與自我信心。</p>
+            <ul class="card-detail-list">
+              <li>國英數個別化輔導</li>
+              <li>學習策略與記憶技巧</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">📖 國小-高中</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="card-inner">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=800');"></div>
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-header-content">
+            <span class="card-tag">體適能 ‧ 專注力提升</span>
+            <h3 class="card-title">體適能課程</h3>
+          </div>
+          <div class="card-detail-panel">
+            <p class="card-detail-desc">專業教練指導，透過趣味遊戲與肌力訓練，提升心肺耐力、肌耐力與動作協調，讓孩子愛上運動。</p>
+            <ul class="card-detail-list">
+              <li>趣味體能遊戲開發</li>
+              <li>核心肌力與協調訓練</li>
+            </ul>
+            <div class="card-detail-footer">
+              <span class="card-age-tag">🏃 4-12 歲</span>
+              <div class="card-arrow-btn">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="courses-grid">
-    <!-- 課程一：動知覺課程 -->
-    <div class="ccard cc1 reveal-scale">
-      <div class="ccard-banner img1">
-        <span class="ccard-deco">🧠</span>
-        <span class="ccard-icon">🤸</span>
-        <div>
-          <span class="ccard-pill">感覺統合 · 動作發展</span>
-          <div class="ccard-top-title">動知覺課程</div>
-        </div>
-      </div>
-      <div class="ccard-body">
-        <p class="ccard-desc">結合神經科學與動作教育，透過系統性感覺統合訓練，強化觸覺、前庭覺與本體覺整合，全面提升孩子的專注力與情緒調節能力。</p>
-        <div class="ccard-dots">
-          <div class="ccard-dot"><span class="dot-mark"></span>感覺統合基礎 & 進階訓練</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>粗大動作 & 身體協調發展</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>情緒調節與專注力提升</div>
-        </div>
-        <div class="ccard-footer">
-          <div class="ccard-age">👶 適合 2 – 10 歲</div>
-          <div class="ccard-btn">→</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 課程二：程式課程 -->
-    <div class="ccard cc2 reveal-scale rd2">
-      <div class="ccard-banner">
-        <span class="ccard-deco">💻</span>
-        <span class="ccard-icon">⚡</span>
-        <div>
-          <span class="ccard-pill">邏輯思維 · 創意程式</span>
-          <div class="ccard-top-title">程式課程</div>
-        </div>
-      </div>
-      <div class="ccard-body">
-        <p class="ccard-desc">以遊戲化方式引導孩子探索程式世界，從視覺化積木程式到文字編碼，培養運算思維、邏輯分析與解決問題的能力。</p>
-        <div class="ccard-dots">
-          <div class="ccard-dot"><span class="dot-mark"></span>Scratch 積木程式設計</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>運算思維與邏輯訓練</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>創意專題實作與成果展示</div>
-        </div>
-        <div class="ccard-footer">
-          <div class="ccard-age">🧒 適合 6 – 14 歲</div>
-          <div class="ccard-btn">→</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 課程三：學業輔導 -->
-    <div class="ccard cc3 reveal-scale rd3">
-      <div class="ccard-banner">
-        <span class="ccard-deco">📚</span>
-        <span class="ccard-icon">✏️</span>
-        <div>
-          <span class="ccard-pill">個別化 · 全科輔導</span>
-          <div class="ccard-top-title">學業輔導</div>
-        </div>
-      </div>
-      <div class="ccard-body">
-        <p class="ccard-desc">結合動知覺評估與學習策略，依每位孩子的學習特質提供客製化一對一輔導，有效提升學習效率、成績與自我信心。</p>
-        <div class="ccard-dots">
-          <div class="ccard-dot"><span class="dot-mark"></span>國英數等各科個別輔導</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>學習策略 & 記憶技巧</div>
-          <div class="ccard-dot"><span class="dot-mark"></span>學習動機與良好習慣養成</div>
-        </div>
-        <div class="ccard-footer">
-          <div class="ccard-age">📖 國小至高中</div>
-          <div class="ccard-btn">→</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- 彩虹分隔條 -->
 <div class="rainbow-bar"></div>
 
-<!-- ══ STATS TICKER ══ -->
-<div class="stats-ticker" aria-hidden="true">
-  <div class="ticker-wrap">
-    <!-- 第一組 -->
-    <div class="ticker-item"><span class="ticker-num t1">ADHD</span><span class="ticker-text">過動症</span></div>
-    <div class="ticker-item"><span class="ticker-num t2">ASD</span><span class="ticker-text">自閉症</span></div>
-    <div class="ticker-item"><span class="ticker-num t3">亞斯伯格</span><span class="ticker-text">家長滿意<br>評分</span></div>
-    <div class="ticker-item"><span class="ticker-num t4">低智商</span><span class="ticker-text">師生比<br>黃金比例</span></div>
-    <div class="ticker-item"><span class="ticker-num t5">發展遲緩</span><span class="ticker-text">核心課程<br>方向</span></div>
-    <div class="ticker-item"><span class="ticker-num t1">ADHD</span><span class="ticker-text">個別化<br>評估</span></div>
-    <!-- 第二組（製造無限循環） -->
-    <div class="ticker-item"><span class="ticker-num t1">500<small style="font-size:1.4rem">+</small></span><span class="ticker-text">累積服務<br>兒童人數</span></div>
-    <div class="ticker-item"><span class="ticker-num t2">8<small style="font-size:1.4rem">年</small></span><span class="ticker-text">專業臨床<br>經驗</span></div>
-    <div class="ticker-item"><span class="ticker-num t3">98<small style="font-size:1.4rem">%</small></span><span class="ticker-text">家長滿意<br>評分</span></div>
-    <div class="ticker-item"><span class="ticker-num t4">1:3</span><span class="ticker-text">師生比<br>黃金比例</span></div>
-    <div class="ticker-item"><span class="ticker-num t5">3</span><span class="ticker-text">核心課程<br>方向</span></div>
-    <div class="ticker-item"><span class="ticker-num t1">100<small style="font-size:1.4rem">%</small></span><span class="ticker-text">個別化<br>評估</span></div>
-  </div>
-</div>
+<section class="timeline-section" id="development-timeline">
+    
+    <!-- 利用專屬容器來隱藏溢出的光暈背景，解決 Sticky 衝突 -->
+    <div class="bg-orb-container">
+      <div class="bg-orb orb-1"></div>
+      <div class="bg-orb orb-2"></div>
+      <div class="bg-orb orb-3"></div>
+    </div>
 
-<!-- ABOUT -->
-<!-- <section id="about">
-  <div class="about-text reveal">
-    <div class="section-label">關於我們</div>
-    <h2 class="section-title">科學為根，<br>愛為翼</h2>
-    <p>「飛童動知覺」由一群深耕兒童發展領域的治療師與教育工作者創立，專注於將感覺統合理論落地於日常教學中。</p>
-    <p>我們相信，每個孩子都有自己的學習節奏。透過精心設計的動作課程，我們幫助孩子認識自己的身體，建立與世界連結的信心。</p>
-    <div class="about-highlight">
-      <p>「動作是兒童學習的第一語言——當身體準備好了，心智的成長自然跟上。」</p>
-    </div>
-  </div>
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="section-label">Seize the moment</div>
+        <h2 class="section-title">把握孩子的黃金發展階段</h2>
+      </div>
 
-  <div class="about-visual reveal reveal-delay-2">
-    <div class="about-pillars">
-      <div class="pillar-card">
-        <span class="pillar-icon">🧠</span>
-        <div class="pillar-name">神經科學基礎</div>
-        <div class="pillar-desc">課程設計依據最新腦科學研究，精準刺激神經發展</div>
-      </div>
-      <div class="pillar-card">
-        <span class="pillar-icon">🎯</span>
-        <div class="pillar-name">個別化評估</div>
-        <div class="pillar-desc">每位孩子獨立評估，量身打造最適合的訓練計畫</div>
-      </div>
-      <div class="pillar-card">
-        <span class="pillar-icon">🤸</span>
-        <div class="pillar-name">動作整合訓練</div>
-        <div class="pillar-desc">系統性提升粗大動作、精細動作與身體協調能力</div>
-      </div>
-      <div class="pillar-card">
-        <span class="pillar-icon">💬</span>
-        <div class="pillar-name">親師密切合作</div>
-        <div class="pillar-desc">定期回饋與家長工作坊，延伸訓練效果至日常生活</div>
-      </div>
-    </div>
-  </div>
-</section> -->
+      <div class="timeline" id="timeline-container">
+        <!-- 軌道與進度條 -->
+        <div class="timeline-spine"></div>
+        <div class="timeline-progress" id="timeline-progress"></div>
 
-<!-- COURSES -->
-<!-- <section id="courses">
-  <div class="courses-header">
-    <div>
-      <div class="section-label reveal">課程介紹</div>
-      <h2 class="section-title reveal">為每個成長階段<br>量身打造</h2>
-    </div>
-    <a href="#cta" class="btn-ghost reveal">查看所有課程</a>
-  </div>
+        <!-- 階段 1 -->
+        <div class="timeline-item item-stage-1 js-timeline-item">
+          <!-- 左側 Sticky 月份與光球 -->
+          <div class="timeline-left">
+            <div class="sticky-container">
+              <div class="sticky-text">0 ~ 12個月</div>
+              <div class="sticky-ball"></div>
+            </div>
+          </div>
+          <!-- 右側卡片 -->
+          <div class="timeline-right">
+            <div class="timeline-card">
+              <h3>感覺與初動作探索</h3>
+              <div class="skill-pills">
+                <span class="skill-pill" style="color: var(--c-green);">感覺統合</span>
+                <span class="skill-pill">粗動作</span>
+                <span class="skill-pill">初期語言</span>
+              </div>
+              <p class="timeline-desc">
+                0~12個月是孩子探索世界的啟蒙階段。該階段須具備抬頭、翻身、蠕行、倚坐等能力，並能對外界刺激做出適當的反饋。
+              </p>
+              <div class="highlight-box" style="border-left-color: var(--c-green);">
+                課程注重在孩子的語言教育及感官能力接收與反應，是培養感知覺的最佳時機。
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div class="courses-grid">
-    <div class="course-card reveal">
-      <span class="course-num">01</span>
-      <span class="course-tag">感覺統合</span>
-      <h3 class="course-title">感覺統合基礎班</h3>
-      <p class="course-desc">針對觸覺、前庭覺、本體覺進行系統性刺激，協助孩子建立穩定的感覺處理能力，改善情緒調節與專注力表現。</p>
-      <div class="course-ages">適合 2 – 6 歲</div>
-    </div>
-    <div class="course-card reveal reveal-delay-1">
-      <span class="course-num">02</span>
-      <span class="course-tag">動作發展</span>
-      <h3 class="course-title">動作協調進階班</h3>
-      <p class="course-desc">以闖關遊戲形式訓練雙側協調、視動整合與身體姿態控制，為學齡孩子的書寫、體育表現奠定基礎。</p>
-      <div class="course-ages">適合 5 – 10 歲</div>
-    </div>
-    <div class="course-card reveal reveal-delay-2">
-      <span class="course-num">03</span>
-      <span class="course-tag">親子課程</span>
-      <h3 class="course-title">親子動知覺探索</h3>
-      <p class="course-desc">由專業師資帶領親子共同完成動作任務，強化親子連結，同時教導家長如何在家中持續支持孩子的感官發展。</p>
-      <div class="course-ages">適合 1.5 – 4 歲</div>
-    </div>
-  </div>
-</section> -->
+        <!-- 階段 2 -->
+        <div class="timeline-item item-stage-2 js-timeline-item">
+          <div class="timeline-left">
+            <div class="sticky-container">
+              <div class="sticky-text">13 ~ 36個月</div>
+              <div class="sticky-ball"></div>
+            </div>
+          </div>
+          <div class="timeline-right">
+            <div class="timeline-card">
+              <h3>感官、語言與大腦開發</h3>
+              <div class="skill-pills">
+                <span class="skill-pill" style="color: var(--c-orange);">感官刺激</span>
+                <span class="skill-pill">語言表達</span>
+                <span class="skill-pill">大腦發展</span>
+              </div>
+              <p class="timeline-desc">
+                <strong>13~18個月</strong>為粗動作與感官建立期，發展對於往後成長有極大關聯，課程著重於走、攀爬、動態平衡的經驗累積。<br><br>
+                <strong>19~36個月</strong>為具體運思能力建立階段，對大腦各種能力開發相當關鍵。
+              </p>
+              <div class="highlight-box" style="border-left-color: var(--c-orange);">
+                透過豐富的智能訓練遊戲，能使孩子全面智能獲得更完善的發展。
+              </div>
+            </div>
+          </div>
+        </div>
 
-<!-- TEAM -->
-<!-- <section id="team">
-  <div class="team-header">
-    <div class="section-label reveal">師資團隊</div>
-    <h2 class="section-title reveal">專業陪伴，值得信賴</h2>
-    <p class="section-desc reveal">每位師資均具備職能治療師執照或兒童發展相關專業認證，持續進修以提供最前沿的教學方法。</p>
-  </div>
+        <!-- 階段 3 -->
+        <div class="timeline-item item-stage-3 js-timeline-item">
+          <div class="timeline-left">
+            <div class="sticky-container">
+              <div class="sticky-text">37 ~ 72個月</div>
+              <div class="sticky-ball"></div>
+            </div>
+          </div>
+          <div class="timeline-right">
+            <div class="timeline-card">
+              <h3>綜合運動與心智成熟</h3>
+              <div class="skill-pills">
+                <span class="skill-pill" style="color: var(--c-cyan);">進階運動</span>
+                <span class="skill-pill">前庭/本體覺</span>
+                <span class="skill-pill">創造力</span>
+                <span class="skill-pill">認知閱讀</span>
+              </div>
+              <p class="timeline-desc">
+                37~72個月為孩子落實本體覺與前庭覺的階段，是整體運動企劃的統整及心智成熟的黃金期。
+              </p>
+              <div class="highlight-box" style="border-left-color: var(--c-cyan);">
+                課程搭配專業器材訓練感知與運動的整合，並培養創造力、閱讀力與自學能力，訓練孩子獨自進步的能力。
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div class="team-grid">
-    <div class="team-card reveal">
-      <div class="team-avatar">👩‍⚕️</div>
-      <div class="team-info">
-        <div class="team-name">陳雅婷 院長</div>
-        <div class="team-role">職能治療師 · 創辦人</div>
-        <p class="team-bio">陽明交通大學職能治療研究所畢業，專精感覺統合療法，擁有逾12年兒童早期療育臨床經驗。</p>
       </div>
     </div>
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-avatar">👩‍🏫</div>
-      <div class="team-info">
-        <div class="team-name">林佳穎 老師</div>
-        <div class="team-role">動作發展專家</div>
-        <p class="team-bio">台師大體育系碩士，取得感統進階認證，擅長設計融入運動遊戲的動作整合課程。</p>
-      </div>
-    </div>
-    <div class="team-card reveal reveal-delay-2">
-      <div class="team-avatar">🧑‍⚕️</div>
-      <div class="team-info">
-        <div class="team-name">王明哲 老師</div>
-        <div class="team-role">神經發展治療師</div>
-        <p class="team-bio">馬偕醫院神經科職能治療師出身，專注於發展遲緩及注意力問題兒童的早期介入方案。</p>
-      </div>
-    </div>
-    <div class="team-card reveal reveal-delay-3">
-      <div class="team-avatar">👩‍💼</div>
-      <div class="team-info">
-        <div class="team-name">黃淑芬 老師</div>
-        <div class="team-role">親子課程講師</div>
-        <p class="team-bio">親職教育碩士，曾任幼兒園資深教師，致力於將感統概念融入家庭日常互動。</p>
-      </div>
-    </div>
-  </div>
-</section> -->
+  </section>
 
-<!-- WHY -->
-<!-- <section id="why">
-  <div class="why-left reveal">
-    <div class="section-label">為什麼選擇我們</div>
-    <h2 class="section-title">不只是課程，<br>是陪伴成長<br>的旅程</h2>
-  </div>
-
-  <div class="why-points reveal reveal-delay-2">
-    <div class="why-point">
-      <div class="why-num">01</div>
-      <div class="why-content">
-        <div class="why-title">專業評估，精準介入</div>
-        <p class="why-desc">課程前進行完整動作發展評估，由治療師解讀結果並與家長共同擬定個別化目標，確保每一堂課都有明確方向。</p>
-      </div>
-    </div>
-    <div class="why-point">
-      <div class="why-num">02</div>
-      <div class="why-content">
-        <div class="why-title">小班精緻教學</div>
-        <p class="why-desc">每班最多6位孩子，師生比不超過 1:3，確保每位孩子獲得充足的個別關注與即時回饋。</p>
-      </div>
-    </div>
-    <div class="why-point">
-      <div class="why-num">03</div>
-      <div class="why-content">
-        <div class="why-title">定期追蹤成效</div>
-        <p class="why-desc">每學期末提供詳細進步報告，以客觀量表記錄孩子的成長軌跡，讓進步有憑有據。</p>
-      </div>
-    </div>
-    <div class="why-point">
-      <div class="why-num">04</div>
-      <div class="why-content">
-        <div class="why-title">溫暖的學習環境</div>
-        <p class="why-desc">精心設計的感統設備教室，搭配充滿包容與鼓勵的課堂氛圍，讓孩子在安全中勇於嘗試。</p>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- CTA -->
-<!-- <section id="cta">
-  <div class="cta-inner reveal">
-    <div class="section-label">開始旅程</div>
-    <h2 class="cta-title">
-      準備好讓孩子<br>
-      <span class="accent">展翅高飛</span>了嗎？
-    </h2>
-    <p class="cta-desc">
-      預約免費初步諮詢，由專業治療師為您的孩子評估發展現況，並說明最適合的課程方向。
-    </p>
-    <div class="cta-actions">
-      <a href="tel:+886" class="btn-primary">立即預約諮詢</a>
-      <a href="mailto:info@feitong-edu.com" class="btn-outline">寄送詢問信</a>
-    </div>
-  </div>
-</section> -->
 
 <!-- FOOTER -->
 <footer>
@@ -1512,10 +1415,7 @@
     <div class="footer-col">
       <h4>快速連結</h4>
       <ul>
-        <li><a href="#about">關於我們</a></li>
         <li><a href="#courses">課程介紹</a></li>
-        <li><a href="#team">師資團隊</a></li>
-        <li><a href="#why">為什麼選我們</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1530,7 +1430,6 @@
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2024 飛童動知覺. All rights reserved.</p>
-    <p class="footer-copy">飛童動知覺兒童動作感知覺整合教育</p>
   </div>
 </footer>
 
@@ -1552,6 +1451,59 @@
   window.addEventListener('scroll', () => {
     nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+      
+      const items = document.querySelectorAll('.js-timeline-item');
+      
+      // 1. 卡片進場動畫 Observer
+      const entryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            entryObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // 2. 「卡片抵達中央」震動特效 Observer
+      // 設定 rootMargin 讓觸發範圍限縮在螢幕正中央區域，與 top: 50vh 完美匹配
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          } else {
+            entry.target.classList.remove('active');
+          }
+        });
+      }, { rootMargin: "-48% 0px -48% 0px" });
+
+      items.forEach(item => {
+        entryObserver.observe(item);
+        activeObserver.observe(item);
+      });
+
+      // 3. 中央七色漸層進度條 (精準跟隨凹陷球)
+      const timelineContainer = document.getElementById('timeline-container');
+      const progressBar = document.getElementById('timeline-progress');
+
+      window.addEventListener('scroll', () => {
+        const rect = timelineContainer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // startOffset 設定為 50vh，這與 CSS 中 sticky-container 的 top: 50vh 完美對齊！
+        // 這意味著進度條的底端永遠會剛好碰到那顆停在中央的「凹陷球」
+        const startOffset = windowHeight / 2; 
+        
+        let progress = 0;
+        if (rect.top < startOffset) {
+          progress = ((startOffset - rect.top) / rect.height) * 100;
+          progress = Math.max(0, Math.min(100, progress));
+        }
+
+        progressBar.style.height = `${progress}%`;
+      });
+    });
 </script>
 </body>
 </html>
