@@ -6,8 +6,10 @@
 <title>飛童動知覺｜兒童動作感知覺整合教育</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@400;500;600;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=IBM+Plex+Sans+JP&family=LXGW+WenKai+Mono+TC&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --teal-deep: #7a570d;   /* #0D6E7A */
@@ -36,9 +38,20 @@
     --yellow-10: #FFFAED;
     
     --gray-1: #f1f1f1;
+    --cream-1: #F2EAE0;
     
-    
-    
+
+    --c-red:    #E15244;
+    --c-orange: #ED9C40;
+    --c-yellow: #F8BE5D;
+    --c-green:  #6BC959;
+    --c-cyan:   #59B7D1;
+    --c-blue:   #4455AD;
+    --c-purple: #8E6399;
+
+    --highlight: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --grad-rainbow: linear-gradient(90deg, #E15244, #ED9C40, #F8BE5D, #6BC959, #59B7D1, #4455AD, #8E6399);
+    --grad-warm:    linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     
     
   }
@@ -47,8 +60,17 @@
 
   html { scroll-behavior: smooth; }
 
+  @font-face {
+  font-family: 'jf-open-huninn';
+  src: url('https://cdn.jsdelivr.net/gh/justfont/open-huninn-font/font/jf-openhuninn-1.1/jf-openhuninn-1.1.woff2') format('woff2');
+  font-display: swap;
+}
+
   body {
-    font-family: 'Chocolate Classical Sans','Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Chocolate Classical Sans', 'Noto Sans TC', sans-serif;
+    /* font-family: 'jf-open-huninn', 'Noto Sans TC', sans-serif; */
+    /* font-family: 'PingFang TC', sans-serif; */
+    /* font-family: 'Taipei Sans TC', sans-serif; */
     background: var(--white);
     color: var(--text);
     overflow-x: hidden;
@@ -102,7 +124,11 @@
     background: var(--gold);
     transition: width 0.3s;
   }
-  .nav-links a:hover { color: var(--yellow-2); }
+  .nav-links a:hover { 
+    background-image: var(--highlight); 
+    color: transparent;
+    background-clip: text; 
+  }
   .nav-links a:hover::after { width: 100%; }
 
   .nav-cta {
@@ -113,8 +139,25 @@
     font-size: 0.8rem !important;
     letter-spacing: 0.12em !important;
     transition: background 0.25s, transform 0.2s !important;
+    overflow: hidden;
+    z-index: 1;
   }
-  .nav-cta:hover { background: var(--yellow-3) !important; transform: translateY(-1px); }
+
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--highlight); /* 套用您的漸層變數 */
+    opacity: 0; /* 預設完全透明 */
+    z-index: -1; /* 墊在文字下方 */
+    transition: opacity 1s ease; /* 針對透明度做順滑的過渡動畫 */
+  }
+  .nav-cta:hover { 
+    transform: translateY(-1px); 
+  }
+  .nav-cta:hover::before { 
+    opacity: 1; /* 漸層背景順滑浮現！ */
+  }
   .nav-cta::after { display: none !important; }
 
   /* ─── HERO ─── */
@@ -126,32 +169,22 @@
     padding: 100px 0 0 0;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 90%, var(--white) 100%),
+    linear-gradient(-135deg, var(--cream-1) 0%, var(--cream-1) 30%, var(--white) 70%, var(--white) 100%);
   }
 
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.2) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 50% 100%, rgba(77,192,212,0.2) 0%, transparent 55%);
+    /* background:
+      radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 50% 10%, rgba(77,192,212,0.2) 0%, transparent 55%); */
     pointer-events: none;
   }
 
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(45,184,204,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(13,110,122,0.06) 0%, transparent 50%);
-  }
-
-  .hero-grid-lines {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(13,110,122,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(13,110,122,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
   }
 
   .hero-left {
@@ -167,7 +200,8 @@
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.2em;
-    color: var(--gold);
+    background: var(--grad-warm); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
     text-transform: uppercase;
     margin-bottom: 28px;
     opacity: 0;
@@ -177,7 +211,8 @@
     content: '';
     display: block;
     width: 32px; height: 1px;
-    background: var(--gold);
+    background: var(--grad-warm);
+    -webkit-text-fill-color: transparent; 
   }
 
   .hero-title {
@@ -251,9 +286,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 72px);
-    background: var(--gray-1);
-    clip-path: polygon(6% 0%, 100% 0%, 100% 100%, 0% 100%);
+    /* height: calc(100vh - 72px); */
+    /* background: var(--cream-1); */
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 6% 100%); */
+    
   }
 
   .hero-visual {
@@ -409,6 +445,213 @@
     max-width: 560px;
   }
 
+
+/* ══════════════════════════════════════════
+    RAINBOW DIVIDER
+══════════════════════════════════════════ */
+.rainbow-bar {
+  height: 6px;
+  background: var(--grad-rainbow);
+  background-size: 300% 100%;
+  animation: rainbowFlow 5s linear infinite;
+  position: relative; z-index: 1;
+}
+@keyframes rainbowFlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ══════════════════════════════════════════
+  COURSES SECTION
+══════════════════════════════════════════ */
+.courses-intro {
+  background: var(--white);
+  padding: 100px 72px;
+  position: relative; overflow: hidden;
+}
+
+.courses-intro::after{
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  width: 100px;
+  height: 20px;
+  background: linear-gradient(transparent,transparent);
+  z-index: 10;
+}
+
+/* 背景浮動彩圈 */
+.courses-bg-orb {
+  position: absolute; border-radius: 50%;
+  pointer-events: none; filter: blur(60px); opacity: 0.55;
+  animation: orbFloat var(--dur, 8s) ease-in-out infinite alternate;
+}
+.orb-1 { width:320px; height:320px; top:-80px; right:5%;  background:rgba(89,183,209,0.15); --dur:7s; }
+.orb-2 { width:240px; height:240px; bottom:0; left:3%;    background:rgba(237,156,64,0.12); --dur:9s; animation-delay:-3s; }
+.orb-3 { width:180px; height:180px; top:40%; left:42%;    background:rgba(107,201,89,0.1);  --dur:11s; animation-delay:-5s; }
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(18px, -22px) scale(1.08); }
+}
+/* 浮動背景幾何 */
+.why-geo {
+  position: absolute; pointer-events: none;
+  border-radius: 50%;
+  animation: whyGeoFloat var(--dur,10s) ease-in-out infinite alternate;
+}
+.wg1 { width:500px; height:500px; top:-150px; right:-100px;
+       background: radial-gradient(circle, rgba(89,183,209,0.25) 0%, transparent 65%); --dur:9s; }
+.wg2 { width:350px; height:350px; bottom:-80px; left:-60px;
+       background: radial-gradient(circle, rgba(237,156,64,0.3) 0%, transparent 65%); --dur:12s; animation-delay:-4s; }
+.wg3 { width:250px; height:250px; top:35%; left:35%;
+       background: radial-gradient(circle, rgba(107,201,89,0.4) 0%, transparent 65%); --dur:14s; animation-delay:-7s; }
+@keyframes whyGeoFloat {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(24px,-20px) scale(1.1); }
+}
+
+.courses-hd {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 56px; position: relative; z-index: 1;
+}
+.courses-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 14px;
+  background: var(--grad-warm); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.courses-eyebrow::before { content: ''; width: 24px; height: 2px; border-radius: 1px;
+  background: var(--grad-warm); flex-shrink:0; -webkit-text-fill-color: unset; }
+.courses-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900;
+  color: var(--dur); line-height: 1.25;
+}
+.btn-ghost-warm {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.875rem; font-weight: 600;
+  background: var(--grad-warm); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  text-decoration: none;
+  border-bottom: 2px solid var(--c-orange); padding-bottom: 3px;
+  transition: gap 0.2s, border-color 0.2s;
+}
+.btn-ghost-warm::after { content: '→'; }
+.btn-ghost-warm:hover { gap: 14px; border-color: var(--c-red); }
+
+/* ─ 課程卡片 grid ─ */
+.courses-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  position: relative; z-index: 1;
+}
+
+/* 通用卡片 */
+.ccard {
+  border-radius: 20px; overflow: hidden; position: relative;
+  background: white;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275),
+              box-shadow 0.45s ease;
+  cursor: default;
+}
+.ccard:hover {
+  transform: translateY(-14px) scale(1.02);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.13);
+}
+
+/* 頂部彩色橫幅 */
+.ccard-banner {
+  padding: 40px 32px 32px;
+  position: relative; overflow: hidden; min-height: 200px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.cc1 .ccard-banner { background: linear-gradient(135deg, var(--c-cyan) 0%, var(--c-blue) 100%); }
+.cc2 .ccard-banner { background: linear-gradient(135deg, var(--c-orange) 0%, var(--c-red) 100%); }
+.cc3 .ccard-banner { background: linear-gradient(135deg, var(--c-green) 0%, var(--c-cyan) 100%); }
+
+/* 大 emoji 背景裝飾 */
+.ccard-deco {
+  position: absolute; top: -12px; right: -8px;
+  font-size: 9rem; line-height: 1; opacity: 0.12; pointer-events: none;
+  transition: transform 0.5s ease, opacity 0.4s;
+  filter: grayscale(0.1);
+}
+.ccard:hover .ccard-deco { transform: scale(1.12) rotate(8deg); opacity: 0.22; }
+
+.ccard-icon {
+  font-size: 2.8rem; display: block; margin-bottom: 14px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+  transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.ccard:hover .ccard-icon { transform: scale(1.18) rotate(-6deg); }
+
+.ccard-pill {
+  display: inline-block; font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 700;
+  background: rgba(255,255,255,0.22); color: white;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+  backdrop-filter: blur(4px);
+}
+.ccard-top-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.55rem; font-weight: 900; color: white; line-height: 1.25;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* 卡片內容區 */
+.ccard-body {
+  padding: 28px 32px 32px;
+  border: 1px solid rgba(0,0,0,0.05); border-top: none;
+  border-radius: 0 0 20px 20px;
+}
+.ccard-desc {
+  font-size: 0.9rem; color: var(--text-muted); line-height: 1.85;
+  font-weight: 300; margin-bottom: 20px;
+}
+.ccard-dots {
+  display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px;
+}
+.ccard-dot {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 0.82rem; color: var(--text-muted);
+}
+.dot-mark {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.ccard:hover .dot-mark { transform: scale(1.4); }
+.cc1 .dot-mark { background: var(--c-cyan); }
+.cc2 .dot-mark { background: var(--c-orange); }
+.cc3 .dot-mark { background: var(--c-green); }
+
+.ccard-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ccard-age {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.78rem; font-weight: 600;
+  padding: 7px 14px; border-radius: 8px;
+}
+.cc1 .ccard-age { background: rgba(89,183,209,0.1); color: var(--c-blue); }
+.cc2 .ccard-age { background: rgba(237,156,64,0.1); color: var(--c-red); }
+.cc3 .ccard-age { background: rgba(107,201,89,0.1); color: #3A8A2E; }
+
+.ccard-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), background 0.3s;
+}
+.cc1 .ccard-btn { background: rgba(89,183,209,0.1); color: var(--c-blue); }
+.cc2 .ccard-btn { background: rgba(237,156,64,0.1); color: var(--c-orange); }
+.cc3 .ccard-btn { background: rgba(107,201,89,0.1); color: #3A8A2E; }
+.cc1:hover .ccard-btn { background: var(--c-cyan); color: white; transform: translateX(4px) scale(1.15); }
+.cc2:hover .ccard-btn { background: var(--c-orange); color: white; transform: translateX(4px) scale(1.15); }
+.cc3:hover .ccard-btn { background: var(--c-green); color: white; transform: translateX(4px) scale(1.15); }
+
   /* ─── ABOUT ─── */
   #about {
     background: var(--navy);
@@ -485,8 +728,49 @@
     line-height: 1.7;
   }
 
+/* ══════════════════════════════════════════
+   TICKER（滾動統計數字條）
+══════════════════════════════════════════ */
+.stats-ticker {
+  background: white; overflow: hidden;
+  padding: 0; line-height: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.ticker-wrap {
+  
+  display: flex; width: fit-content;
+  animation: tickerMove 22s linear infinite;
+  gap: 10px;
+}
+.ticker-wrap:hover { animation-play-state: paused; }
+.ticker-item {
+  background: #1A1208;
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 24px 52px; flex-shrink: 0;
+  font-size: 16px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.ticker-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem; line-height: 1;
+}
+.ticker-text {
+  font-size: 0.72rem; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.35); text-transform: uppercase; line-height: 1.4;
+}
+.t1 { color: var(--c-orange); }
+.t2 { color: var(--c-cyan); }
+.t3 { color: var(--c-green); }
+.t4 { color: var(--c-yellow); }
+.t5 { color: var(--c-purple); }
+
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
   /* ─── COURSES ─── */
-  #courses {
+  /* #courses {
     background: var(--white);
   }
 
@@ -575,7 +859,7 @@
     color: var(--teal-deep);
     font-weight: 500;
   }
-  .course-ages::before { content: '👶'; font-size: 0.9rem; }
+  .course-ages::before { content: '👶'; font-size: 0.9rem; } */
 
   /* ─── TEAM ─── */
   #team {
@@ -892,7 +1176,6 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
-  <!-- <div class="hero-grid-lines"></div> -->
 
   <div class="hero-left">
     <div class="hero-eyebrow">Profession</div>
@@ -933,8 +1216,120 @@
 
 </section>
 
+<!-- ══ COURSES ══ -->
+<section id="courses" class="courses-intro">
+  <!-- <div class="courses-bg-orb orb-1"></div>
+  <div class="courses-bg-orb orb-2"></div>
+  <div class="courses-bg-orb orb-3"></div> -->
+
+  <div class="courses-hd reveal">
+    <div>
+      <div class="courses-eyebrow">courses</div>
+      <h2 class="courses-title">為每個孩子<br>打造專屬課程</h2>
+    </div>
+    <a href="#cta" class="btn-ghost-warm">探索所有課程</a>
+  </div>
+
+  <div class="courses-grid">
+    <!-- 課程一：動知覺課程 -->
+    <div class="ccard cc1 reveal-scale">
+      <div class="ccard-banner img1">
+        <span class="ccard-deco">🧠</span>
+        <span class="ccard-icon">🤸</span>
+        <div>
+          <span class="ccard-pill">感覺統合 · 動作發展</span>
+          <div class="ccard-top-title">動知覺課程</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <p class="ccard-desc">結合神經科學與動作教育，透過系統性感覺統合訓練，強化觸覺、前庭覺與本體覺整合，全面提升孩子的專注力與情緒調節能力。</p>
+        <div class="ccard-dots">
+          <div class="ccard-dot"><span class="dot-mark"></span>感覺統合基礎 & 進階訓練</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>粗大動作 & 身體協調發展</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>情緒調節與專注力提升</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-age">👶 適合 2 – 10 歲</div>
+          <div class="ccard-btn">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 課程二：程式課程 -->
+    <div class="ccard cc2 reveal-scale rd2">
+      <div class="ccard-banner">
+        <span class="ccard-deco">💻</span>
+        <span class="ccard-icon">⚡</span>
+        <div>
+          <span class="ccard-pill">邏輯思維 · 創意程式</span>
+          <div class="ccard-top-title">程式課程</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <p class="ccard-desc">以遊戲化方式引導孩子探索程式世界，從視覺化積木程式到文字編碼，培養運算思維、邏輯分析與解決問題的能力。</p>
+        <div class="ccard-dots">
+          <div class="ccard-dot"><span class="dot-mark"></span>Scratch 積木程式設計</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>運算思維與邏輯訓練</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>創意專題實作與成果展示</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-age">🧒 適合 6 – 14 歲</div>
+          <div class="ccard-btn">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 課程三：學業輔導 -->
+    <div class="ccard cc3 reveal-scale rd3">
+      <div class="ccard-banner">
+        <span class="ccard-deco">📚</span>
+        <span class="ccard-icon">✏️</span>
+        <div>
+          <span class="ccard-pill">個別化 · 全科輔導</span>
+          <div class="ccard-top-title">學業輔導</div>
+        </div>
+      </div>
+      <div class="ccard-body">
+        <p class="ccard-desc">結合動知覺評估與學習策略，依每位孩子的學習特質提供客製化一對一輔導，有效提升學習效率、成績與自我信心。</p>
+        <div class="ccard-dots">
+          <div class="ccard-dot"><span class="dot-mark"></span>國英數等各科個別輔導</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>學習策略 & 記憶技巧</div>
+          <div class="ccard-dot"><span class="dot-mark"></span>學習動機與良好習慣養成</div>
+        </div>
+        <div class="ccard-footer">
+          <div class="ccard-age">📖 國小至高中</div>
+          <div class="ccard-btn">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 彩虹分隔條 -->
+<div class="rainbow-bar"></div>
+
+<!-- ══ STATS TICKER ══ -->
+<div class="stats-ticker" aria-hidden="true">
+  <div class="ticker-wrap">
+    <!-- 第一組 -->
+    <div class="ticker-item"><span class="ticker-num t1">ADHD</span><span class="ticker-text">過動症</span></div>
+    <div class="ticker-item"><span class="ticker-num t2">ASD</span><span class="ticker-text">自閉症</span></div>
+    <div class="ticker-item"><span class="ticker-num t3">亞斯伯格</span><span class="ticker-text">家長滿意<br>評分</span></div>
+    <div class="ticker-item"><span class="ticker-num t4">低智商</span><span class="ticker-text">師生比<br>黃金比例</span></div>
+    <div class="ticker-item"><span class="ticker-num t5">發展遲緩</span><span class="ticker-text">核心課程<br>方向</span></div>
+    <div class="ticker-item"><span class="ticker-num t1">ADHD</span><span class="ticker-text">個別化<br>評估</span></div>
+    <!-- 第二組（製造無限循環） -->
+    <div class="ticker-item"><span class="ticker-num t1">500<small style="font-size:1.4rem">+</small></span><span class="ticker-text">累積服務<br>兒童人數</span></div>
+    <div class="ticker-item"><span class="ticker-num t2">8<small style="font-size:1.4rem">年</small></span><span class="ticker-text">專業臨床<br>經驗</span></div>
+    <div class="ticker-item"><span class="ticker-num t3">98<small style="font-size:1.4rem">%</small></span><span class="ticker-text">家長滿意<br>評分</span></div>
+    <div class="ticker-item"><span class="ticker-num t4">1:3</span><span class="ticker-text">師生比<br>黃金比例</span></div>
+    <div class="ticker-item"><span class="ticker-num t5">3</span><span class="ticker-text">核心課程<br>方向</span></div>
+    <div class="ticker-item"><span class="ticker-num t1">100<small style="font-size:1.4rem">%</small></span><span class="ticker-text">個別化<br>評估</span></div>
+  </div>
+</div>
+
 <!-- ABOUT -->
-<section id="about">
+<!-- <section id="about">
   <div class="about-text reveal">
     <div class="section-label">關於我們</div>
     <h2 class="section-title">科學為根，<br>愛為翼</h2>
@@ -969,10 +1364,10 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- COURSES -->
-<section id="courses">
+<!-- <section id="courses">
   <div class="courses-header">
     <div>
       <div class="section-label reveal">課程介紹</div>
@@ -1004,10 +1399,10 @@
       <div class="course-ages">適合 1.5 – 4 歲</div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- TEAM -->
-<section id="team">
+<!-- <section id="team">
   <div class="team-header">
     <div class="section-label reveal">師資團隊</div>
     <h2 class="section-title reveal">專業陪伴，值得信賴</h2>
@@ -1048,10 +1443,10 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- WHY -->
-<section id="why">
+<!-- <section id="why">
   <div class="why-left reveal">
     <div class="section-label">為什麼選擇我們</div>
     <h2 class="section-title">不只是課程，<br>是陪伴成長<br>的旅程</h2>
@@ -1087,10 +1482,10 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- CTA -->
-<section id="cta">
+<!-- <section id="cta">
   <div class="cta-inner reveal">
     <div class="section-label">開始旅程</div>
     <h2 class="cta-title">
@@ -1105,7 +1500,7 @@
       <a href="mailto:info@feitong-edu.com" class="btn-outline">寄送詢問信</a>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- FOOTER -->
 <footer>
