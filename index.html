@@ -51,8 +51,15 @@
     --grad-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --grad-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --grad-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
-    
-    
+
+    --blue-main: #59b7d1;
+    --blue-light: rgba(89, 183, 209, 0.15); 
+    --orange-main: #ed9c40;
+    --orange-light: rgba(237, 156, 64, 0.15);
+    --green-main: #6bc959;
+    --green-light: rgba(107, 201, 89, 0.15);
+    --purple-main: #8e6399;
+    --purple-light: rgba(142, 99, 153, 0.15);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,7 +87,8 @@
     background: rgba(250,252,252,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(13,110,122,0.08);
-    transition: padding 0.3s;
+    transition: padding 0.3s , opacity 0.5s ease;
+    opacity: 1;
   }
 
   .nav-logo {
@@ -411,7 +419,7 @@
 ══════════════════════════════════════════ */
 .courses-intro {
   background: var(--white);
-  padding: 100px 72px;
+  padding: 100px 72px 20px 72px;
   position: relative; overflow: hidden;
 }
 .courses-intro::before{
@@ -456,7 +464,7 @@
 .courses-container {
   position: relative;
   width: 100%;
-  padding: 40px 0 320px; /* 為下方展開面板留空間 */
+  padding: 40px 0 380px; /* 為下方展開面板留空間 */
   overflow: hidden;
 }
 
@@ -501,7 +509,7 @@
 }
 
 .course-card:hover .card-inner {
-  height: 640px;
+  height: 720px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
@@ -557,8 +565,8 @@
 }
 
 .course-card:hover .card-tag {
-  background: var(--teal-pale);
-  color: var(--teal-mid);
+  background: var(--theme-light);
+  color: var(--theme-main);
 }
 
 .card-title {
@@ -579,7 +587,7 @@
 .card-detail-panel {
   position: absolute;
   top: 360px;
-  left: 0; right: 0;
+  left: 0; right: 0; bottom: 0;
   padding: 85px 24px 24px 24px;
   opacity: 0;
   transform: translateY(-15px);
@@ -620,7 +628,7 @@
   position: absolute; left: 0; top: 8px;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--theme-main);
 }
 
 .card-detail-footer {
@@ -629,11 +637,12 @@
   align-items: center;
   border-top: 1px solid #f0f0f0;
   padding-top: 16px;
+  margin-top: auto;
 }
 
 .card-age-tag {
-  background: var(--teal-pale);
-  color: var(--teal-mid);
+  background: var(--theme-light);
+  color: var(--theme-main);
   padding: 6px 14px;
   border-radius: 8px;
   font-size: 0.8rem;
@@ -656,6 +665,26 @@
   color: white;
   transform: translateX(4px);
 }
+
+  .theme-cyan {
+    --theme-main: #59b7d1;
+    --theme-light: rgba(89, 183, 209, 0.15); 
+  }
+  
+  .theme-orange {
+    --theme-main: #ed9c40;
+    --theme-light: rgba(237, 156, 64, 0.15);
+  }
+  
+  .theme-green {
+    --theme-main: #6bc959;
+    --theme-light: rgba(107, 201, 89, 0.15);
+  }
+  
+  .theme-purple {
+    --theme-main: #8e6399;
+    --theme-light: rgba(142, 99, 153, 0.15);
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -766,7 +795,6 @@
      ========================================= */
   .timeline-section {
     padding: 120px 20px;
-    /* background: linear-gradient(180deg, var(--white) 0%, var(--cream-1) 100%); */
     background: #1A1208;
     position: relative;
     /* 取消這裡的 overflow: hidden，改用獨立的 bg-orb-container 來裁切背景 */
@@ -1027,6 +1055,471 @@
     .timeline-card { padding: 24px; border-radius: 16px; }
     .timeline-card h3 { font-size: 1.3rem; }
   }
+
+  /* ══════════════════════════════════════════
+   PAIN SECTION
+══════════════════════════════════════════ */
+#pain {
+  background: #FAFCFC;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 72px 30px 72px;
+}
+
+/* ── 右上角五顆彩球 ── */
+.pain-dots {
+  position: absolute;
+  top: 36px; right: 48px;
+  display: flex; gap: 10px; align-items: center;
+  z-index: 10;
+}
+.pain-dot {
+  border-radius: 50%;
+  animation: dotBounce 2s ease-in-out infinite alternate;
+}
+.pain-dot:nth-child(1) { width:16px; height:16px; background: var(--c-red);    animation-delay: 0s; }
+.pain-dot:nth-child(2) { width:16px; height:16px; background: var(--c-orange);  animation-delay: 0.15s; }
+.pain-dot:nth-child(3) { width:16px; height:16px; background: var(--c-yellow);  animation-delay: 0.30s; }
+.pain-dot:nth-child(4) { width:16px; height:16px; background: var(--c-green);   animation-delay: 0.45s; }
+.pain-dot:nth-child(5) { width:16px; height:16px; background: var(--c-cyan);    animation-delay: 0.60s; }
+@keyframes dotBounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-7px); }
+}
+
+/* ── 左側：照片 + 標題浮塊 ── */
+.pain-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  position: relative; z-index: 1;
+}
+
+.pain-left { position: sticky; top: 100px; }
+
+/* 照片框 */
+.pain-photo-wrap {
+  position: relative;
+  border-radius: 20px; overflow: visible;
+  margin-bottom: 0;
+}
+.pain-photo {
+  width: 100%;
+  border-radius: 20px; overflow: hidden;
+  position: relative;
+}
+.pain-photo img{
+  width: 100%; 
+  object-fit: cover;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; color: rgba(255,255,255,0.25);
+  transition: transform 0.6s ease;
+}
+.pain-photo:hover .pain-photo-inner { transform: scale(1.04); }
+
+/* 照片上彩色邊框 */
+.pain-photo::before {
+  content: '';
+  position: absolute; inset: -3px; border-radius: 22px; z-index: -1;
+  opacity: 0.6;
+  transition: opacity 0.4s;
+}
+.pain-photo:hover::before { opacity: 1; }
+
+/* 問號圓圈 */
+.pain-q-bubble {
+  position: absolute; top: -20px; left: -20px; z-index: 4;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--c-orange);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: white;
+  box-shadow: 0 6px 20px rgba(237,156,64,0.4);
+  animation: qBubble 3s ease-in-out infinite alternate;
+}
+@keyframes qBubble {
+  from { transform: rotate(-8deg) scale(1); }
+  to   { transform: rotate(8deg) scale(1.08); }
+}
+
+/* 標題大塊（覆蓋在照片下方） */
+.pain-title-block {
+  margin: 40px 0;
+}
+.pain-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+  background: var(--grad-warm-135); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 14px;
+}
+.pain-eyebrow::before { content:''; width:24px; height:2px; background: var(--grad-warm-135);
+  -webkit-text-fill-color: transparent;  border-radius:1px; }
+.pain-h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 900; color: var(--navy); line-height: 1.2; margin-bottom: 12px;
+}
+.pain-h2-sub {
+  font-size: 0.9rem; color: var(--text-m); font-weight: 300; line-height: 1.8;
+}
+
+/* ── 右側：五條痛點 ── */
+.pain-right {}
+
+.pain-list { display: flex; flex-direction: column; gap: 0; }
+
+.pi-item {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: relative; overflow: hidden;
+  cursor: default;
+  /* 左側彩線 hover */
+  transition: padding-left 0.3s ease, background 0.3s;
+}
+.pi-item:last-child { border-bottom: none; }
+
+.pi-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 3px; border-radius: 2px;
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.35s ease;
+}
+.pi-item:nth-child(1)::before { background: var(--c-cyan); }
+.pi-item:nth-child(2)::before { background: var(--c-orange); }
+.pi-item:nth-child(3)::before { background: var(--c-yellow); }
+.pi-item:nth-child(4)::before { background: var(--c-green); }
+.pi-item:nth-child(5)::before { background: var(--c-purple); }
+.pi-item:hover::before { transform: scaleY(1); }
+.pi-item:hover { padding-left: 12px; }
+
+/* 左：彩色編號 */
+.pi-num {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+  flex-shrink: 0; margin-top: 1px;
+  transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.pi-item:hover .pi-num { transform: scale(1.15) rotate(-6deg); }
+.pi-item:nth-child(1) .pi-num { background: rgba(89,183,209,0.12); color: var(--c-blue); }
+.pi-item:nth-child(2) .pi-num { background: rgba(237,156,64,0.12); color: #B86000; }
+.pi-item:nth-child(3) .pi-num { background: rgba(248,190,93,0.12); color: #9A6A00; }
+.pi-item:nth-child(4) .pi-num { background: rgba(107,201,89,0.12); color: #2E7A26; }
+.pi-item:nth-child(5) .pi-num { background: rgba(142,99,153,0.12); color: var(--c-purple); }
+
+/* 右：內容 */
+.pi-body {}
+.pi-tag {
+  display: inline-block; font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 8px;
+}
+.pi-item:nth-child(1) .pi-tag { background: rgba(89,183,209,0.1); color: var(--c-blue); }
+.pi-item:nth-child(2) .pi-tag { background: rgba(237,156,64,0.1); color: #B86000; }
+.pi-item:nth-child(3) .pi-tag { background: rgba(248,190,93,0.1); color: #9A6A00; }
+.pi-item:nth-child(4) .pi-tag { background: rgba(107,201,89,0.1); color: #2E7A26; }
+.pi-item:nth-child(5) .pi-tag { background: rgba(142,99,153,0.1); color: var(--c-purple); }
+
+.pi-text {
+  font-size: 0.92rem; color: var(--text-m);
+  line-height: 1.85; font-weight: 300;
+  transition: color 0.3s;
+}
+.pi-item:hover .pi-text { color: var(--text); }
+.pi-em { color: var(--navy); font-weight: 600; }
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-l {
+  opacity: 0; transform: translateX(-32px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-l.visible { opacity: 1; transform: translateX(0); }
+
+.pi-item {
+  opacity: 0; transform: translateX(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease,
+              padding-left 0.3s ease;
+}
+.pi-item.visible { opacity: 1; transform: translateX(0); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  #pain { padding: 72px 28px; }
+  .pain-layout { grid-template-columns: 1fr; gap: 48px; }
+  .pain-left { position: static; }
+  .pain-photo { aspect-ratio: 4/3; }
+  .pain-dots { top: 20px; right: 24px; }
+}
+
+
+/* ══════════════════════════════════════════
+   VENUE SECTION
+══════════════════════════════════════════ */
+#venue {
+  background: #FAFCFC;
+  padding: 100px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+#venue::before{
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* 右上角五顆彩球（與痛點 section 一致） */
+.venue-dots {
+  position: absolute; top: 36px; right: 48px;
+  display: flex; gap: 10px; align-items: center; z-index: 10;
+}
+.venue-dot {
+  border-radius: 50%;
+  animation: dotBounce 2s ease-in-out infinite alternate;
+}
+.venue-dot:nth-child(1){width:16px;height:16px;background:var(--c-red);   animation-delay:0s;}
+.venue-dot:nth-child(2){width:16px;height:16px;background:var(--c-orange); animation-delay:0.15s;}
+.venue-dot:nth-child(3){width:16px;height:16px;background:var(--c-yellow); animation-delay:0.30s;}
+.venue-dot:nth-child(4){width:16px;height:16px;background:var(--c-green);  animation-delay:0.45s;}
+.venue-dot:nth-child(5){width:16px;height:16px;background:var(--c-cyan);   animation-delay:0.60s;}
+@keyframes dotBounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-7px); }
+}
+
+/* ── 頂部 eyebrow ── */
+.venue-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+  background: var(--grad-warm-135); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 14px;
+}
+.venue-eyebrow::before {
+  content:''; width:24px; height:2px; background: var(--grad-warm-135);
+  -webkit-text-fill-color: transparent;  border-radius:1px;
+}
+
+/* ── 主體兩欄 ── */
+.venue-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  position: relative; z-index: 1;
+}
+
+/* ─── 左欄 ─── */
+.venue-left {}
+
+/* 手寫感標題 */
+.venue-title-wrap {
+  margin-bottom: 40px;
+  position: relative; display: inline-block;
+}
+.venue-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 900; color: var(--navy); line-height: 1.1;
+  position: relative; z-index: 1;
+  letter-spacing: 0.04em;
+}
+
+/* 標題底部手繪底線 */
+.venue-title-underline {
+  position: absolute; bottom: -8px; left: 0; right: 0;
+  height: 10px; overflow: visible;
+}
+.venue-title-underline svg {
+  width: 100%; height: 100%; overflow: visible;
+}
+.underline-path {
+  fill: none; stroke-width: 4; stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLine 1s ease 0.5s forwards;
+}
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 定位圖示 + 地址 */
+.venue-address-block {
+  margin-bottom: 40px;
+}
+.venue-addr-row {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-bottom: 16px;
+}
+.venue-addr-icon {
+  width: 15px; height: 15px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0; margin-top: 25px;
+  transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.venue-addr-row:hover .venue-addr-icon { transform: scale(1.15) rotate(-5deg); }  
+.vai-loc { background: var(--grad-warm-135); }
+.vai-bus { background: var(--grad-warm-135); }
+
+.venue-addr-text {}
+.venue-addr-label {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 700; color: var(--c-orange); margin-bottom: 4px;
+}
+.venue-addr-main {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.5;
+}
+.venue-addr-sub {
+  font-size: 0.82rem; color: var(--text-m); font-weight: 300; margin-top: 2px;
+}
+
+/* 分隔線 */
+.venue-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.08) 0%, transparent 100%);
+  margin: 32px 0;
+}
+
+/* 兩個按鈕 */
+.venue-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+
+.vbtn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.06em;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: transform 0.25s cubic-bezier(0.175,0.885,0.32,1.275),
+              box-shadow 0.25s;
+  position: relative; overflow: hidden;
+}
+.vbtn::before {
+  content: ''; position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.3s;
+}
+.vbtn:hover { transform: translateY(-3px); }
+
+/* 主按鈕：漸層橘紅 */
+.vbtn-primary {
+  background: var(--grad-warm); color: white;
+}
+.vbtn-primary::before { background: rgba(255,255,255,0.12); }
+.vbtn-primary:hover { box-shadow: 0 12px 32px rgba(241,73,90,0.35); }
+.vbtn-primary:hover::before { opacity: 1; }
+
+/* 次要按鈕：白底深框 */
+.vbtn-outline {
+  background: white; color: var(--navy);
+  border: 2px solid rgba(0,0,0,0.12);
+}
+.vbtn-outline:hover {
+  border-color: var(--c-orange); color: var(--c-orange);
+  box-shadow: 0 8px 24px rgba(237,156,64,0.15);
+}
+
+/* ─── 右欄：地圖 ─── */
+.venue-right {
+  position: relative;
+}
+
+/* 地圖外框裝飾 */
+.venue-map-wrap {
+  position: relative;
+  border-radius: 20px;
+  /* 彩色邊框 */
+  padding: 4px;
+  background: var(--grad-rainbow);
+  background-size: 300%;
+  animation: borderFlow 6s linear infinite;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+.venue-map-wrap:hover {
+  box-shadow: 0 28px 80px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+@keyframes borderFlow {
+  0%   { background-position: 0%; }
+  100% { background-position: 300%; }
+}
+
+.venue-map-inner {
+  border-radius: 17px; overflow: hidden;
+  background: #e8e8e8;
+  aspect-ratio: 16/10;
+  position: relative;
+}
+
+/* Google Maps iframe */
+.venue-map-inner iframe {
+  width: 100%; height: 100%; border: 0; display: block;
+}
+
+/* 地圖右上角浮動標籤 */
+.venue-map-badge {
+  position: absolute; top: -14px; right: 20px;
+  background: var(--navy); color: white;
+  padding: 10px 18px; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 5;
+  animation: badgeFloat 4s ease-in-out infinite alternate;
+}
+.venue-map-badge .badge-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--c-green); margin-right: 6px;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes badgeFloat {
+  from { transform: translateY(0) rotate(-1deg); }
+  to   { transform: translateY(-5px) rotate(1deg); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* 地圖左下角提示 */
+.venue-map-hint {
+  position: absolute; bottom: -14px; left: 20px;
+  background: white; color: var(--text-m);
+  padding: 8px 16px; border-radius: 20px;
+  font-size: 0.72rem; font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 5; display: flex; align-items: center; gap: 6px;
+}
+
+/* ── Scroll Reveal ── */
+.reveal-l {
+  opacity: 0; transform: translateX(-36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-l.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-r {
+  opacity: 0; transform: translateX(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-r.visible { opacity: 1; transform: translateX(0); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  #venue { padding: 72px 28px; }
+  .venue-layout { grid-template-columns: 1fr; gap: 48px; }
+  .venue-dots { top: 20px; right: 24px; }
+  .venue-map-inner { aspect-ratio: 4/3; }
+}
 </style>
 </head>
 <body>
@@ -1083,6 +1576,94 @@
 
 </section>
 
+<!-- ══════════════════════════════════════════
+     PAIN SECTION — 單一 Section
+══════════════════════════════════════════ -->
+<section id="pain">
+
+  <!-- 右上角五顆彩球 -->
+  <div class="pain-dots">
+    <div class="pain-dot"></div>
+    <div class="pain-dot"></div>
+    <div class="pain-dot"></div>
+    <div class="pain-dot"></div>
+    <div class="pain-dot"></div>
+  </div>
+
+  <div class="pain-layout">
+
+    <!-- 左欄：照片 + 標題 -->
+    <div class="pain-left reveal-l">
+
+      <div class="pain-photo-wrap">
+
+        
+        <div class="pain-photo">
+          <img src="static/temp.jpg" class="pain-photo-inner" alt="孩子們">
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <!-- 右欄：五大痛點 -->
+    <div class="pain-right">
+        <!-- 標題說明 -->
+      <div class="pain-title-block">
+        <div class="pain-eyebrow">about</div>
+        <h2 class="pain-h2">關於孩子，<br>您是否也在煩惱⋯⋯</h2>
+        <p class="pain-h2-sub">這些擔憂，每天都有家長帶著它來到飛童。<br>您並不孤單，我們完全理解。</p>
+      </div>
+      <div class="pain-list">
+      
+
+        <div class="pi-item">
+          <div class="pi-num">01</div>
+          <div class="pi-body">
+            <span class="pi-tag">發展落後</span>
+            <p class="pi-text">跟同年齡的小孩相比，我的孩子卻總是<span class="pi-em">聽不懂話</span>、活在自己的世界，聽話、說話、跑動與人互動各方面都<span class="pi-em">嚴重落後</span>⋯⋯</p>
+          </div>
+        </div>
+
+        <div class="pi-item">
+          <div class="pi-num">02</div>
+          <div class="pi-body">
+            <span class="pi-tag">情緒行為</span>
+            <p class="pi-text">孩子<span class="pi-em">情緒經常失控</span>、常有過動的行為，總是精力無限動不停，不受教，有時甚至出現<span class="pi-em">攻擊行為</span>，缺乏同理心⋯⋯</p>
+          </div>
+        </div>
+
+        <div class="pi-item">
+          <div class="pi-num">03</div>
+          <div class="pi-body">
+            <span class="pi-tag">療育停滯</span>
+            <p class="pi-text">已參加不同的早期療育課程幾年了，一天天卻<span class="pi-em">總覺得沒什麼進步</span>，不知道哪裡出了問題，該如何是好⋯⋯</p>
+          </div>
+        </div>
+
+        <div class="pi-item">
+          <div class="pi-num">04</div>
+          <div class="pi-body">
+            <span class="pi-tag">專注力不足</span>
+            <p class="pi-text">孩子的<span class="pi-em">專注學習力總是不足</span>，對於長輩或師長的叮嚀教導總是<span class="pi-em">沒在聽</span>，讓人又心急又無奈⋯⋯</p>
+          </div>
+        </div>
+
+        <div class="pi-item">
+          <div class="pi-num">05</div>
+          <div class="pi-body">
+            <span class="pi-tag">資訊爆炸</span>
+            <p class="pi-text">網上<span class="pi-em">資訊好多好多</span>，到底哪個課程才真正適合我的孩子、能<span class="pi-em">快速有效</span>地幫助孩子成長？</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ══ COURSES ══ -->
 <section id="courses" class="courses-intro">
 
@@ -1097,15 +1678,15 @@
   <div class="courses-container">
     <div class="carousel-track">
       <!-- Set 1 -->
-      <div class="course-card">
+      <div class="course-card theme-cyan">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('static/course1.jpg');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">感覺統合 ‧ 動作發展</span>
-            <h3 class="card-title">動知覺課程</h3>
+            <span class="card-tag">注意力不足過動症</span>
+            <h3 class="card-title">ADHD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">結合神經科學與動作教育，透過系統性感官統合訓練，強化觸覺、前庭覺與本體覺整合，提升專注力。</p>
@@ -1115,21 +1696,21 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">👶 2-10 歲</span>
-              <div class="card-arrow-btn">→</div>
+              <!-- <div class="card-arrow-btn">→</div> -->
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-green">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">邏輯思維 ‧ 創意程式</span>
-            <h3 class="card-title">程式課程</h3>
+            <span class="card-tag">自閉症類群障礙</span>
+            <h3 class="card-title">ASD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">以遊戲化方式引導探索程式世界，從積木到文字編碼，培養運算思維、邏輯分析與解決問題能力。</p>
@@ -1138,22 +1719,21 @@
               <li>運算思維與邏輯訓練</li>
             </ul>
             <div class="card-detail-footer">
-              <span class="card-age-tag">🧒 6-14 歲</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-orange">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1454165833767-027ffea10c3b?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">個別化 ‧ 全科輔導</span>
-            <h3 class="card-title">學業輔導</h3>
+            <span class="card-tag">亞斯伯格症候群</span>
+            <h3 class="card-title">AS</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">結合動知覺評估與學習策略，依孩子特質提供一對一輔導，有效提升學習效率、成績與自我信心。</p>
@@ -1163,21 +1743,21 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">📖 國小-高中</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-purple">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">體適能 ‧ 專注力提升</span>
-            <h3 class="card-title">體適能課程</h3>
+            <span class="card-tag">發展遲緩</span>
+            <h3 class="card-title">DD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">專業教練指導，透過趣味遊戲與肌力訓練，提升心肺耐力、肌耐力與動作協調，讓孩子愛上運動。</p>
@@ -1187,22 +1767,22 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">🏃 4-12 歲</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
       <!-- Set 2 (Duplicate for seamless loop) -->
-      <div class="course-card">
+      <div class="course-card theme-cyan">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('static/course1.jpg');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">感覺統合 ‧ 動作發展</span>
-            <h3 class="card-title">動知覺課程</h3>
+            <span class="card-tag">注意力不足過動症</span>
+            <h3 class="card-title">ADHD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">結合神經科學與動作教育，透過系統性感官統合訓練，強化觸覺、前庭覺與本體覺整合，提升專注力。</p>
@@ -1212,21 +1792,21 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">👶 2-10 歲</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-green">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">邏輯思維 ‧ 創意程式</span>
-            <h3 class="card-title">程式課程</h3>
+            <span class="card-tag">自閉症類群障礙</span>
+            <h3 class="card-title">ASD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">以遊戲化方式引導探索程式世界，從積木到文字編碼，培養運算思維、邏輯分析與解決問題能力。</p>
@@ -1236,21 +1816,21 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">🧒 6-14 歲</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-orange">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1454165833767-027ffea10c3b?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">個別化 ‧ 全科輔導</span>
-            <h3 class="card-title">學業輔導</h3>
+            <span class="card-tag">亞斯伯格症候群</span>
+            <h3 class="card-title">AS</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">結合動知覺評估與學習策略，依孩子特質提供一對一輔導，有效提升學習效率、成績與自我信心。</p>
@@ -1260,21 +1840,21 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">📖 國小-高中</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
 
-      <div class="course-card">
+      <div class="course-card theme-purple">
         <div class="card-inner">
           <div class="card-img-wrap">
             <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=800');"></div>
             <div class="card-overlay"></div>
           </div>
           <div class="card-header-content">
-            <span class="card-tag">體適能 ‧ 專注力提升</span>
-            <h3 class="card-title">體適能課程</h3>
+            <span class="card-tag">發展遲緩</span>
+            <h3 class="card-title">DD</h3>
           </div>
           <div class="card-detail-panel">
             <p class="card-detail-desc">專業教練指導，透過趣味遊戲與肌力訓練，提升心肺耐力、肌耐力與動作協調，讓孩子愛上運動。</p>
@@ -1284,14 +1864,13 @@
             </ul>
             <div class="card-detail-footer">
               <span class="card-age-tag">🏃 4-12 歲</span>
-              <div class="card-arrow-btn">→</div>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <!-- 彩虹分隔條 -->
@@ -1404,6 +1983,83 @@
     </div>
   </section>
 
+  <section id="venue">
+
+  <!-- 右上角五顆彩球 -->
+  <div class="venue-dots">
+    <div class="venue-dot"></div>
+    <div class="venue-dot"></div>
+    <div class="venue-dot"></div>
+    <div class="venue-dot"></div>
+    <div class="venue-dot"></div>
+  </div>
+
+  <!-- eyebrow -->
+  <div class="venue-eyebrow reveal-l" style="transition-delay:0s">location</div>
+
+  <div class="venue-layout">
+
+    <!-- ─── 左欄 ─── -->
+    <div class="venue-left reveal-l" style="transition-delay:0.1s">
+
+      <!-- 大標題 + 手繪底線 -->
+      <div class="venue-title-wrap">
+        <div class="venue-title">上課場館</div>
+        <div class="venue-title-underline">
+          <svg viewBox="0 0 300 10" preserveAspectRatio="none">
+            <path class="underline-path" d="M 0 7 Q 40 2 80 7 Q 120 12 160 7 Q 200 2 240 7 Q 270 11 300 6"
+                  stroke="url(#uGrad)"/>
+            <defs>
+              <linearGradient id="uGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#ED9C40"/>
+                <stop offset="50%"  stop-color="#F1495A"/>
+                <stop offset="100%" stop-color="#8E6399"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 地址資訊 -->
+      <div class="venue-address-block">
+        <div class="venue-addr-row">
+          <div class="venue-addr-icon vai-loc"></div>
+          <div class="venue-addr-text">
+            <div class="venue-addr-label">課程地址</div>
+            <div class="venue-addr-main">新北市永和區中正路 370 號 3 樓</div>
+            <div class="venue-addr-sub">新和道館綜合運動教室</div>
+          </div>
+        </div>
+        <div class="venue-addr-row">
+          <div class="venue-addr-icon vai-bus"></div>
+          <div class="venue-addr-text">
+            <div class="venue-addr-label">交通資訊</div>
+            <div class="venue-addr-main">捷運永安市場站</div>
+            <div class="venue-addr-sub">2 號出口步行約 5 分鐘</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 右欄：地圖 ─── -->
+    <div class="venue-right reveal-r" style="transition-delay:0.2s">
+      <div class="venue-map-wrap">
+
+        <!-- 浮動標籤 -->
+        <div class="venue-map-badge">
+          <span class="badge-dot"></span>飛童動知覺上課地點
+        </div>
+
+        <div class="venue-map-inner">
+          <!-- Google Maps Embed（請將 YOUR_API_KEY 換成真實 API Key，或使用 embed 網址） -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2150.067369914983!2d121.51749474760895!3d25.001207098093914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346802482fcc5d63%3A0x57002cf5afda0439!2z5paw5ZKM6LeG5ouz6YGT6aSo5rC45ZKM6aSo!5e0!3m2!1szh-TW!2stw!4v1771691679604!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -1450,6 +2106,7 @@
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+    nav.style.opacity = window.scrollY > 60 ? 0.1 : 1;
   });
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -1504,6 +2161,32 @@
         progressBar.style.height = `${progress}%`;
       });
     });
+    // Scroll reveal
+    const allEl = document.querySelectorAll('.reveal, .reveal-l');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    allEl.forEach(el => io.observe(el));
+
+    // 痛點條目分批入場
+    const items = document.querySelectorAll('.pi-item');
+    const iio = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 120);
+          iio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+        items.forEach(el => iio.observe(el));
+
+  const els = document.querySelectorAll('.reveal-l, .reveal-r');
+const ios = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ios.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+els.forEach(el => ios.observe(el));
 </script>
 </body>
 </html>
