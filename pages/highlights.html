@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>團隊介紹｜飛童動知覺</title>
+<title>課程花絮｜飛童動知覺</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
@@ -55,11 +55,10 @@
   #feitong-app section { padding: 100px 60px; }
 
   /* =========================================
-     2. 動畫類別 & 裝飾元件 (共用)
+     2. 動畫類別 & 裝飾 (共用)
   ========================================= */
   #feitong-app .reveal-up, #feitong-app .reveal-left, #feitong-app .reveal-right {
-    opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   #feitong-app .reveal-up { transform: translateY(40px); }
   #feitong-app .reveal-left { transform: translateX(-40px); }
@@ -79,10 +78,8 @@
      3. 導覽列與下拉選單 (共用)
   ========================================= */
   #feitong-app nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,252,252,0.92); backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(13,110,122,0.08); transition: padding 0.3s, opacity 0.5s ease; opacity: 1;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,252,252,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(13,110,122,0.08); transition: padding 0.3s, opacity 0.5s ease; opacity: 1;
   }
   #feitong-app .nav-logo { font-weight: 900; font-size: 1.3rem; color: var(--color-primary-dark); letter-spacing: 0.05em; z-index: 102; position: relative; }
   #feitong-app .nav-logo span { color: var(--color-accent-gold); }
@@ -94,22 +91,18 @@
   #feitong-app .nav-main-link::after { content: ''; position: absolute; bottom: 4px; left: 0; width: 0; height: 1.5px; background: var(--color-accent-gold); transition: width 0.3s; }
   #feitong-app .nav-main-link:hover { background-image: var(--gradient-warm-90); color: transparent; background-clip: text; -webkit-background-clip: text; }
   #feitong-app .nav-main-link:hover::after { width: 100%; }
-  
   #feitong-app .nav-dropdown-toggle { display: none; } 
 
   #feitong-app .nav-dropdown-menu {
-    position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
-    background: rgba(250, 252, 252, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px; padding: 12px 0; min-width: 150px;
-    opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; z-index: 101;
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); background: rgba(250, 252, 252, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px; padding: 12px 0; min-width: 150px; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; z-index: 101;
   }
   #feitong-app .nav-item:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   #feitong-app .nav-dropdown-menu a { text-decoration: none; font-size: 0.85rem; color: var(--color-text-dark); padding: 10px 24px; letter-spacing: 0.08em; transition: all 0.2s ease; text-align: center; font-weight: 500; }
   #feitong-app .nav-dropdown-menu a:hover { background: var(--color-bg-cream); color: var(--color-accent-gold); }
 
   #feitong-app .nav-btn-cta {
-    background: var(--color-accent-orange); color: white !important; padding: 10px 24px !important;
-    border-radius: 2px; font-size: 0.8rem !important; letter-spacing: 0.12em !important; text-decoration: none;
+    background: var(--color-accent-orange); color: white !important; padding: 10px 24px !important; border-radius: 2px; font-size: 0.8rem !important; letter-spacing: 0.12em !important; text-decoration: none;
     transition: background 0.25s, transform 0.2s !important; overflow: hidden; z-index: 1; display: inline-block; position: relative;
   }
   #feitong-app .nav-btn-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--gradient-warm-90); opacity: 0; z-index: -1; transition: opacity 0.5s ease;  }
@@ -120,12 +113,12 @@
   #feitong-app .hamburger span { width: 26px; height: 3px; background: var(--color-primary-dark); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
 
   /* =========================================
-     4. 內頁共用標題 (Inner Hero)
+     4. 內頁共用標題 (Inner Hero - 包含無縫過渡)
   ========================================= */
   #feitong-app .inner-hero {
     padding: 160px 60px 80px; 
-    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, var(--color-white) 100%);
-    text-align: center; position: relative;
+    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, rgba(250,252,252,0) 100%);
+    text-align: center; position: relative; z-index: 1;
   }
   #feitong-app .inner-hero-label {
     display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
@@ -140,54 +133,78 @@
   }
 
   /* =========================================
-     5. 團隊介紹專屬版面 (Team Styles)
+     5. 課程花絮專屬版面 (Gallery Styles)
   ========================================= */
-  #feitong-app .team-section {
-    background: #FAFCFC; position: relative; padding-top: 40px; padding-bottom: 120px;
-  }
-  #feitong-app .team-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; max-width: 1200px; margin: 0 auto;
+  #feitong-app .gallery-page-wrapper {
+    position: relative; overflow: hidden; background: var(--color-white);
   }
   
-  /* 團隊成員卡片 (玻璃擬物化) */
-  #feitong-app .team-card {
-    background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 48px 32px 40px; text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: transform 0.4s ease, box-shadow 0.4s ease;
-    position: relative; overflow: hidden;
+  #feitong-app .gallery-section {
+    position: relative; padding-top: 20px; padding-bottom: 120px; z-index: 1;
   }
-  #feitong-app .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
 
-  /* 頂部裝飾色帶 */
-  #feitong-app .team-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
-    background: var(--gradient-warm-135); opacity: 0; transition: opacity 0.4s;
+  /* 漂浮的背景 Orb 裝飾 */
+  #feitong-app .gallery-bg-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;
+    animation: floatOrb 12s infinite alternate ease-in-out;
   }
-  #feitong-app .team-card:hover::before { opacity: 1; }
+  #feitong-app .gallery-orb-1 { width: 350px; height: 350px; background: var(--color-purple); top: 150px; left: -100px; }
+  #feitong-app .gallery-orb-2 { width: 450px; height: 450px; background: var(--color-yellow); bottom: 10%; right: -150px; animation-delay: -3s; }
   
-  /* 成員大頭貼 */
-  #feitong-app .team-photo {
-    width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 24px; overflow: hidden;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1); border: 4px solid var(--color-white); position: relative;
+  @keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, -60px) scale(1.1); }
   }
-  #feitong-app .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  #feitong-app .team-card:hover .team-photo img { transform: scale(1.08); }
-  
-  /* 姓名與職稱 */
-  #feitong-app .team-name { font-size: 1.6rem; font-weight: 900; color: var(--color-dark-navy); margin-bottom: 6px; }
-  #feitong-app .team-role { font-size: 0.9rem; color: var(--color-primary-mid); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
-  
-  /* 專長標籤 */
-  #feitong-app .team-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
-  #feitong-app .team-tag { 
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; padding: 4px 14px; border-radius: 50px; 
+
+  /* 照片網格系統 */
+  #feitong-app .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto;
   }
-  #feitong-app .tag-blue { background: rgba(89, 183, 209, 0.12); color: var(--color-blue); }
-  #feitong-app .tag-orange { background: rgba(237, 156, 64, 0.12); color: #B86000; }
-  #feitong-app .tag-green { background: rgba(107, 201, 89, 0.12); color: #2E7A26; }
-  
-  /* 介紹內文 */
-  #feitong-app .team-desc { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.8; font-weight: 400; }
+
+  /* 照片卡片 (玻璃質感外框) */
+  #feitong-app .gallery-item {
+    position: relative; border-radius: 20px; overflow: hidden; background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06); cursor: pointer; aspect-ratio: 4/3;
+    border: 1px solid rgba(255,255,255,0.8); transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  #feitong-app .gallery-item:hover {
+    transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+
+  /* 底部暗色漸層遮罩 (讓文字清楚) */
+  #feitong-app .gallery-item::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(31, 45, 56, 0.85) 0%, rgba(31, 45, 56, 0.2) 40%, transparent 100%);
+    opacity: 0.7; transition: opacity 0.4s ease; pointer-events: none;
+  }
+  #feitong-app .gallery-item:hover::after { opacity: 0.95; }
+
+  /* 圖片縮放特效 */
+  #feitong-app .gallery-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .gallery-item:hover .gallery-img { transform: scale(1.08); }
+
+  /* 卡片內文 */
+  #feitong-app .gallery-content {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; z-index: 2;
+    transform: translateY(10px); transition: transform 0.4s ease;
+  }
+  #feitong-app .gallery-item:hover .gallery-content { transform: translateY(0); }
+
+  /* 課程分類標籤 */
+  #feitong-app .gallery-tag {
+    display: inline-block; padding: 4px 12px; margin-bottom: 8px; border-radius: 50px;
+    background: rgba(255,255,255,0.25); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    color: var(--color-white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  }
+
+  /* 花絮標題 */
+  #feitong-app .gallery-title {
+    color: var(--color-white); font-size: 1.25rem; font-weight: 700;
+    letter-spacing: 0.05em; text-shadow: 0 2px 4px rgba(0,0,0,0.3); margin: 0;
+  }
 
   /* =========================================
      6. 頁尾 (共用)
@@ -208,7 +225,13 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
+  #feitong-app .mobile-only{
+      display: none;
+    }
   @media (max-width: 1024px) {
+    #feitong-app .mobile-only{
+      display: block;
+    }
     #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
@@ -244,11 +267,14 @@
     #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
     #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
 
-    /* Layout RWD */
     #feitong-app section { padding: 80px 32px; }
     #feitong-app .inner-hero { padding: 130px 32px 60px; }
-    #feitong-app .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
     #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    #feitong-app .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    #feitong-app .gallery-content { transform: translateY(0); } /* 手機版不隱藏文字，直接顯示 */
   }
 </style>
 </head>
@@ -256,35 +282,35 @@
 
 <div id="feitong-app">
   <nav id="main-nav">
-    <div class="nav-logo"><img src="static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    <div class="nav-logo"><img src="../static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
     <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li class="mobile-nav-logo mobile-only">
-        <img src="static/logo2.png" alt="飛童動知覺"/>
+        <img src="../static/logo2.png" alt="飛童動知覺"/>
       </li>
       <li class="nav-item">
-        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
+        <div class="nav-item-top"><a href="../index.html" class="nav-main-link">首頁</a></div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="philosophy.html" class="nav-main-link" style="color: var(--color-primary-mid);">關於飛童</a>
+          <a href="#" class="nav-main-link">關於飛童</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
           <a href="philosophy.html">經營理念</a>
-          <a href="team.html" style="color: var(--color-primary-mid); font-weight: 700;">團隊介紹</a>
+          <a href="team.html">團隊介紹</a>
         </div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="#" class="nav-main-link">課程資訊</a>
+          <a href="#" class="nav-main-link" style="color: var(--color-primary-mid);">課程資訊</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
           <a href="schedule.html">課程表</a>
-          <a href="highlights.html">課程花絮</a>
+          <a href="highlights.html" style="color: var(--color-primary-mid); font-weight: 700;">課程花絮</a>
           <a href="faq.html">父母常問</a>
         </div>
       </li>
@@ -297,65 +323,75 @@
 
   <main id="main-content">
     
-    <header class="inner-hero">
-      <span class="inner-hero-label reveal-up">Our Team</span>
-      <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">團隊介紹</h1>
-      <p class="inner-hero-desc reveal-up" style="transition-delay: 0.2s;">
-        由具備兒童發展、神經科學與體適能專業背景的教練組成。我們用愛心、耐心與最專業的科學評估，陪伴孩子每一次的勇敢嘗試。
-      </p>
-    </header>
+    <div class="gallery-page-wrapper">
+      
+      <div class="gallery-bg-orb gallery-orb-1" aria-hidden="true"></div>
+      <div class="gallery-bg-orb gallery-orb-2" aria-hidden="true"></div>
 
-    <section class="team-section">
-      <div class="ui-deco-dots" aria-hidden="true" style="top: 0; left: 60px; right: auto;">
-        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
-      </div>
-      <div style="position: absolute; top: 10%; right: 0%; width: 400px; height: 400px; background: var(--color-orange); filter: blur(120px); opacity: 0.1; z-index: 0; pointer-events: none;"></div>
+      <header class="inner-hero">
+        <span class="inner-hero-label reveal-up">Moments</span>
+        <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">課程花絮</h1>
+        <p class="inner-hero-desc reveal-up" style="transition-delay: 0.2s;">
+          紀錄孩子們在飛童動知覺的每一次歡笑、每一滴汗水與每一個勇敢突破的瞬間。
+        </p>
+      </header>
 
-      <div class="team-grid">
+      <section class="gallery-section">
         
-        <div class="team-card reveal-up" style="transition-delay: 0s;">
-          <div class="team-photo">
-            <img src="static/temp.jpg" alt="徐老師 照片" />
+        <div class="gallery-grid">
+          
+          <div class="gallery-item reveal-up" style="transition-delay: 0s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="孩子參與感覺統合課程">
+            <div class="gallery-content">
+              <span class="gallery-tag">感覺統合班</span>
+              <h3 class="gallery-title">專注力平衡挑戰</h3>
+            </div>
           </div>
-          <h3 class="team-name">徐老師</h3>
-          <p class="team-role">動知覺首席教練 / 創辦人</p>
-          <div class="team-tags">
-            <span class="team-tag tag-blue">感覺統合評估</span>
-            <span class="team-tag tag-orange">兒童心理學</span>
+
+          <div class="gallery-item reveal-up" style="transition-delay: 0.1s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="幼幼體適能課程">
+            <div class="gallery-content">
+              <span class="gallery-tag">幼幼體適能</span>
+              <h3 class="gallery-title">快樂的體操時光</h3>
+            </div>
           </div>
-          <p class="team-desc">擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。</p>
+
+          <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="人際互動專班">
+            <div class="gallery-content">
+              <span class="gallery-tag">人際互動專班</span>
+              <h3 class="gallery-title">合作闖關遊戲</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal-up" style="transition-delay: 0s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="親子感統課程">
+            <div class="gallery-content">
+              <span class="gallery-tag">週末親子班</span>
+              <h3 class="gallery-title">與爸媽一起飛翔</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal-up" style="transition-delay: 0.1s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="核心肌力訓練">
+            <div class="gallery-content">
+              <span class="gallery-tag">核心肌力進階</span>
+              <h3 class="gallery-title">汗水換來的成就感</h3>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
+            <img src="../static/temp.jpg" class="gallery-img" alt="精細動作指導">
+            <div class="gallery-content">
+              <span class="gallery-tag">ADHD 專班</span>
+              <h3 class="gallery-title">靜下心來的魔法</h3>
+            </div>
+          </div>
+
         </div>
+      </section>
 
-        <div class="team-card reveal-up" style="transition-delay: 0.15s;">
-          <div class="team-photo">
-            <img src="static/temp.jpg" alt="陳教練 照片" />
-          </div>
-          <h3 class="team-name">陳教練</h3>
-          <p class="team-role">資深體適能教練</p>
-          <div class="team-tags">
-            <span class="team-tag tag-green">兒童體適能</span>
-            <span class="team-tag tag-blue">粗動作發展</span>
-          </div>
-          <p class="team-desc">專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。</p>
-        </div>
-
-        <div class="team-card reveal-up" style="transition-delay: 0.3s;">
-          <div class="team-photo">
-            <img src="static/temp.jpg" alt="林老師 照片" />
-          </div>
-          <h3 class="team-name">林老師</h3>
-          <p class="team-role">認知與職能治療師</p>
-          <div class="team-tags">
-            <span class="team-tag tag-orange">精細動作指導</span>
-            <span class="team-tag tag-green">專注力訓練</span>
-          </div>
-          <p class="team-desc">具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。</p>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
+    </div> </main>
 
   <footer>
     <div class="footer-top">
@@ -365,7 +401,7 @@
       </div>
       <div class="footer-col">
         <h4>快速連結</h4>
-        <ul><li><a href="index.html#cases">課程介紹</a></li></ul>
+        <ul><li><a href="../index.html#cases">課程介紹</a></li></ul>
       </div>
       <div class="footer-col">
         <h4>聯絡資訊</h4>

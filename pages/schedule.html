@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>經營理念｜飛童動知覺</title>
+<title>課程表｜飛童動知覺</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
@@ -25,9 +25,17 @@
     --color-accent-gold: #C4933F;
     --color-accent-orange: #ffa53f;
     --color-accent-yellow: #FFB300;
+    --color-red:    #E15244;
+    --color-orange: #ED9C40;
+    --color-yellow: #F8BE5D;
+    --color-green:  #6BC959;
+    --color-cyan:   #59B7D1;
+    --color-blue:   #4455AD;
+    --color-purple: #8E6399;
     
     --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --gradient-rainbow: linear-gradient(90deg, var(--color-red), var(--color-orange), var(--color-yellow), var(--color-green), var(--color-cyan), var(--color-blue), var(--color-purple));
   }
 
   html { scroll-behavior: smooth; }
@@ -57,6 +65,17 @@
   #feitong-app .reveal-left { transform: translateX(-40px); }
   #feitong-app .reveal-right { transform: translateX(40px); }
   #feitong-app .reveal-up.is-visible, #feitong-app .reveal-left.is-visible, #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+
+  /* 專屬：果凍彈跳動畫 */
+  @keyframes jellyBounce {
+    0% { transform: scale(1, 1); }
+    30% { transform: scale(1.15, 0.85); }
+    40% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.05, 0.95); }
+    65% { transform: scale(0.98, 1.02); }
+    75% { transform: scale(1.01, 0.99); }
+    100% { transform: scale(1, 1); }
+  }
 
   /* =========================================
      3. 導覽列與下拉選單 (共用)
@@ -107,71 +126,106 @@
   ========================================= */
   #feitong-app .inner-hero {
     padding: 160px 60px 80px; 
-    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, var(--color-white) 100%);
-    text-align: center;
-    position: relative;
+    /* 【修正】將底部的白色改為透明 (rgba 結尾為 0)，讓漸層能無縫融入下方 */
+    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, rgba(250,252,252,0) 100%);
+    text-align: center; position: relative; z-index: 1; /* 確保文字在光暈之上 */
   }
-  #feitong-app .inner-hero-label {
-    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--color-primary-mid); margin-bottom: 16px;
-  }
-  #feitong-app .inner-hero-title {
-    font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900;
-    color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 24px;
-  }
-  #feitong-app .inner-hero-desc {
-    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400;
-  }
+  #feitong-app .inner-hero-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary-mid); margin-bottom: 16px; }
+  #feitong-app .inner-hero-title { font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 24px; }
+  #feitong-app .inner-hero-desc { font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400; }
 
   /* =========================================
-     5. 經營理念專屬版面 (Philosophy Styles)
+     5. 課程表專屬版面 (Schedule Styles)
   ========================================= */
-  /* 第一區塊：理念圖文 */
-  #feitong-app .philosophy-intro {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto;
+  /* 【修正】新增一個大外框來包覆 Header 與 Section，統一處理溢出隱藏 */
+  #feitong-app .schedule-page-wrapper {
+    position: relative; overflow: hidden; background: var(--color-white);
   }
-  #feitong-app .intro-text h2 {
-    font-size: 2.2rem; color: var(--color-dark-navy); margin-bottom: 24px; line-height: 1.3;
-  }
-  #feitong-app .intro-text p {
-    font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.9; margin-bottom: 20px;
-  }
-  #feitong-app .intro-text .highlight {
-    color: var(--color-accent-gold); font-weight: 500;
-  }
-  #feitong-app .intro-image-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-  #feitong-app .intro-image-wrap img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
-  #feitong-app .intro-image-wrap:hover img { transform: scale(1.05); }
   
-  /* 裝飾底色塊 */
-  #feitong-app .intro-image-wrap::after {
-    content: ''; position: absolute; inset: 0; border: 2px solid rgba(255,255,255,0.2); border-radius: 24px; z-index: 2; pointer-events: none;
+  /* 移除原本的 overflow: hidden，避免球被切斷 */
+  #feitong-app .schedule-section {
+    position: relative; padding-top: 20px; padding-bottom: 120px;
   }
 
-  /* 第二區塊：三大核心價值 (毛玻璃卡片) */
-  #feitong-app .core-values-section {
-    background: #FAFCFC; position: relative;
+  /* ✨ 巧思：漂浮的背景 Orb 裝飾 */
+  #feitong-app .schedule-bg-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;
+    animation: floatOrb 12s infinite alternate ease-in-out;
   }
-  #feitong-app .values-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto;
-  }
-  #feitong-app .value-card {
-    background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 24px; padding: 50px 40px; text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  #feitong-app .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  /* 調整球的高度定位，讓它剛好落在標題與課表的交界處 */
+  #feitong-app .schedule-orb-1 { width: 400px; height: 400px; background: var(--color-cyan); top: 150px; left: -150px; }
+  #feitong-app .schedule-orb-2 { width: 300px; height: 300px; background: var(--color-orange); bottom: 10%; right: -50px; animation-delay: -4s; }
   
-  #feitong-app .value-icon {
-    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px; font-size: 2rem; color: white;
+  @keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, -60px) scale(1.1); }
   }
-  #feitong-app .icon-1 { background: var(--gradient-warm-135); }
-  #feitong-app .icon-2 { background: linear-gradient(135deg, var(--color-green), var(--color-cyan)); }
-  #feitong-app .icon-3 { background: linear-gradient(135deg, var(--color-blue), var(--color-purple)); }
+
+  /* 課程表主容器 */
+  #feitong-app .schedule-container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* 標籤切換器 (Tab Switcher) */
+  #feitong-app .schedule-tabs {
+    display: flex; justify-content: center; margin-bottom: 48px;
+  }
+  #feitong-app .tabs-wrapper {
+    display: inline-flex; background: rgba(0, 0, 0, 0.04); border-radius: 50px; padding: 6px; position: relative;
+  }
+  #feitong-app .tab-btn {
+    padding: 12px 32px; font-size: 1rem; font-weight: 700; color: var(--color-text-muted); letter-spacing: 0.1em;
+    border: none; background: transparent; cursor: pointer; border-radius: 50px; position: relative; z-index: 2; transition: color 0.3s ease;
+  }
+  #feitong-app .tab-btn.active { color: var(--color-dark-navy); }
   
-  #feitong-app .value-card h3 { font-size: 1.4rem; color: var(--color-dark-navy); margin-bottom: 16px; }
-  #feitong-app .value-card p { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.8; }
+  /* 滑動的背景指示塊 */
+  #feitong-app .tab-indicator {
+    position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px); background: var(--color-white);
+    border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1;
+  }
+
+  /* 課表卡片區塊 */
+  #feitong-app .schedule-content { display: none; opacity: 0; transition: opacity 0.5s ease; }
+  #feitong-app .schedule-content.active { display: block; opacity: 1; animation: fadeIn 0.5s ease forwards; }
+
+  /* ✨ 巧思：彩虹流動邊框的時段卡片 */
+  #feitong-app .schedule-card {
+    position: relative; background: var(--gradient-rainbow); padding: 2px; border-radius: 20px;
+    background-size: 300% 100%; animation: borderFlow 8s linear infinite; margin-bottom: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  #feitong-app .schedule-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  @keyframes borderFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+
+  #feitong-app .card-inner {
+    background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px; padding: 32px 40px; display: flex; align-items: center; gap: 40px;
+  }
+
+  #feitong-app .time-block { flex: 0 0 140px; border-right: 2px dashed rgba(0,0,0,0.06); padding-right: 32px; }
+  #feitong-app .time-text { font-size: 2.2rem; color: var(--color-primary-dark); line-height: 1.1; letter-spacing: 0.05em; }
+  #feitong-app .time-label { font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  #feitong-app .course-details { flex-grow: 1; display: flex; flex-direction: column; gap: 12px; }
+  
+  /* 課程清單項目 */
+  #feitong-app .course-item {
+    display: flex; align-items: center; justify-content: space-between; padding: 16px 24px;
+    background: rgba(0,0,0,0.02); border-radius: 12px; transition: background 0.3s ease;
+  }
+  #feitong-app .course-item:hover { background: rgba(255,255,255,1); box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+
+  #feitong-app .course-info { display: flex; align-items: center; gap: 16px; }
+  #feitong-app .course-name { font-size: 1.1rem; font-weight: 700; color: var(--color-dark-navy); }
+  
+  /* ✨ 巧思：Hover 果凍彈跳標籤 */
+  #feitong-app .course-age {
+    background: rgba(237, 156, 64, 0.15); color: #B86000; padding: 4px 12px; border-radius: 50px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; display: inline-block;
+  }
+  #feitong-app .course-item:hover .course-age { animation: jellyBounce 0.8s ease; }
+
+  #feitong-app .course-coach { font-size: 0.9rem; color: var(--color-text-muted); display: flex; align-items: center; gap: 6px; }
+  #feitong-app .course-coach::before { content: '👤'; font-size: 1rem; }
 
   /* =========================================
      6. 頁尾 (共用)
@@ -192,8 +246,14 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
+  #feitong-app .mobile-only{
+      display: none;
+    }
   @media (max-width: 1024px) {
-   #feitong-app nav { padding: 18px 32px; }
+    #feitong-app .mobile-only{
+      display: block;
+    }
+    #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
     #feitong-app .nav-links {
@@ -228,12 +288,17 @@
     #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
     #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
 
-    /* Layout RWD */
-    #feitong-app .philosophy-intro { grid-template-columns: 1fr; gap: 40px; }
-    #feitong-app .values-grid { grid-template-columns: 1fr; gap: 24px; }
     #feitong-app section { padding: 80px 32px; }
     #feitong-app .inner-hero { padding: 130px 32px 60px; }
     #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    /* 課表手機版佈局調整 */
+    #feitong-app .card-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 24px; }
+    #feitong-app .time-block { border-right: none; border-bottom: 2px dashed rgba(0,0,0,0.06); padding-right: 0; padding-bottom: 16px; width: 100%; flex: auto; }
+    #feitong-app .course-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+    #feitong-app .course-coach { align-self: flex-start; }
   }
 </style>
 </head>
@@ -241,34 +306,34 @@
 
 <div id="feitong-app">
   <nav id="main-nav">
-    <div class="nav-logo"><img src="static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    <div class="nav-logo"><img src="../static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
     <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li class="mobile-nav-logo mobile-only">
-        <img src="static/logo2.png" alt="飛童動知覺"/>
+        <img src="../static/logo2.png" alt="飛童動知覺"/>
       </li>
       <li class="nav-item">
-        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
+        <div class="nav-item-top"><a href="../index.html" class="nav-main-link">首頁</a></div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="philosophy.html" class="nav-main-link" style="color: var(--color-primary-mid);">關於飛童</a>
+          <a href="#" class="nav-main-link">關於飛童</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
-          <a href="philosophy.html" style="color: var(--color-primary-mid); font-weight: 700;">經營理念</a>
+          <a href="philosophy.html">經營理念</a>
           <a href="team.html">團隊介紹</a>
         </div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="#" class="nav-main-link">課程資訊</a>
+          <a href="#" class="nav-main-link" style="color: var(--color-primary-mid);">課程資訊</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
-          <a href="schedule.html">課程表</a>
+          <a href="schedule.html" style="color: var(--color-primary-mid); font-weight: 700;">課程表</a>
           <a href="highlights.html">課程花絮</a>
           <a href="faq.html">父母常問</a>
         </div>
@@ -281,52 +346,143 @@
   </nav>
 
   <main id="main-content">
-    
+    <div class="schedule-page-wrapper">
+      <div class="schedule-bg-orb schedule-orb-1" aria-hidden="true"></div>
+      <div class="schedule-bg-orb schedule-orb-2" aria-hidden="true"></div>
+        
     <header class="inner-hero">
-      <span class="inner-hero-label reveal-up">About Us</span>
-      <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">經營理念</h1>
+      <span class="inner-hero-label reveal-up">Class Schedule</span>
+      <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">飛童課程表</h1>
       <p class="inner-hero-desc reveal-up" style="transition-delay: 0.2s;">
-        我們相信，每個孩子都有獨特的發展軌跡。透過專業的動作感知覺整合教育，為孩子打造一雙隱形的翅膀。
+        我們提供多元時段與分齡專業課程，請家長依據孩子的年齡與需求，選擇最適合的飛翔時光。
       </p>
     </header>
 
-    <section class="philosophy-intro-section">
-      <div class="philosophy-intro">
-        <div class="intro-text reveal-left">
-          <h2>以科學為根，以愛為翼</h2>
-          <p>飛童動知覺創立的初衷，源自於對兒童發展的深刻關懷。我們觀察到許多孩子在成長過程中，面臨專注力不足、情緒控制或動作協調上的挑戰，而這些往往與<span class="highlight">「感覺統合」</span>的發展息息相關。</p>
-          <p>我們捨棄傳統單一的填鴨式教學，採用具備神經科學實證基礎的動作教育。透過有系統、有計畫的引導，讓孩子在遊戲與運動中，重新建立大腦與身體的連結。</p>
-        </div>
-        <div class="intro-image-wrap reveal-right">
-          <img src="static/temp.jpg" alt="孩子們開心地參與動知覺課程" />
-        </div>
-      </div>
-    </section>
+    <section class="schedule-section">
+      <div class="schedule-bg-orb schedule-orb-1" aria-hidden="true"></div>
+      <div class="schedule-bg-orb schedule-orb-2" aria-hidden="true"></div>
 
-    <section class="core-values-section">
-      <div style="position: absolute; top:0; left: 10%; width: 300px; height: 300px; background: var(--color-yellow); filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;"></div>
-      <div style="position: absolute; bottom:0; right: 10%; width: 300px; height: 300px; background: var(--color-cyan); filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;"></div>
+      <div class="schedule-container">
+        
+        <div class="schedule-tabs reveal-up">
+          <div class="tabs-wrapper">
+            <div class="tab-indicator" id="tab-indicator"></div>
+            <button class="tab-btn active" data-target="weekday" onclick="switchTab('weekday')">平日班 (一至五)</button>
+            <button class="tab-btn" data-target="weekend" onclick="switchTab('weekend')">假日班 (六、日)</button>
+          </div>
+        </div>
 
-      <div class="section-header" style="text-align: center; margin-bottom: 60px; position: relative; z-index: 1;">
-        <h2 style="font-size: 2.2rem; color: var(--color-dark-navy); font-weight: 900;">我們的核心價值</h2>
-      </div>
+        <div id="weekday" class="schedule-content active">
+          
+          <div class="schedule-card reveal-up" style="transition-delay: 0.1s;">
+            <div class="card-inner">
+              <div class="time-block">
+                <div class="time-text">14:00</div>
+                <div class="time-label">Afternoon</div>
+              </div>
+              <div class="course-details">
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">感覺統合基礎班</span>
+                    <span class="course-age">👶 2-4 歲</span>
+                  </div>
+                  <div class="course-coach">徐老師</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">幼幼體適能</span>
+                    <span class="course-age">🧒 4-6 歲</span>
+                  </div>
+                  <div class="course-coach">陳教練</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div class="values-grid">
-        <div class="value-card reveal-up" style="transition-delay: 0s;">
-          <div class="value-icon icon-1">🌱</div>
-          <h3>尊重個體差異</h3>
-          <p>沒有兩個孩子是完全一樣的。我們提供客製化的評估與教學計畫，陪伴孩子按照自己的步伐，自信地向前邁進。</p>
+          <div class="schedule-card reveal-up" style="transition-delay: 0.2s;">
+            <div class="card-inner">
+              <div class="time-block">
+                <div class="time-text">16:30</div>
+                <div class="time-label">Late Afternoon</div>
+              </div>
+              <div class="course-details">
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">專注力大躍進 (ADHD專班)</span>
+                    <span class="course-age">🧒 6-10 歲</span>
+                  </div>
+                  <div class="course-coach">林老師</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-card reveal-up" style="transition-delay: 0.3s;">
+            <div class="card-inner">
+              <div class="time-block">
+                <div class="time-text">19:00</div>
+                <div class="time-label">Evening</div>
+              </div>
+              <div class="course-details">
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">核心肌力與協調進階</span>
+                    <span class="course-age">👦 8-14 歲</span>
+                  </div>
+                  <div class="course-coach">陳教練</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="value-card reveal-up" style="transition-delay: 0.1s;">
-          <div class="value-icon icon-2">🧩</div>
-          <h3>感知覺整合</h3>
-          <p>前庭覺、本體覺與觸覺是大腦學習的基石。我們透過專業器材與環境設計，提供豐富的感官刺激，活化神經網絡。</p>
+
+        <div id="weekend" class="schedule-content">
+          <div class="schedule-card">
+            <div class="card-inner">
+              <div class="time-block">
+                <div class="time-text">09:30</div>
+                <div class="time-label">Morning</div>
+              </div>
+              <div class="course-details">
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">週末親子感統樂園</span>
+                    <span class="course-age">👨‍👩‍👦 全家</span>
+                  </div>
+                  <div class="course-coach">徐老師</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-card">
+            <div class="card-inner">
+              <div class="time-block">
+                <div class="time-text">13:30</div>
+                <div class="time-label">Afternoon</div>
+              </div>
+              <div class="course-details">
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">亞斯伯格人際互動專班</span>
+                    <span class="course-age">🧒 6-12 歲</span>
+                  </div>
+                  <div class="course-coach">林老師</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-info">
+                    <span class="course-name">兒童基礎體操</span>
+                    <span class="course-age">🧒 5-8 歲</span>
+                  </div>
+                  <div class="course-coach">陳教練</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="value-card reveal-up" style="transition-delay: 0.2s;">
-          <div class="value-icon icon-3">💪</div>
-          <h3>培養帶得走的能力</h3>
-          <p>我們的目標不僅是改善當下的行為，更是透過動作教育培養孩子的專注力、抗壓性與解決問題的能力，受益一生。</p>
         </div>
+
       </div>
     </section>
 
@@ -340,7 +496,7 @@
       </div>
       <div class="footer-col">
         <h4>快速連結</h4>
-        <ul><li><a href="index.html#cases">課程介紹</a></li></ul>
+        <ul><li><a href="../index.html#cases">課程介紹</a></li></ul>
       </div>
       <div class="footer-col">
         <h4>聯絡資訊</h4>
@@ -360,26 +516,43 @@
 </div>
 
 <script>
+  // 課表 Tab 切換邏輯
+  function switchTab(tabId) {
+    // 切換按鈕狀態
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if(btn.dataset.target === tabId) btn.classList.add('active');
+    });
+
+    // 移動指示器 (Indicator)
+    const indicator = document.getElementById('tab-indicator');
+    if(tabId === 'weekday') {
+      indicator.style.transform = 'translateX(0)';
+    } else {
+      indicator.style.transform = 'translateX(100%)';
+    }
+
+    // 切換內容區塊
+    document.querySelectorAll('.schedule-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    
-    // ──────────────────────────────────────────
-    //  1. 導覽列與漢堡選單特效
-    // ──────────────────────────────────────────
+    // 導覽列與漢堡選單特效
     const nav = document.getElementById('main-nav');
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.getElementById('nav-links');
-
     let isNavTicking = false;
+
     window.addEventListener('scroll', () => {
       if(!nav) return;
       if (!isNavTicking) {
         window.requestAnimationFrame(() => {
           nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
           nav.style.opacity = window.scrollY > 60 ? 0.1 : 1;
-          
-          if(window.innerWidth <= 1024) {
-             nav.style.padding = window.scrollY > 60 ? '12px 32px' : '18px 32px';
-          }
+          if(window.innerWidth <= 1024) nav.style.padding = window.scrollY > 60 ? '12px 32px' : '18px 32px';
           isNavTicking = false;
         });
         isNavTicking = true;
@@ -407,9 +580,7 @@
       });
     });
 
-    // ──────────────────────────────────────────
-    //  2. 統一的滑入進場動畫
-    // ──────────────────────────────────────────
+    // 統一的滑入進場動畫
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
@@ -420,7 +591,6 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
-
   });
 </script>
 </body>

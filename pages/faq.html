@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>課程花絮｜飛童動知覺</title>
+<title>父母常問｜飛童動知覺</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
@@ -113,7 +113,7 @@
   #feitong-app .hamburger span { width: 26px; height: 3px; background: var(--color-primary-dark); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
 
   /* =========================================
-     4. 內頁共用標題 (Inner Hero - 包含無縫過渡)
+     4. 內頁共用標題 (Inner Hero - 無縫過渡)
   ========================================= */
   #feitong-app .inner-hero {
     padding: 160px 60px 80px; 
@@ -133,78 +133,81 @@
   }
 
   /* =========================================
-     5. 課程花絮專屬版面 (Gallery Styles)
+     5. 父母常問專屬版面 (FAQ Styles)
   ========================================= */
-  #feitong-app .gallery-page-wrapper {
+  #feitong-app .faq-page-wrapper {
     position: relative; overflow: hidden; background: var(--color-white);
   }
   
-  #feitong-app .gallery-section {
+  #feitong-app .faq-section {
     position: relative; padding-top: 20px; padding-bottom: 120px; z-index: 1;
   }
 
-  /* 漂浮的背景 Orb 裝飾 */
-  #feitong-app .gallery-bg-orb {
+  /* 背景 Orb */
+  #feitong-app .faq-bg-orb {
     position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;
     animation: floatOrb 12s infinite alternate ease-in-out;
   }
-  #feitong-app .gallery-orb-1 { width: 350px; height: 350px; background: var(--color-purple); top: 150px; left: -100px; }
-  #feitong-app .gallery-orb-2 { width: 450px; height: 450px; background: var(--color-yellow); bottom: 10%; right: -150px; animation-delay: -3s; }
+  #feitong-app .faq-orb-1 { width: 400px; height: 400px; background: var(--color-orange); top: 100px; right: -150px; }
+  #feitong-app .faq-orb-2 { width: 350px; height: 350px; background: var(--color-cyan); bottom: 10%; left: -100px; animation-delay: -5s; }
   
   @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(40px, -60px) scale(1.1); }
   }
 
-  /* 照片網格系統 */
-  #feitong-app .gallery-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto;
+  /* FAQ 手風琴容器 */
+  #feitong-app .faq-container {
+    max-width: 860px; margin: 0 auto; position: relative; z-index: 2;
   }
 
-  /* 照片卡片 (玻璃質感外框) */
-  #feitong-app .gallery-item {
-    position: relative; border-radius: 20px; overflow: hidden; background: #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06); cursor: pointer; aspect-ratio: 4/3;
-    border: 1px solid rgba(255,255,255,0.8); transition: transform 0.4s ease, box-shadow 0.4s ease;
+  /* 獨立問答卡片 */
+  #feitong-app .faq-item {
+    background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); overflow: hidden; transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  #feitong-app .gallery-item:hover {
-    transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  }
-
-  /* 底部暗色漸層遮罩 (讓文字清楚) */
-  #feitong-app .gallery-item::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(31, 45, 56, 0.85) 0%, rgba(31, 45, 56, 0.2) 40%, transparent 100%);
-    opacity: 0.7; transition: opacity 0.4s ease; pointer-events: none;
-  }
-  #feitong-app .gallery-item:hover::after { opacity: 0.95; }
-
-  /* 圖片縮放特效 */
-  #feitong-app .gallery-img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  #feitong-app .gallery-item:hover .gallery-img { transform: scale(1.08); }
-
-  /* 卡片內文 */
-  #feitong-app .gallery-content {
-    position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; z-index: 2;
-    transform: translateY(10px); transition: transform 0.4s ease;
-  }
-  #feitong-app .gallery-item:hover .gallery-content { transform: translateY(0); }
-
-  /* 課程分類標籤 */
-  #feitong-app .gallery-tag {
-    display: inline-block; padding: 4px 12px; margin-bottom: 8px; border-radius: 50px;
-    background: rgba(255,255,255,0.25); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-    color: var(--color-white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  #feitong-app .faq-item:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-2px);
   }
 
-  /* 花絮標題 */
-  #feitong-app .gallery-title {
-    color: var(--color-white); font-size: 1.25rem; font-weight: 700;
-    letter-spacing: 0.05em; text-shadow: 0 2px 4px rgba(0,0,0,0.3); margin: 0;
+  /* 問題標題 (點擊區) */
+  #feitong-app .faq-question {
+    width: 100%; text-align: left; padding: 24px 32px; background: transparent; border: none;
+    font-size: 1.1rem; font-weight: 700; color: var(--color-dark-navy); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    outline: none;
   }
+  
+  /* 加號圖示 */
+  #feitong-app .faq-icon {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--color-bg-cream); color: var(--color-primary-mid);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, color 0.4s ease; flex-shrink: 0;
+  }
+  #feitong-app .faq-icon::before { content: '+'; font-weight: 400; line-height: 1; }
+
+  /* 展開狀態：圖示旋轉並變色 */
+  #feitong-app .faq-item.is-active .faq-icon {
+    transform: rotate(135deg); background: var(--gradient-warm-135); color: white;
+  }
+
+  /* 答案區塊 (Grid 動畫精髓) */
+  #feitong-app .faq-answer-wrapper {
+    display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .faq-item.is-active .faq-answer-wrapper {
+    grid-template-rows: 1fr;
+  }
+  #feitong-app .faq-answer-inner {
+    overflow: hidden; /* 必須隱藏溢出內容才能產生推擠動畫 */
+  }
+  #feitong-app .faq-answer-text {
+    padding: 0 32px 28px; color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8;
+  }
+
+  /* 強調文字 */
+  #feitong-app .faq-answer-text strong { color: var(--color-dark-navy); font-weight: 500; }
 
   /* =========================================
      6. 頁尾 (共用)
@@ -225,7 +228,13 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
+  #feitong-app .mobile-only{
+      display: none;
+    }
   @media (max-width: 1024px) {
+    #feitong-app .mobile-only{
+      display: block;
+    }
     #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
@@ -267,8 +276,10 @@
   }
 
   @media (max-width: 768px) {
-    #feitong-app .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    #feitong-app .gallery-content { transform: translateY(0); } /* 手機版不隱藏文字，直接顯示 */
+    /* 手機版 FAQ 微調：減少內距 */
+    #feitong-app .faq-question { padding: 20px; font-size: 1rem; }
+    #feitong-app .faq-answer-text { padding: 0 20px 20px; font-size: 0.9rem; }
+    #feitong-app .faq-icon { width: 28px; height: 28px; font-size: 1.1rem; }
   }
 </style>
 </head>
@@ -276,16 +287,16 @@
 
 <div id="feitong-app">
   <nav id="main-nav">
-    <div class="nav-logo"><img src="static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    <div class="nav-logo"><img src="../static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
     <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li class="mobile-nav-logo mobile-only">
-        <img src="static/logo2.png" alt="飛童動知覺"/>
+        <img src="../static/logo2.png" alt="飛童動知覺"/>
       </li>
       <li class="nav-item">
-        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
+        <div class="nav-item-top"><a href="../index.html" class="nav-main-link">首頁</a></div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
@@ -304,8 +315,8 @@
         </div>
         <div class="nav-dropdown-menu">
           <a href="schedule.html">課程表</a>
-          <a href="highlights.html" style="color: var(--color-primary-mid); font-weight: 700;">課程花絮</a>
-          <a href="faq.html">父母常問</a>
+          <a href="highlights.html">課程花絮</a>
+          <a href="faq.html" style="color: var(--color-primary-mid); font-weight: 700;">父母常問</a>
         </div>
       </li>
       <li class="nav-item">
@@ -317,68 +328,90 @@
 
   <main id="main-content">
     
-    <div class="gallery-page-wrapper">
+    <div class="faq-page-wrapper">
       
-      <div class="gallery-bg-orb gallery-orb-1" aria-hidden="true"></div>
-      <div class="gallery-bg-orb gallery-orb-2" aria-hidden="true"></div>
+      <div class="faq-bg-orb faq-orb-1" aria-hidden="true"></div>
+      <div class="faq-bg-orb faq-orb-2" aria-hidden="true"></div>
 
       <header class="inner-hero">
-        <span class="inner-hero-label reveal-up">Moments</span>
-        <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">課程花絮</h1>
+        <span class="inner-hero-label reveal-up">F.A.Q</span>
+        <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">父母常問</h1>
         <p class="inner-hero-desc reveal-up" style="transition-delay: 0.2s;">
-          紀錄孩子們在飛童動知覺的每一次歡笑、每一滴汗水與每一個勇敢突破的瞬間。
+          關於孩子的發展與課程細節，我們整理了最常被問到的問題，為您解開心中疑惑。
         </p>
       </header>
 
-      <section class="gallery-section">
-        
-        <div class="gallery-grid">
+      <section class="faq-section">
+        <div class="faq-container">
           
-          <div class="gallery-item reveal-up" style="transition-delay: 0s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="孩子參與感覺統合課程">
-            <div class="gallery-content">
-              <span class="gallery-tag">感覺統合班</span>
-              <h3 class="gallery-title">專注力平衡挑戰</h3>
+          <div class="faq-item reveal-up" style="transition-delay: 0s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>Q1. 孩子幾歲可以開始報名飛童的課程？</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">
+                  飛童的課程設計涵蓋了 <strong>0 歲到 14 歲</strong> 的幼童與學童。我們強烈建議在「0~3歲」大腦發育的黃金期就開始接觸感統課程，越早透過遊戲建立身體感知，對未來的專注力與情緒穩定度幫助越大。
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gallery-item reveal-up" style="transition-delay: 0.1s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="幼幼體適能課程">
-            <div class="gallery-content">
-              <span class="gallery-tag">幼幼體適能</span>
-              <h3 class="gallery-title">快樂的體操時光</h3>
+          <div class="faq-item reveal-up" style="transition-delay: 0.1s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>Q2. 感覺統合課程跟一般的體能課有什麼不同？</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">
+                  一般體能課主要著重在「肌肉力量、心肺耐力與流汗放電」；而<strong>感覺統合課程具有神經科學基礎</strong>，我們透過專業器材（如懸吊鞦韆、觸覺刷、平衡木），有系統地刺激孩子的「前庭覺、本體覺與觸覺」，目的是幫助大腦建立正確的神經連結，進而改善分心、過動或動作笨拙的問題。
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="人際互動專班">
-            <div class="gallery-content">
-              <span class="gallery-tag">人際互動專班</span>
-              <h3 class="gallery-title">合作闖關遊戲</h3>
+          <div class="faq-item reveal-up" style="transition-delay: 0.2s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>Q3. 孩子上課時，家長需要全程陪同嗎？</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">
+                  針對 <strong>3 歲以下</strong> 的幼幼班，我們建議家長共同參與（週末親子班），因為這能大幅提升孩子的安全感，同時教練也能指導家長在家中如何陪玩。<br><br>
+                  如果是 <strong>3 歲以上</strong> 的孩子，我們鼓勵讓孩子獨立上課。家長可以在外面的休息區透過玻璃觀看，這有助於培養孩子的獨立性與教練間的信任感。
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gallery-item reveal-up" style="transition-delay: 0s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="親子感統課程">
-            <div class="gallery-content">
-              <span class="gallery-tag">週末親子班</span>
-              <h3 class="gallery-title">與爸媽一起飛翔</h3>
+          <div class="faq-item reveal-up" style="transition-delay: 0.3s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>Q4. 我的孩子比較坐不住、情緒容易失控，適合來上課嗎？</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">
+                  <strong>這正是飛童最擅長協助的領域！</strong> 坐不住、易怒或過動，通常是因為大腦無法有效處理周遭的感官資訊（感統失調）。我們的教練受過專業訓練，能理解這些行為背後的原因，絕不會用打罵教育。我們會透過特定的前庭刺激運動，幫助孩子平復神經系統，學會自我調節情緒。
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gallery-item reveal-up" style="transition-delay: 0.1s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="核心肌力訓練">
-            <div class="gallery-content">
-              <span class="gallery-tag">核心肌力進階</span>
-              <h3 class="gallery-title">汗水換來的成就感</h3>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
-            <img src="static/temp.jpg" class="gallery-img" alt="精細動作指導">
-            <div class="gallery-content">
-              <span class="gallery-tag">ADHD 專班</span>
-              <h3 class="gallery-title">靜下心來的魔法</h3>
+          <div class="faq-item reveal-up" style="transition-delay: 0.4s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>Q5. 一期課程大約多久會看到效果？</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">
+                  每個孩子的發展進程都不同，但根據我們的經驗與家長回饋，通常在 <strong>完整參與 12 堂課（約三個月）</strong> 後，家長會明顯感覺到孩子在「睡眠品質、情緒穩定度或動作靈活度」上有顯著的進步。我們每個月也會提供進度評估表，與家長保持密切溝通。
+                </div>
+              </div>
             </div>
           </div>
 
@@ -395,7 +428,7 @@
       </div>
       <div class="footer-col">
         <h4>快速連結</h4>
-        <ul><li><a href="index.html#cases">課程介紹</a></li></ul>
+        <ul><li><a href="../index.html#cases">課程介紹</a></li></ul>
       </div>
       <div class="footer-col">
         <h4>聯絡資訊</h4>
@@ -475,6 +508,35 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // ──────────────────────────────────────────
+    //  3. FAQ 手風琴特效 (Accordion Logic)
+    // ──────────────────────────────────────────
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+        
+        // 排他性：關閉所有其他展開的項目
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('is-active');
+            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
+        
+        // 切換被點擊的項目狀態
+        if (isActive) {
+          item.classList.remove('is-active');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('is-active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
   });
 </script>

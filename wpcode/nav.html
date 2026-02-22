@@ -1,0 +1,319 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================
+     1. 全站變數與基礎設定
+  ========================================= */
+  :root {
+    --color-primary-dark: #7a570d;   
+    --color-primary-mid: #a0681a;    
+    --color-primary-light: #cc822d;  
+    --color-dark-navy: #351c0a;      
+    --color-white: #FAFCFC;
+    --color-text-dark: #2e1a31;      
+    --color-text-muted: #80715a;
+    --color-text-light: #F4EBE1;
+    --color-bg-cream: #F2EAE0;
+    --color-accent-gold: #C4933F;
+    --color-accent-orange: #ffa53f;
+    --color-accent-yellow: #FFB300;
+    --color-red:    #E15244;
+    --color-orange: #ED9C40;
+    --color-yellow: #F8BE5D;
+    --color-green:  #6BC959;
+    --color-cyan:   #59B7D1;
+    --color-blue:   #4455AD;
+    --color-purple: #8E6399;
+    
+    --gradient-rainbow: linear-gradient(90deg, var(--color-red), var(--color-orange), var(--color-yellow), var(--color-green), var(--color-cyan), var(--color-blue), var(--color-purple));
+    --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --gradient-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+  }
+
+  #feitong-app {
+    font-family:  'Chiron GoRound TC', sans-serif;
+    background: var(--color-white);
+    color: var(--color-text-dark);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #feitong-app *, #feitong-app *::before, #feitong-app *::after { 
+    box-sizing: border-box; margin: 0; padding: 0; 
+  }
+
+  #feitong-app section { padding: 100px 60px; }
+
+  /* =========================================
+     2. 共用動畫類別 & 元件
+  ========================================= */
+  #feitong-app .reveal-up, 
+  #feitong-app .reveal-left, 
+  #feitong-app .reveal-right {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .reveal-up { transform: translateY(40px); }
+  #feitong-app .reveal-left { transform: translateX(-40px); }
+  #feitong-app .reveal-right { transform: translateX(40px); }
+  #feitong-app .reveal-up.is-visible, 
+  #feitong-app .reveal-left.is-visible, 
+  #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+
+  #feitong-app .rainbow-bar {
+    height: 6px; background: var(--gradient-rainbow); background-size: 300% 100%;
+    animation: rainbowFlow 5s linear infinite; position: relative; z-index: 1;
+  }
+  @keyframes rainbowFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+
+  #feitong-app .ui-deco-dots { position: absolute; top: 36px; right: 48px; display: flex; gap: 10px; align-items: center; z-index: 10; }
+  #feitong-app .ui-deco-dot { border-radius: 50%; width: 16px; height: 16px; animation: dotBounce 2s ease-in-out infinite alternate; }
+  #feitong-app .ui-deco-dot:nth-child(1) { background: var(--color-red);    animation-delay: 0s; }
+  #feitong-app .ui-deco-dot:nth-child(2) { background: var(--color-orange);  animation-delay: 0.15s; }
+  #feitong-app .ui-deco-dot:nth-child(3) { background: var(--color-yellow);  animation-delay: 0.30s; }
+  #feitong-app .ui-deco-dot:nth-child(4) { background: var(--color-green);   animation-delay: 0.45s; }
+  #feitong-app .ui-deco-dot:nth-child(5) { background: var(--color-cyan);    animation-delay: 0.60s; }
+  @keyframes dotBounce { from { transform: translateY(0); } to { transform: translateY(-7px); } }
+
+  /* =========================================
+     3. 導覽列與下拉選單
+  ========================================= */
+  #feitong-app nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,252,252,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,110,122,0.08); transition: padding 0.3s, opacity 0.5s ease; opacity: 1;
+  }
+  #feitong-app .nav-logo { font-weight: 900; font-size: 1.3rem; color: var(--color-primary-dark); letter-spacing: 0.05em; z-index: 102; position: relative; }
+  #feitong-app .nav-logo span { color: var(--color-accent-gold); }
+
+  #feitong-app .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+  #feitong-app .nav-item { position: relative; }
+  
+  #feitong-app .nav-item-top { display: flex; align-items: center; height: 100%; }
+  #feitong-app .nav-main-link { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--color-text-muted); letter-spacing: 0.08em; transition: color 0.25s; position: relative; padding: 10px 0; }
+  #feitong-app .nav-main-link::after { content: ''; position: absolute; bottom: 4px; left: 0; width: 0; height: 1.5px; background: var(--color-accent-gold); transition: width 0.3s; }
+  #feitong-app .nav-main-link:hover { background-image: var(--gradient-warm-90); color: transparent; background-clip: text; -webkit-background-clip: text; }
+  #feitong-app .nav-main-link:hover::after { width: 100%; }
+  
+  #feitong-app .nav-dropdown-toggle { display: none; } /* 電腦版隱藏下拉按鈕 */
+
+  #feitong-app .nav-dropdown-menu {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
+    background: rgba(250, 252, 252, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px; padding: 12px 0; min-width: 150px;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; z-index: 101;
+  }
+  #feitong-app .nav-item:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  #feitong-app .nav-dropdown-menu a { text-decoration: none; font-size: 0.85rem; color: var(--color-text-dark); padding: 10px 24px; letter-spacing: 0.08em; transition: all 0.2s ease; text-align: center; font-weight: 500; }
+  #feitong-app .nav-dropdown-menu a:hover { background: var(--color-bg-cream); color: var(--color-accent-gold); }
+
+  #feitong-app .nav-btn-cta {
+    background: var(--color-accent-orange); color: white !important; padding: 10px 24px !important;
+    border-radius: 2px; font-size: 0.8rem !important; letter-spacing: 0.12em !important; text-decoration: none;
+    transition: background 0.25s, transform 0.2s !important; overflow: hidden; z-index: 1; display: inline-block; position: relative;
+  }
+  #feitong-app .nav-btn-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--gradient-warm-90); opacity: 0; z-index: -1; transition: opacity 0.5s ease;  }
+  #feitong-app .nav-btn-cta:hover { transform: translateY(-1px); }
+  #feitong-app .nav-btn-cta:hover::before { opacity: 1; }
+
+  /* 漢堡選單按鈕 */
+  #feitong-app .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 102; position: relative; }
+  #feitong-app .hamburger span { width: 26px; height: 3px; background: var(--color-primary-dark); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
+  /* =========================================
+     10. 動畫基礎與響應式 RWD 核心設計
+  ========================================= */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  #feitong-app .desktop-only { display: inline-block; }
+  #feitong-app .mobile-only { display: none; }
+
+  @media (max-width: 1024px) {
+    #feitong-app .desktop-only { display: none; }
+    #feitong-app .mobile-only { display: inline-block; }
+    #feitong-app .nav-logo { z-index: 10 !important; }
+    #feitong-app nav { padding: 18px 32px; }
+    #feitong-app .hamburger { display: flex; z-index: 100 !important; }
+    #feitong-app .nav-links {
+      position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
+      background: rgba(250,252,252,0.98); 
+      flex-direction: column; justify-content: flex-start; align-items: flex-start; 
+      padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
+      gap: 0; 
+      z-index: 90 !important;
+    }
+    #feitong-app .nav-links.is-open { right: 0; }
+
+    #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    #feitong-app .mobile-nav-logo img { height: 40px; } 
+    #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
+    #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    /* 主選單項目 */
+    #feitong-app .nav-item { 
+      width: 100%; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0; 
+      display: block; 
+    }
+    #feitong-app .nav-item:last-child { border-bottom: none; }
+    
+    #feitong-app .nav-item-top { 
+      justify-content: space-between; align-items: stretch; width: 100%; display: flex; 
+      height: auto; 
+    }
+    
+    /* 主選單文字 */
+    #feitong-app .nav-main-link { 
+      padding: 16px 10px; flex-grow: 1; display: flex; align-items: center;
+      color: var(--color-text-dark); font-size: 1rem; font-weight: 500; letter-spacing: 0.05em; 
+    }
+    #feitong-app .nav-main-link::after { display: none; }
+    #feitong-app .nav-main-link:hover { background-image: none; color: var(--color-primary-mid); -webkit-text-fill-color: unset; }
+
+    /* 右側專屬下拉按鈕 */
+    #feitong-app .nav-dropdown-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 54px; background: transparent; border: none; cursor: pointer;
+      border-left: 1px solid rgba(0, 0, 0, 0.05); 
+    }
+    #feitong-app .nav-dropdown-toggle::after {
+      content: ''; width: 8px; height: 8px; 
+      border-right: 2px solid var(--color-primary-mid); 
+      border-bottom: 2px solid var(--color-primary-mid); 
+      transform: rotate(45deg) translateY(-2px); transition: transform 0.3s ease;
+    }
+    #feitong-app .nav-item.is-open .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(-2px) translateX(-2px); }
+
+    /* 徹底關閉電腦版的 hover 展開 */
+    #feitong-app .nav-item:hover .nav-dropdown-menu { transform: none; } 
+    
+    /* 次選單容器：使用 position: static 確保正常往下推擠 */
+    #feitong-app .nav-dropdown-menu {
+      position: static !important; box-shadow: none; border: none; background: transparent;
+      display: none; opacity: 1; visibility: visible; transform: none; padding: 0; width: 100%;
+    }
+    /* 點擊展開時顯示 */
+    #feitong-app .nav-item.is-open .nav-dropdown-menu { display: flex; flex-direction: column; }
+    
+    /* 次選單項目 */
+    #feitong-app .nav-dropdown-menu a { 
+      text-align: left; padding: 14px 10px 14px 20px; 
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--color-text-muted); font-size: 0.9rem; display: block;
+    }
+    #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
+
+    /* 立即報名按鈕 */
+    #feitong-app .nav-btn-cta {
+       margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center;
+    }
+}
+</style>
+
+<div id="feitong-app">
+  <nav id="main-nav">
+    <div class="nav-logo"><img src="https://feitong-edu.com/wp-content/uploads/2026/02/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    
+    <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li class="mobile-nav-logo mobile-only">
+        <img src="https://feitong-edu.com/wp-content/uploads/2026/02/logo2.png" alt="飛童動知覺"/>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top"><a href="../index.html" class="nav-main-link">首頁</a></div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top">
+          <a href="#" class="nav-main-link">關於飛童</a>
+          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
+        </div>
+        <div class="nav-dropdown-menu">
+          <a href="../pages/philosophy.html">經營理念</a>
+          <a href="../pages/team.html">團隊介紹</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top">
+          <a href="#" class="nav-main-link">課程資訊</a>
+          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
+        </div>
+        <div class="nav-dropdown-menu">
+          <a href="../pages/schedule.html">課程表</a>
+          <a href="../pages/highlights.html">課程花絮</a>
+          <a href="../pages/faq.html">父母常問</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top"><a href="../pages/blog.html" class="nav-main-link">飛童知識專欄</a></div>
+      </li>
+      <li class="nav-item"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjyZ8X7VKIT4rid2ZpkjAsPpOeI10GSytSNQTR5fzE-tuNuQ/viewform" class="nav-btn-cta">立即報名</a></li>
+    </ul>
+  </nav>
+</div> 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    // ──────────────────────────────────────────
+    //  1. 導覽列與漢堡選單特效
+    // ──────────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    let isNavTicking = false;
+    window.addEventListener('scroll', () => {
+      if(!nav) return;
+      if (!isNavTicking) {
+        window.requestAnimationFrame(() => {
+          nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+          nav.style.opacity = window.scrollY > 60 ? 0.1 : 1;
+          
+          if(window.innerWidth <= 1024) {
+             nav.style.padding = window.scrollY > 60 ? '12px 32px' : '18px 32px';
+          }
+          isNavTicking = false;
+        });
+        isNavTicking = true;
+      }
+    });
+
+    // 漢堡選單展開
+    if(navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('is-active');
+        navLinks.classList.toggle('is-open');
+        if (navLinks.classList.contains('is-open')) nav.style.opacity = 1;
+      });
+    }
+
+    // 手機版次選單展開按鈕
+    // 手機版次選單展開按鈕 (加入手風琴排他效果)
+    const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const parentItem = toggle.closest('.nav-item');
+        
+        // 點擊時，先把其他已經打開的選單關閉
+        document.querySelectorAll('.nav-item').forEach(item => {
+        if (item !== parentItem) {
+            item.classList.remove('is-open');
+        }
+        });
+        
+        // 切換目前的選單
+        parentItem.classList.toggle('is-open');
+    });
+    });
+})
+
+</script>

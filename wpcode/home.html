@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>飛童動知覺｜兒童動作感知覺整合教育</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
@@ -37,13 +31,6 @@
     --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --gradient-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  *{
-    padding: 0;
-    margin: 0;
   }
 
   #feitong-app {
@@ -383,22 +370,6 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
   /* =========================================
-     9. 頁尾 (Footer)
-  ========================================= */
-  #feitong-app footer { background: var(--color-dark-navy); padding: 64px 60px 40px; }
-  #feitong-app .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  #feitong-app .footer-logo { font-weight: 900; font-size: 1.2rem; color: white; letter-spacing: 0.05em; margin-bottom: 16px; display: block; }
-  #feitong-app .footer-logo span { color: var(--color-accent-gold); }
-  #feitong-app .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 400; max-width: 280px; }
-  #feitong-app .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
-  #feitong-app .footer-col ul { list-style: none; }
-  #feitong-app .footer-col ul li { margin-bottom: 12px; }
-  #feitong-app .footer-col ul li a { text-decoration: none; font-size: 0.875rem; color: rgba(255,255,255,0.65); transition: color 0.25s; font-weight: 400; }
-  #feitong-app .footer-col ul li a:hover { color: var(--color-primary-light); }
-  #feitong-app .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
-  #feitong-app .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-
-  /* =========================================
      10. 動畫基礎與響應式 RWD 核心設計
   ========================================= */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -410,83 +381,6 @@
   @media (max-width: 1024px) {
     #feitong-app .desktop-only { display: none; }
     #feitong-app .mobile-only { display: inline-block; }
-    #feitong-app .nav-logo { z-index: 10 !important; }
-    #feitong-app nav { padding: 18px 32px; }
-    #feitong-app .hamburger { display: flex; z-index: 100 !important; }
-    #feitong-app .nav-links {
-      position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
-      background: rgba(250,252,252,0.98); 
-      flex-direction: column; justify-content: flex-start; align-items: flex-start; 
-      padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
-      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
-      gap: 0; 
-      z-index: 90 !important;
-    }
-    #feitong-app .nav-links.is-open { right: 0; }
-
-    #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-    #feitong-app .mobile-nav-logo img { height: 40px; } 
-    #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
-    #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    
-    /* 主選單項目 */
-    #feitong-app .nav-item { 
-      width: 100%; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0; 
-      display: block; 
-    }
-    #feitong-app .nav-item:last-child { border-bottom: none; }
-    
-    #feitong-app .nav-item-top { 
-      justify-content: space-between; align-items: stretch; width: 100%; display: flex; 
-      height: auto; 
-    }
-    
-    /* 主選單文字 */
-    #feitong-app .nav-main-link { 
-      padding: 16px 10px; flex-grow: 1; display: flex; align-items: center;
-      color: var(--color-text-dark); font-size: 1rem; font-weight: 500; letter-spacing: 0.05em; 
-    }
-    #feitong-app .nav-main-link::after { display: none; }
-    #feitong-app .nav-main-link:hover { background-image: none; color: var(--color-primary-mid); -webkit-text-fill-color: unset; }
-
-    /* 右側專屬下拉按鈕 */
-    #feitong-app .nav-dropdown-toggle {
-      display: flex; align-items: center; justify-content: center;
-      width: 54px; background: transparent; border: none; cursor: pointer;
-      border-left: 1px solid rgba(0, 0, 0, 0.05); 
-    }
-    #feitong-app .nav-dropdown-toggle::after {
-      content: ''; width: 8px; height: 8px; 
-      border-right: 2px solid var(--color-primary-mid); 
-      border-bottom: 2px solid var(--color-primary-mid); 
-      transform: rotate(45deg) translateY(-2px); transition: transform 0.3s ease;
-    }
-    #feitong-app .nav-item.is-open .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(-2px) translateX(-2px); }
-
-    /* 徹底關閉電腦版的 hover 展開 */
-    #feitong-app .nav-item:hover .nav-dropdown-menu { transform: none; } 
-    
-    /* 次選單容器：使用 position: static 確保正常往下推擠 */
-    #feitong-app .nav-dropdown-menu {
-      position: static !important; box-shadow: none; border: none; background: transparent;
-      display: none; opacity: 1; visibility: visible; transform: none; padding: 0; width: 100%;
-    }
-    /* 點擊展開時顯示 */
-    #feitong-app .nav-item.is-open .nav-dropdown-menu { display: flex; flex-direction: column; }
-    
-    /* 次選單項目 */
-    #feitong-app .nav-dropdown-menu a { 
-      text-align: left; padding: 14px 10px 14px 20px; 
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      color: var(--color-text-muted); font-size: 0.9rem; display: block;
-    }
-    #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
-
-    /* 立即報名按鈕 */
-    #feitong-app .nav-btn-cta {
-       margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center;
-    }
 
     /* 首頁 Hero RWD：反轉排列，Logo 在上並置中，字在下並置中 */
     #feitong-app .hero { display: flex; flex-direction: column-reverse; justify-content: center; padding: 120px 32px 80px; text-align: center; }
@@ -503,7 +397,6 @@
     #feitong-app .carousel-pagination { display: flex; justify-content: center; padding-right: 0; }
 
     #feitong-app section { padding: 80px 32px; }
-    #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
   }
 
   @media (max-width: 960px) {
@@ -538,53 +431,9 @@
     #feitong-app .timeline-card h3 { font-size: 1.3rem; }
   }
 </style>
-</head>
-<body>
+
 
 <div id="feitong-app">
-
-  <nav id="main-nav">
-    <div class="nav-logo"><img src="static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
-    
-    <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
-      <span></span><span></span><span></span>
-    </div>
-
-    <ul class="nav-links" id="nav-links">
-      <li class="mobile-nav-logo mobile-only">
-        <img src="static/logo2.png" alt="飛童動知覺"/>
-      </li>
-      <li class="nav-item">
-        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-item-top">
-          <a href="#" class="nav-main-link">關於飛童</a>
-          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
-        </div>
-        <div class="nav-dropdown-menu">
-          <a href="pages/philosophy.html">經營理念</a>
-          <a href="pages/team.html">團隊介紹</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-item-top">
-          <a href="#" class="nav-main-link">課程資訊</a>
-          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
-        </div>
-        <div class="nav-dropdown-menu">
-          <a href="pages/schedule.html">課程表</a>
-          <a href="pages/highlights.html">課程花絮</a>
-          <a href="pages/faq.html">父母常問</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <div class="nav-item-top"><a href="pages/blog.html" class="nav-main-link">飛童知識專欄</a></div>
-      </li>
-      <li class="nav-item"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjyZ8X7VKIT4rid2ZpkjAsPpOeI10GSytSNQTR5fzE-tuNuQ/viewform" class="nav-btn-cta">立即報名</a></li>
-    </ul>
-  </nav>
-
   <main id="main-content">
 
     <section class="hero" id="home">
@@ -600,20 +449,20 @@
       <div class="hero-right">
         <div class="hero-visual">
             <div class="logo-animation-wrapper">
-                <img src="static/lego7.png" class="hero-anim-layer anim-block delay-7" alt="" aria-hidden="true">
-                <img src="static/lego1.png" class="hero-anim-layer base-layer anim-block delay-1" alt="" aria-hidden="true">
-                <img src="static/lego6.png" class="hero-anim-layer anim-block delay-6" alt="" aria-hidden="true">
-                <img src="static/lego5.png" class="hero-anim-layer anim-block delay-5" alt="" aria-hidden="true">
-                <img src="static/lego2.png" class="hero-anim-layer anim-block delay-2" alt="" aria-hidden="true">
-                <img src="static/lego4.png" class="hero-anim-layer anim-block delay-4" alt="" aria-hidden="true">
-                <img src="static/lego3.png" class="hero-anim-layer anim-block delay-3" alt="" aria-hidden="true">
-                <img src="static/star1.png" class="hero-anim-layer anim-star delay-8" alt="" aria-hidden="true">
-                <img src="static/star2.png" class="hero-anim-layer anim-star delay-9" alt="" aria-hidden="true">
-                <img src="static/person1.png" class="hero-anim-layer anim-person delay-10" alt="" aria-hidden="true">
-                <img src="static/person2.png" class="hero-anim-layer anim-person delay-11" alt="" aria-hidden="true">
-                <img src="static/person3.png" class="hero-anim-layer anim-person delay-12" alt="" aria-hidden="true">
-                <img src="static/person4.png" class="hero-anim-layer anim-person delay-13" alt="" aria-hidden="true">
-                <img src="static/ball.png"   class="hero-anim-layer anim-ball delay-14" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego7-scaled.png" class="hero-anim-layer anim-block delay-7" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego1-scaled.png" class="hero-anim-layer base-layer anim-block delay-1" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego6-scaled.png" class="hero-anim-layer anim-block delay-6" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego5-scaled.png" class="hero-anim-layer anim-block delay-5" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego2-scaled.png" class="hero-anim-layer anim-block delay-2" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego4-scaled.png" class="hero-anim-layer anim-block delay-4" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/lego3-scaled.png" class="hero-anim-layer anim-block delay-3" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/star1.png" class="hero-anim-layer anim-star delay-8" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/star2-scaled.png" class="hero-anim-layer anim-star delay-9" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/person1-scaled.png" class="hero-anim-layer anim-person delay-10" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/person2-scaled.png" class="hero-anim-layer anim-person delay-11" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/person3-scaled.png" class="hero-anim-layer anim-person delay-12" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/person4-scaled.png" class="hero-anim-layer anim-person delay-13" alt="" aria-hidden="true">
+                <img src="https://feitong-edu.com/wp-content/uploads/2026/02/ball-scaled.png"   class="hero-anim-layer anim-ball delay-14" alt="" aria-hidden="true">
             </div>
         </div>
       </div>
@@ -627,7 +476,7 @@
       <div class="about-layout">
         <div class="about-left reveal-left">
           <div class="about-photo-wrap">
-            <div class="about-photo"><img src="static/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩"></div>
+            <div class="about-photo"><img src="https://feitong-edu.com/wp-content/uploads/2026/02/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩"></div>
           </div>
         </div>
 
@@ -699,7 +548,7 @@
         <div class="carousel-track" id="cases-track">
           <div class="case-card theme-cyan">
             <div class="card-inner">
-              <div class="card-img-wrap"><div class="card-img" style="background-image: url('static/course1.jpg');"></div><div class="card-overlay"></div></div>
+              <div class="card-img-wrap"><div class="card-img" style="background-image: url('https://feitong-edu.com/wp-content/uploads/2026/02/course1.jpg');"></div><div class="card-overlay"></div></div>
               <div class="card-header-content"><span class="card-tag">注意力不足過動症</span><h3 class="card-title">ADHD</h3></div>
               <div class="card-detail-panel">
                 <p class="card-detail-desc">結合神經科學與動作教育，透過系統性感官統合訓練，強化觸覺、前庭覺與本體覺整合，提升專注力。</p>
@@ -847,31 +696,9 @@
       </div>
     </section>
 
-  </main> <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span class="footer-logo">飛童<span>動知覺</span></span>
-        <p class="footer-tagline">以科學為根，以愛為翼，幫助每個孩子在動作探索中，找到屬於自己的飛翔方式。</p>
-      </div>
-      <div class="footer-col">
-        <h4>快速連結</h4><ul><li><a href="#cases">課程介紹</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>聯絡資訊</h4>
-        <ul>
-          <li><a href="#">📍 台北市信義區</a></li>
-          <li><a href="tel:+886">📞 (02) XXXX-XXXX</a></li>
-          <li><a href="mailto:info@feitong-edu.com">✉️ info@feitong-edu.com</a></li>
-          <li><a href="#">🕘 週一至週六 9:00–18:00</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2024 飛童動知覺. All rights reserved.</p>
-    </div>
-  </footer>
-
-</div> <script>
+  </main>
+</div> 
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     
     // ──────────────────────────────────────────
@@ -1077,5 +904,3 @@
 
   });
 </script>
-</body>
-</html>

@@ -249,7 +249,13 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
+  #feitong-app .mobile-only{
+    display: none;
+  }
   @media (max-width: 1024px) {
+    #feitong-app .mobile-only{
+      display: block;
+    }
     #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
@@ -303,16 +309,16 @@
 
 <div id="feitong-app">
   <nav id="main-nav">
-    <div class="nav-logo"><img src="static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    <div class="nav-logo"><img src="../static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
     <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li class="mobile-nav-logo mobile-only">
-        <img src="static/logo2.png" alt="飛童動知覺"/>
+        <img src="../static/logo2.png" alt="飛童動知覺"/>
       </li>
       <li class="nav-item">
-        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
+        <div class="nav-item-top"><a href="../index.html" class="nav-main-link">首頁</a></div>
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
@@ -363,7 +369,7 @@
           
           <a href="#" class="blog-card reveal-up" style="transition-delay: 0s;">
             <div class="blog-img-wrap">
-              <img src="static/temp.jpg" class="blog-img" alt="感覺統合是什麼？">
+              <img src="../static/temp.jpg" class="blog-img" alt="感覺統合是什麼？">
             </div>
             <div class="blog-content">
               <div class="blog-meta">
@@ -378,7 +384,7 @@
 
           <a href="#" class="blog-card reveal-up" style="transition-delay: 0.1s;">
             <div class="blog-img-wrap">
-              <img src="static/temp.jpg" class="blog-img" alt="孩子總是坐不住？">
+              <img src="../static/temp.jpg" class="blog-img" alt="孩子總是坐不住？">
             </div>
             <div class="blog-content">
               <div class="blog-meta">
@@ -393,7 +399,7 @@
 
           <a href="#" class="blog-card reveal-up" style="transition-delay: 0.2s;">
             <div class="blog-img-wrap">
-              <img src="static/temp.jpg" class="blog-img" alt="居家陪玩指南">
+              <img src="../static/temp.jpg" class="blog-img" alt="居家陪玩指南">
             </div>
             <div class="blog-content">
               <div class="blog-meta">
@@ -408,7 +414,7 @@
 
           <a href="#" class="blog-card reveal-up" style="transition-delay: 0s;">
             <div class="blog-img-wrap">
-              <img src="static/temp.jpg" class="blog-img" alt="粗動作發展對學齡前兒童的重要性">
+              <img src="../static/temp.jpg" class="blog-img" alt="粗動作發展對學齡前兒童的重要性">
             </div>
             <div class="blog-content">
               <div class="blog-meta">
