@@ -412,26 +412,31 @@
     #feitong-app .mobile-only { display: inline-block; }
     
     /* 導覽列與漢堡選單 RWD */
-   /* =======================================
-       替換起點：導覽列與漢堡選單 RWD (修復下拉重疊與排版跑位)
-       ======================================= */
+    #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app nav { padding: 18px 32px; }
-    #feitong-app .hamburger { display: flex; z-index: 102; }
-    
-    #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
-    #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    #feitong-app .hamburger { display: flex; z-index: 100 !important; }
 
     /* 側邊選單：重置 gap 並修正排版 */
     #feitong-app .nav-links {
       position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
       background: rgba(250,252,252,0.98); 
       flex-direction: column; justify-content: flex-start; align-items: flex-start; 
-      padding: 80px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+      padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
       transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
-      gap: 0; /* 👈【修正關鍵1】取消電腦版的 gap: 36px，避免選單間距過大 */
+      gap: 0; 
+      z-index: 90 !important;
     }
-    #feitong-app .nav-links.is-open { right: 0; z-index: 10;}
+    #feitong-app .nav-links.is-open { right: 0; }
+
+    #feitong-app .mobile-nav-logo { 
+      display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+    }
+    #feitong-app .mobile-nav-logo img { height: 40px; } /* 控制內部 Logo 大小 */
+
+    #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
+    #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
     /* 主選單項目 */
     #feitong-app .nav-item { 
@@ -440,7 +445,6 @@
     }
     #feitong-app .nav-item:last-child { border-bottom: none; }
     
-    /* 👈【修正關鍵2】覆蓋 height: 100% 為 auto，避免選單展開時，母層文字被擠到中間造成重疊！ */
     #feitong-app .nav-item-top { 
       justify-content: space-between; align-items: stretch; width: 100%; display: flex; 
       height: auto; 
@@ -491,9 +495,6 @@
     #feitong-app .nav-btn-cta {
        margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center;
     }
-    /* =======================================
-       替換終點
-       ======================================= */
 
     /* 首頁 Hero RWD：反轉排列，Logo 在上並置中，字在下並置中 */
     #feitong-app .hero { display: flex; flex-direction: column-reverse; justify-content: center; padding: 120px 32px 80px; text-align: center; }
@@ -558,6 +559,9 @@
     </div>
 
     <ul class="nav-links" id="nav-links">
+      <li class="mobile-nav-logo mobile-only">
+        <img src="static/logo2.png" alt="飛童動知覺"/>
+      </li>
       <li class="nav-item">
         <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
       </li>

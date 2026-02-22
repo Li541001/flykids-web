@@ -227,14 +227,20 @@
   ========================================= */
   @media (max-width: 1024px) {
     #feitong-app nav { padding: 18px 32px; }
-    #feitong-app .hamburger { display: flex; }
+    #feitong-app .nav-logo { z-index: 10 !important; }
+    #feitong-app .hamburger { display: flex; z-index: 100 !important; }
     #feitong-app .nav-links {
       position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
-      background: rgba(250,252,252,0.98); flex-direction: column; justify-content: flex-start; align-items: flex-start; 
-      padding: 80px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
-      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto; gap: 0;
+      background: rgba(250,252,252,0.98); 
+      flex-direction: column; justify-content: flex-start; align-items: flex-start; 
+      padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
+      gap: 0; 
+      z-index: 90 !important;
     }
     #feitong-app .nav-links.is-open { right: 0; }
+    #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    #feitong-app .mobile-nav-logo img { height: 40px; }
     #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
     #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -275,6 +281,9 @@
       <span></span><span></span><span></span>
     </div>
     <ul class="nav-links" id="nav-links">
+      <li class="mobile-nav-logo mobile-only">
+        <img src="static/logo2.png" alt="飛童動知覺"/>
+      </li>
       <li class="nav-item">
         <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
       </li>
