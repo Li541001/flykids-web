@@ -23,9 +23,8 @@
     * `--gradient-warm-90`, `--gradient-warm-135`, `--gradient-warm-180` (暖色橘紅紫過渡)
 
 ## 2.2 排版與字體 (Typography)
-* **主標題 (Headings)**: `'Noto Serif TC', serif` (字重 900，粗體，展現專業感)
-* **內文 (Body)**: `'Chocolate Classical Sans', 'Noto Sans TC', sans-serif` (字重 300~500，易讀性高)
-* **數字/裝飾英文字**: 推薦使用 `'Bebas Neue', sans-serif`。
+* **主標題 (Headings)**: `'Chiron GoRound TC', sans-serif` (字重 900，粗體，展現專業感)
+* **內文 (Body)**: `'Chiron GoRound TC', sans-serif` (字重 400~500，易讀性高)
 
 ## 2.3 UI 元素特徵 (UI Elements)
 * **區塊間距**: 預設大空間 `#feitong-app section { padding: 100px 60px; }` (手機版縮至 `80px 32px` 或 `72px 28px`)。
