@@ -25,12 +25,26 @@
     --color-accent-gold: #C4933F;
     --color-accent-orange: #ffa53f;
     --color-accent-yellow: #FFB300;
+    --color-red:    #E15244;
+    --color-orange: #ED9C40;
+    --color-yellow: #F8BE5D;
+    --color-green:  #6BC959;
+    --color-cyan:   #59B7D1;
+    --color-blue:   #4455AD;
+    --color-purple: #8E6399;
     
+    --gradient-rainbow: linear-gradient(90deg, var(--color-red), var(--color-orange), var(--color-yellow), var(--color-green), var(--color-cyan), var(--color-blue), var(--color-purple));
     --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --gradient-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
   }
 
   html { scroll-behavior: smooth; }
+
+  *{
+    padding: 0;
+    margin: 0;
+  }
 
   #feitong-app {
     font-family:  'Chiron GoRound TC', sans-serif;
@@ -47,19 +61,29 @@
   #feitong-app section { padding: 100px 60px; }
 
   /* =========================================
-     2. 動畫類別 (共用)
+     2. 共用動畫類別 & 元件
   ========================================= */
-  #feitong-app .reveal-up, #feitong-app .reveal-left, #feitong-app .reveal-right {
+  #feitong-app .reveal-up, 
+  #feitong-app .reveal-left, 
+  #feitong-app .reveal-right {
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   #feitong-app .reveal-up { transform: translateY(40px); }
   #feitong-app .reveal-left { transform: translateX(-40px); }
   #feitong-app .reveal-right { transform: translateX(40px); }
-  #feitong-app .reveal-up.is-visible, #feitong-app .reveal-left.is-visible, #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+  #feitong-app .reveal-up.is-visible, 
+  #feitong-app .reveal-left.is-visible, 
+  #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+
+  #feitong-app .rainbow-bar {
+    height: 6px; background: var(--gradient-rainbow); background-size: 300% 100%;
+    animation: rainbowFlow 5s linear infinite; position: relative; z-index: 1;
+  }
+  @keyframes rainbowFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
 
   /* =========================================
-     3. 導覽列與下拉選單 (共用)
+     3. 導覽列與下拉選單
   ========================================= */
   #feitong-app nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px;
@@ -103,13 +127,12 @@
   #feitong-app .hamburger span { width: 26px; height: 3px; background: var(--color-primary-dark); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
 
   /* =========================================
-     4. 內頁共用標題 (Inner Hero)
+     4. 內頁共用 Header (Inner Hero)
   ========================================= */
   #feitong-app .inner-hero {
     padding: 160px 60px 80px; 
-    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, var(--color-white) 100%);
-    text-align: center;
-    position: relative;
+    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, rgba(250,252,252,0) 100%);
+    text-align: center; position: relative; z-index: 1;
   }
   #feitong-app .inner-hero-label {
     display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
@@ -119,62 +142,151 @@
     font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900;
     color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 24px;
   }
-  #feitong-app .inner-hero-desc {
-    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400;
-  }
 
   /* =========================================
-     5. 經營理念專屬版面 (Philosophy Styles)
+     5. 經營理念專屬版面 
   ========================================= */
-  /* 第一區塊：理念圖文 */
-  #feitong-app .philosophy-intro {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto;
-  }
-  #feitong-app .intro-text h2 {
-    font-size: 2.2rem; color: var(--color-dark-navy); margin-bottom: 24px; line-height: 1.3;
-  }
-  #feitong-app .intro-text p {
-    font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.9; margin-bottom: 20px;
-  }
-  #feitong-app .intro-text .highlight {
-    color: var(--color-accent-gold); font-weight: 500;
-  }
-  #feitong-app .intro-image-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-  #feitong-app .intro-image-wrap img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+  /* --- 1. 前言區塊 --- */
+  #feitong-app .philosophy-intro-section { background: var(--color-white); position: relative; padding-top: 20px; padding-bottom: 80px; }
+  #feitong-app .philosophy-intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  #feitong-app .intro-text h2 { font-size: 2.2rem; color: var(--color-dark-navy); margin-bottom: 24px; line-height: 1.3; font-weight: 900; }
+  #feitong-app .intro-text p { font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.9; margin-bottom: 20px; }
+  #feitong-app .intro-text .highlight { color: var(--color-accent-gold); font-weight: 700; }
+  #feitong-app .intro-image-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); aspect-ratio: 4/3; }
+  #feitong-app .intro-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
   #feitong-app .intro-image-wrap:hover img { transform: scale(1.05); }
+
+  /* --- 2. 成立沿革 (復用首頁 Timeline) --- */
+  #feitong-app .timeline-section { padding: 120px 20px; background: #1A1208; position: relative; }
+  #feitong-app .bg-orb-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  #feitong-app .bg-orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.15; animation: floatOrb 10s infinite alternate ease-in-out; }
+  #feitong-app .orb-1 { width: 300px; height: 300px; background: var(--color-cyan); top: 5%; left: -100px; }
+  #feitong-app .orb-2 { width: 400px; height: 400px; background: var(--color-yellow); top: 40%; right: -150px; animation-delay: -3s; }
+  #feitong-app .orb-3 { width: 350px; height: 350px; background: var(--color-purple); bottom: 5%; left: 10%; animation-delay: -6s; }
+  @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, -50px) scale(1.1); } }
+
+  #feitong-app .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  #feitong-app .section-header { text-align: center; margin-bottom: 80px; }
+  #feitong-app .section-label { background: var(--gradient-warm-135); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1rem; letter-spacing: 0.2em; display: inline-flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; text-transform: uppercase; font-weight: 700; }
+  #feitong-app .section-label::before, #feitong-app .section-label::after { content: ''; width: 24px; height: 2px; border-radius: 2px; }
+  #feitong-app .section-label::before { background: #F89938; } #feitong-app .section-label::after { background: #973B9F; }
+  #feitong-app .section-title { color: var(--color-white); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; line-height: 1.3; margin: 0; }
+
+  #feitong-app .timeline { position: relative; padding-bottom: 40px; }
+  #feitong-app .timeline-spine { position: absolute; top: 0; bottom: 0; left: 25%; width: 8px; background: rgb(74, 74, 74); transform: translateX(-50%); border-radius: 8px; z-index: 1; }
+  #feitong-app .timeline-progress { position: absolute; top: 0; left: 25%; width: 8px; background: var(--gradient-warm-180); transform: translateX(-50%); border-radius: 8px; z-index: 2; height: 0%; box-shadow: 0 0 15px rgba(255,255,255,0.6); }
+
+  #feitong-app .timeline-item { display: flex; align-items: stretch; padding-bottom: 120px; position: relative; z-index: 3; }
+  #feitong-app .timeline-left { flex: 0 0 25%; width: 25%; position: relative; }
+  #feitong-app .sticky-container { position: sticky; top: 50vh; transform: translateY(-50%); display: flex; align-items: center; justify-content: flex-end; width: 100%; z-index: 10; }
+  #feitong-app .sticky-text { font-size: 2rem; font-weight: 900; line-height: 1.25; text-align: right; letter-spacing: 0.05em; color: var(--color-text-muted); text-shadow: 0 2px 10px rgba(0,0,0,0.05); padding-right: 40px; transition: transform 0.4s ease, color 0.4s ease; font-family: 'Bebas Neue', sans-serif; }
+  #feitong-app .sticky-ball { position: absolute; right: -10px; width: 20px; height: 20px; border-radius: 50%; background: var(--color-white); z-index: 10; }
+
+  #feitong-app .timeline-right { flex: 0 0 75%; width: 75%; padding-left: 60px; }
+  #feitong-app .timeline-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 24px; padding: 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); border-top-color: rgba(255, 255, 255, 0.2); border-left-color: rgba(255, 255, 255, 0.15); position: relative; transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  #feitong-app .item-stage-1.active .sticky-text { color: var(--color-green); transform: scale(1.1); }
+  #feitong-app .item-stage-2.active .sticky-text { color: var(--color-orange); transform: scale(1.1); }
+  #feitong-app .item-stage-3.active .sticky-text { color: var(--color-cyan); transform: scale(1.1); }
+  #feitong-app .item-stage-1:hover .timeline-card { transform: translateY(-8px) scale(1.02); background: rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(107, 201, 89, 0.15) inset; border-color: rgba(107, 201, 89, 0.4); }
+  #feitong-app .item-stage-2:hover .timeline-card { transform: translateY(-8px) scale(1.02); background: rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(237, 156, 64, 0.15) inset; border-color: rgba(237, 156, 64, 0.4); }
+  #feitong-app .item-stage-3:hover .timeline-card { transform: translateY(-8px) scale(1.02); background: rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(89, 183, 209, 0.15) inset; border-color: rgba(89, 183, 209, 0.4); }
+
+  #feitong-app .timeline-card h3 { font-size: 1.5rem; font-weight: 900; color: var(--color-text-light); margin: 0 0 16px 0; }
+  #feitong-app .timeline-desc { font-size: 1.05rem; line-height: 1.8; color: var(--color-text-muted); margin: 0 0 20px 0; }
+  #feitong-app .highlight-box { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 16px 20px; border-left: 4px solid var(--color-yellow); font-size: 1rem; font-weight: 400; color: var(--color-text-light); }
+
+  /* --- 3. 專業能力與教學專長 --- */
+  #feitong-app .capabilities-section { background: #FAFCFC; padding: 100px 60px; }
+  #feitong-app .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
   
-  /* 裝飾底色塊 */
-  #feitong-app .intro-image-wrap::after {
-    content: ''; position: absolute; inset: 0; border: 2px solid rgba(255,255,255,0.2); border-radius: 24px; z-index: 2; pointer-events: none;
+  /* 基礎玻璃卡片設定 */
+  #feitong-app .value-card { 
+    background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+    border-radius: 24px; padding: 50px 40px; text-align: center; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease; 
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   }
 
-  /* 第二區塊：三大核心價值 (毛玻璃卡片) */
-  #feitong-app .core-values-section {
-    background: #FAFCFC; position: relative;
+  /* 內部微光暈背景 (預設透明度低) */
+  #feitong-app .value-card::before {
+    content: ''; position: absolute; top: -50px; left: 50%; transform: translateX(-50%);
+    width: 150px; height: 150px; border-radius: 50%; filter: blur(50px);
+    opacity: 0.15; transition: opacity 0.5s ease; z-index: 0; pointer-events: none;
   }
-  #feitong-app .values-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto;
+  #feitong-app .value-card:hover::before { opacity: 0.35; }
+
+  /* 卡片內容層級提升 */
+  #feitong-app .value-card > * { position: relative; z-index: 1; }
+
+  /* 卡片 1 專屬：暖橘金 */
+  #feitong-app .value-card-1::before { background: var(--color-orange); }
+  #feitong-app .value-card-1 { border-top: 3px solid transparent; }
+  #feitong-app .value-card-1:hover {
+    transform: translateY(-12px);
+    border-top-color: var(--color-orange);
+    box-shadow: 0 20px 40px rgba(237, 156, 64, 0.15), 0 10px 20px rgba(0,0,0,0.05);
   }
-  #feitong-app .value-card {
-    background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 24px; padding: 50px 40px; text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: transform 0.4s ease, box-shadow 0.4s ease;
+  #feitong-app .value-card-1:hover h3 { color: var(--color-orange); }
+
+  /* 卡片 2 專屬：科技青 */
+  #feitong-app .value-card-2::before { background: var(--color-cyan); }
+  #feitong-app .value-card-2 { border-top: 3px solid transparent; }
+  #feitong-app .value-card-2:hover {
+    transform: translateY(-12px);
+    border-top-color: var(--color-cyan);
+    box-shadow: 0 20px 40px rgba(89, 183, 209, 0.15), 0 10px 20px rgba(0,0,0,0.05);
   }
-  #feitong-app .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  #feitong-app .value-card-2:hover h3 { color: var(--color-cyan); }
+
+  /* 卡片 3 專屬：活力綠 */
+  #feitong-app .value-card-3::before { background: var(--color-green); }
+  #feitong-app .value-card-3 { border-top: 3px solid transparent; }
+  #feitong-app .value-card-3:hover {
+    transform: translateY(-12px);
+    border-top-color: var(--color-green);
+    box-shadow: 0 20px 40px rgba(107, 201, 89, 0.15), 0 10px 20px rgba(0,0,0,0.05);
+  }
+  #feitong-app .value-card-3:hover h3 { color: var(--color-green); }
+
+  /* 圖示圓框設計與動畫 */
+  #feitong-app .value-icon { 
+    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+    margin: 0 auto 24px; font-size: 2.2rem; color: white;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+  }
+  #feitong-app .icon-1 { background: linear-gradient(135deg, var(--color-yellow), var(--color-orange)); box-shadow: 0 8px 16px rgba(237, 156, 64, 0.2); }
+  #feitong-app .icon-2 { background: linear-gradient(135deg, #a1c4fd, var(--color-cyan)); box-shadow: 0 8px 16px rgba(89, 183, 209, 0.2); }
+  #feitong-app .icon-3 { background: linear-gradient(135deg, #84fab0, var(--color-green)); box-shadow: 0 8px 16px rgba(107, 201, 89, 0.2); }
   
-  #feitong-app .value-icon {
-    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px; font-size: 2rem; color: white;
+  #feitong-app .value-card:hover .value-icon { transform: scale(1.1) rotate(5deg); }
+  #feitong-app .value-card-1:hover .icon-1 { box-shadow: 0 12px 24px rgba(237, 156, 64, 0.4); }
+  #feitong-app .value-card-2:hover .icon-2 { box-shadow: 0 12px 24px rgba(89, 183, 209, 0.4); }
+  #feitong-app .value-card-3:hover .icon-3 { box-shadow: 0 12px 24px rgba(107, 201, 89, 0.4); }
+
+  /* 文字排版 */
+  #feitong-app .value-card h3 { 
+    font-size: 1.3rem; color: var(--color-dark-navy); margin-bottom: 16px; font-weight: 900;
+    transition: color 0.3s ease;
   }
-  #feitong-app .icon-1 { background: var(--gradient-warm-135); }
-  #feitong-app .icon-2 { background: linear-gradient(135deg, var(--color-green), var(--color-cyan)); }
-  #feitong-app .icon-3 { background: linear-gradient(135deg, var(--color-blue), var(--color-purple)); }
-  
-  #feitong-app .value-card h3 { font-size: 1.4rem; color: var(--color-dark-navy); margin-bottom: 16px; }
   #feitong-app .value-card p { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.8; }
 
+  /* 教學專長 Pills */
+  #feitong-app .expertise-box { max-width: 1000px; margin: 80px auto 0; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+  #feitong-app .skill-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+  #feitong-app .skill-pill { font-size: 0.9rem; font-weight: 700; color: var(--color-text-dark); background: var(--color-bg-cream); padding: 10px 20px; border-radius: 50px; transition: all 0.3s ease; }
+  #feitong-app .skill-pill:hover { background: var(--color-primary-mid); color: white; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(160, 104, 26, 0.3); }
+
+  /* --- 4. 社會責任 --- */
+  #feitong-app .social-section { background: linear-gradient(to top, var(--color-bg-cream) 0%, rgba(250,252,252,0) 100%);  padding: 10px 60px 100px 60px; position: relative; overflow: hidden; }
+  #feitong-app .social-card { background: rgba(255,255,255,0.95); max-width: 1000px; margin: 0 auto; padding: 70px 60px; border-radius: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); position: relative; z-index: 2; text-align: center; }
+  #feitong-app .social-card h2 { font-size: 2.2rem; color: var(--color-dark-navy); margin-bottom: 24px; font-weight: 900;}
+  #feitong-app .social-card p { font-size: 1.05rem; color: var(--color-text-muted); line-height: 2; margin-bottom: 20px; font-weight: 400; }
+
   /* =========================================
-     6. 頁尾 (共用)
+     6. 頁尾 (Footer)
   ========================================= */
   #feitong-app footer { background: var(--color-dark-navy); padding: 64px 60px 40px; }
   #feitong-app .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -192,14 +304,12 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
-  #feitong-app .mobile-only{
-      display: none;
-    }
+  #feitong-app .mobile-only{ display: none; }
   @media (max-width: 1024px) {
-    #feitong-app .mobile-only{
-      display: block;
-    }
-   #feitong-app nav { padding: 18px 32px; }
+    #feitong-app .desktop-only{ display: none; }
+    #feitong-app .mobile-only{ display: block; }
+    
+    #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
     #feitong-app .nav-links {
@@ -208,8 +318,7 @@
       flex-direction: column; justify-content: flex-start; align-items: flex-start; 
       padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
       transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
-      gap: 0; 
-      z-index: 90 !important;
+      gap: 0; z-index: 90 !important;
     }
     #feitong-app .nav-links.is-open { right: 0; }
     #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
@@ -234,12 +343,25 @@
     #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
     #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
 
-    /* Layout RWD */
+    /* 內頁專屬 RWD */
     #feitong-app .philosophy-intro { grid-template-columns: 1fr; gap: 40px; }
     #feitong-app .values-grid { grid-template-columns: 1fr; gap: 24px; }
+    #feitong-app .social-section { padding: 80px 24px; }
+    #feitong-app .social-card { padding: 40px 24px; border-radius: 20px; }
+    #feitong-app .expertise-box { padding: 32px 24px; }
     #feitong-app section { padding: 80px 32px; }
     #feitong-app .inner-hero { padding: 130px 32px 60px; }
     #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    #feitong-app .timeline-spine, #feitong-app .timeline-progress { left: 80px; }
+    #feitong-app .timeline-left { flex: 0 0 80px; width: 80px; }
+    #feitong-app .timeline-right { flex: 0 0 calc(100% - 80px); width: calc(100% - 80px); padding-left: 24px; }
+    #feitong-app .sticky-container { padding-right: 25px; }
+    #feitong-app .sticky-text { font-size: 1.2rem; padding-right: 5px;}
+    #feitong-app .timeline-card { padding: 24px; border-radius: 16px; }
+    #feitong-app .timeline-card h3 { font-size: 1.3rem; }
   }
 </style>
 </head>
@@ -260,11 +382,11 @@
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="philosophy.html" class="nav-main-link" style="color: var(--color-primary-mid);">關於飛童</a>
+          <a href="philosophy.html" class="nav-main-link" style="color: var(--color-primary-mid); font-weight: 700;">關於飛童</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
-          <a href="philosophy.html" style="color: var(--color-primary-mid); font-weight: 700;">經營理念</a>
+          <a href="philosophy.html" style="color: var(--color-primary-mid);">經營理念</a>
           <a href="team.html">團隊介紹</a>
         </div>
       </li>
@@ -289,50 +411,119 @@
   <main id="main-content">
     
     <header class="inner-hero">
-      <span class="inner-hero-label reveal-up">About Us</span>
+      <span class="inner-hero-label reveal-up">about us</span>
       <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">經營理念</h1>
-      <p class="inner-hero-desc reveal-up" style="transition-delay: 0.2s;">
-        我們相信，每個孩子都有獨特的發展軌跡。透過專業的動作感知覺整合教育，為孩子打造一雙隱形的翅膀。
-      </p>
     </header>
 
     <section class="philosophy-intro-section">
       <div class="philosophy-intro">
         <div class="intro-text reveal-left">
-          <h2>以科學為根，以愛為翼</h2>
-          <p>飛童動知覺創立的初衷，源自於對兒童發展的深刻關懷。我們觀察到許多孩子在成長過程中，面臨專注力不足、情緒控制或動作協調上的挑戰，而這些往往與<span class="highlight">「感覺統合」</span>的發展息息相關。</p>
-          <p>我們捨棄傳統單一的填鴨式教學，採用具備神經科學實證基礎的動作教育。透過有系統、有計畫的引導，讓孩子在遊戲與運動中，重新建立大腦與身體的連結。</p>
+          <h2 style="font-weight: 900;">看見孩子們的需要</h2>
+          <p>近年來在兒童體育教學課程中發現有越來越多孩童出現<span class="highlight">動作發展落後、情緒不穩定、容易注意力缺乏</span>等問題，這些問題甚至導致課堂上的一些狀況發生。</p>
+          <p>有些家長帶著有上述情形的孩子參加不同形式的早期療育課程，很遺憾的有不少孩子沒能獲得預期的成效，眼見孩子一天天長大，不但花費了許多金錢，也錯失黃金發展期翻轉落後的最佳時機。在我們的專業上，真切地看見了這些孩子與家長們所需要的幫助。</p>
         </div>
         <div class="intro-image-wrap reveal-right">
-          <img src="../static/temp.jpg" alt="孩子們開心地參與動知覺課程" />
+          <img src="../static/philosophy.jpg" alt="看見孩子們的需要" />
         </div>
       </div>
     </section>
 
-    <section class="core-values-section">
-      <div style="position: absolute; top:0; left: 10%; width: 300px; height: 300px; background: var(--color-yellow); filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;"></div>
-      <div style="position: absolute; bottom:0; right: 10%; width: 300px; height: 300px; background: var(--color-cyan); filter: blur(80px); opacity: 0.15; z-index: 0; pointer-events: none;"></div>
+    <div class="rainbow-bar" aria-hidden="true"></div>
 
-      <div class="section-header" style="text-align: center; margin-bottom: 60px; position: relative; z-index: 1;">
-        <h2 style="font-size: 2.2rem; color: var(--color-dark-navy); font-weight: 900;">我們的核心價值</h2>
+    <section class="timeline-section" id="history-timeline">
+      <div class="bg-orb-container" aria-hidden="true">
+        <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div><div class="bg-orb orb-3"></div>
+      </div>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">History</div>
+          <h2 class="section-title">成立沿革</h2>
+        </div>
+        <div class="timeline" id="timeline-container">
+          <div class="timeline-spine"></div>
+          <div class="timeline-progress" id="timeline-progress"></div>
+
+          <div class="timeline-item item-stage-1 js-timeline-item reveal-up">
+            <div class="timeline-left"><div class="sticky-container"><div class="sticky-text">2019</div><div class="sticky-ball"></div></div></div>
+            <div class="timeline-right">
+              <div class="timeline-card">
+                <h3>投入課程設計</h3>
+                <p class="timeline-desc">開始投入符合兒童生理年齡所應具備之動作能力的運動課程設計，藉由有計畫的動作發展運動遊戲，培育孩童動作技能、健康成長。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item item-stage-2 js-timeline-item reveal-up" style="transition-delay: 0.1s;">
+            <div class="timeline-left"><div class="sticky-container"><div class="sticky-text">2021</div><div class="sticky-ball"></div></div></div>
+            <div class="timeline-right">
+              <div class="timeline-card">
+                <h3>導入大腦科學系統</h3>
+                <p class="timeline-desc">正式與大腦科學動知覺教育系統的創始人–徐喜傑老師進行合作。透過徐老師的培訓指導與實習，強化了團隊對於大腦科學教育的認知。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item item-stage-3 js-timeline-item reveal-up" style="transition-delay: 0.2s;">
+            <div class="timeline-left"><div class="sticky-container"><div class="sticky-text">2022</div><div class="sticky-ball"></div></div></div>
+            <div class="timeline-right">
+              <div class="timeline-card">
+                <h3>飛童動知覺正式成立</h3>
+                <p class="timeline-desc">正式組成飛童動知覺運動教育服務團隊，以「動知覺運動教室」的模式，結合不同的體育教學專長，專為孩童創編了一套測評課程，了解孩童的身體智商。<br><br>透過測評分析開立專屬的運動處方，幫助有早期療育需求、行為發展失調、及至期待優化學習力的正常孩童，都能在這一個最速效的學習環境接受運動企劃，實現透過周圍神經發展中樞神經的「向心律」理論，幫助成長孩童發展大腦，建立、恢復其生理年齡所應該具備的動作能力，提升每一個孩童的體智能。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities-section">
+      <div style="text-align: center; margin-bottom: 60px; max-width: 800px; margin: 0 auto 60px;">
+        <div class="section-label" style="background: var(--gradient-warm-135); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px;">Capabilities</div>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--color-dark-navy); margin-bottom: 24px;">專業能力與教學專長</h2>
+        <p style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.8;">從大腦科學專家研究結果印證：兒童落後失調的表現多是因為大腦生理發展未健全，使神經皮質訊息接收不順暢，造成外在能力表現失調。為從根本解決這個問題，我們新創了融合不同特性的運動教室課程。</p>
       </div>
 
       <div class="values-grid">
-        <div class="value-card reveal-up" style="transition-delay: 0s;">
-          <div class="value-icon icon-1">🌱</div>
-          <h3>尊重個體差異</h3>
-          <p>沒有兩個孩子是完全一樣的。我們提供客製化的評估與教學計畫，陪伴孩子按照自己的步伐，自信地向前邁進。</p>
+        <div class="value-card value-card-1 reveal-up" style="transition-delay: 0s;">
+          <div class="value-icon icon-1">🎓</div>
+          <h3>豐富操作經驗</h3>
+          <p>運用團隊中資深幼兒教育專家，累積超過三十年的運動遊戲操作經驗，精準掌握孩童學習心理。</p>
         </div>
-        <div class="value-card reveal-up" style="transition-delay: 0.1s;">
+        <div class="value-card value-card-2 reveal-up" style="transition-delay: 0.1s;">
           <div class="value-icon icon-2">🧩</div>
-          <h3>感知覺整合</h3>
-          <p>前庭覺、本體覺與觸覺是大腦學習的基石。我們透過專業器材與環境設計，提供豐富的感官刺激，活化神經網絡。</p>
+          <h3>大腦科學系統</h3>
+          <p>結合二十年優化後大腦科學運動教具系統的使用，透過周圍神經發展中樞神經的「向心律」理論幫助大腦發展。</p>
         </div>
-        <div class="value-card reveal-up" style="transition-delay: 0.2s;">
+        <div class="value-card value-card-3 reveal-up" style="transition-delay: 0.2s;">
           <div class="value-icon icon-3">💪</div>
-          <h3>培養帶得走的能力</h3>
-          <p>我們的目標不僅是改善當下的行為，更是透過動作教育培養孩子的專注力、抗壓性與解決問題的能力，受益一生。</p>
+          <h3>特殊技能指導</h3>
+          <p>融入個人健身教練指導特殊動作技能的技巧。以「愛心、耐心、細心」的教學精神，按部就班激發孩童應有的動作能力。</p>
         </div>
+      </div>
+
+      <div class="expertise-box reveal-up" style="transition-delay: 0.3s;">
+        <h3 style="text-align: center; font-size: 1.6rem; color: var(--color-dark-navy); margin-bottom: 16px; font-weight: 900;">我們的教學專長</h3>
+        <p style="text-align: center; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 24px;">團隊教練均接受徐喜杰老師的專長培訓與實習訓練，透過兒童體育教育實現「運動發展大腦」專業極致的成效。涵蓋 3~12 歲兒童體育領域：</p>
+        <div class="skill-pills">
+          <span class="skill-pill">大腦科學動知覺教育</span>
+          <span class="skill-pill">兒童體能</span>
+          <span class="skill-pill">兒童跆拳</span>
+          <span class="skill-pill">兒童足球</span>
+          <span class="skill-pill">兒童籃球</span>
+          <span class="skill-pill">兒童樂樂棒球</span>
+          <span class="skill-pill">兒童直排輪</span>
+          <span class="skill-pill">幼兒體能培訓講師</span>
+          <span class="skill-pill">專利教具設計</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="social-section">
+      <div class="social-card reveal-up">
+        <h2>實踐社會責任，擁抱永續未來</h2>
+        <p>台灣的低出生率極不利於未來的社會發展。少子化導致勞動人力下降，不僅不利於產業發展，隨著老齡人口增加，家庭的醫療支出也會提升，年輕人的負擔將更加沉重。</p>
+        <p>如果再加上新世代孩童越來越多的文明病癥，卻沒能掌握黃金發展期即時進行有效療育，未來的台灣恐將產生極大的社會問題。</p>
+        <p style="margin-bottom: 0; font-weight: 700; color: var(--color-primary-mid);">因此我們將努力連結同好，懷抱對於幼兒教育的熱情，呼應聯合國 SDGs 永續發展的社會目標，為特殊兒童家庭脫離困頓、增進健康與福祉、為提升所有孩童在家、在校均能獲得優質健康的體育學習，盡一份心力。</p>
       </div>
     </section>
 
@@ -426,6 +617,43 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // ──────────────────────────────────────────
+    //  3. 時間軸特效 (負責讓沿革的年份球球發亮與黏著)
+    // ──────────────────────────────────────────
+    const timelineItems = document.querySelectorAll('.js-timeline-item');
+    const timelineActiveObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, { rootMargin: "-48% 0px -48% 0px" });
+    timelineItems.forEach(item => timelineActiveObserver.observe(item));
+
+    const timelineContainer = document.getElementById('timeline-container');
+    const progressBar = document.getElementById('timeline-progress');
+    let isTimelineTicking = false;
+
+    window.addEventListener('scroll', () => {
+      if(!timelineContainer || !progressBar) return;
+      if (!isTimelineTicking) {
+        window.requestAnimationFrame(() => {
+          const rect = timelineContainer.getBoundingClientRect();
+          const startOffset = window.innerHeight / 2; 
+          let progress = 0;
+          if (rect.top < startOffset) {
+            progress = ((startOffset - rect.top) / rect.height) * 100;
+            progress = Math.max(0, Math.min(100, progress));
+          }
+          progressBar.style.height = `${progress}%`;
+          isTimelineTicking = false;
+        });
+        isTimelineTicking = true;
+      }
+    });
 
   });
 </script>

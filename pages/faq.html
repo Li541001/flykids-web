@@ -39,6 +39,7 @@
   }
 
   html { scroll-behavior: smooth; }
+  *{padding: 0; margin: 0;}
 
   #feitong-app {
     font-family:  'Chiron GoRound TC', sans-serif;
@@ -53,6 +54,37 @@
   }
 
   #feitong-app section { padding: 100px 60px; }
+  
+  /* =========================================
+     🌟 新增：FAQ 內文專屬語義化樣式 
+  ========================================= */
+  /* 1. 重新定義 <mark> 標籤作為高亮 */
+  #feitong-app mark {
+    background: transparent;
+    color: var(--color-accent-orange);
+    font-weight: 700;
+  }
+  
+  /* 2. 定義 ul.faq-list 完美對齊排版 */
+  #feitong-app .faq-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 20px 0;
+  }
+  #feitong-app .faq-list li {
+    display: flex;
+    align-items: flex-start; /* 確保點點對齊第一行文字 */
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+  #feitong-app .faq-list li::before {
+    content: '●';
+    color: var(--color-primary-mid); /* 換成品牌的暖金色，質感更好 */
+    font-size: 10px;
+    flex-shrink: 0; /* 確保點點絕對不會被長文字擠壓變形 */
+    margin-right: 12px; /* 點點與文字的間距 */
+    margin-top: 0.45em; /* 往下推一點，精準對齊第一行文字的中央 */
+  }
 
   /* =========================================
      2. 動畫類別 & 裝飾 (共用)
@@ -342,83 +374,12 @@
       </header>
 
       <section class="faq-section">
-        <div class="faq-container">
-          
-          <div class="faq-item reveal-up" style="transition-delay: 0s;">
-            <button class="faq-question" aria-expanded="false">
-              <span>Q1. 孩子幾歲可以開始報名飛童的課程？</span>
-              <div class="faq-icon"></div>
-            </button>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer-inner">
-                <div class="faq-answer-text">
-                  飛童的課程設計涵蓋了 <strong>0 歲到 14 歲</strong> 的幼童與學童。我們強烈建議在「0~3歲」大腦發育的黃金期就開始接觸感統課程，越早透過遊戲建立身體感知，對未來的專注力與情緒穩定度幫助越大。
-                </div>
-              </div>
-            </div>
+        <div class="faq-container" id="faq-container">
           </div>
-
-          <div class="faq-item reveal-up" style="transition-delay: 0.1s;">
-            <button class="faq-question" aria-expanded="false">
-              <span>Q2. 感覺統合課程跟一般的體能課有什麼不同？</span>
-              <div class="faq-icon"></div>
-            </button>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer-inner">
-                <div class="faq-answer-text">
-                  一般體能課主要著重在「肌肉力量、心肺耐力與流汗放電」；而<strong>感覺統合課程具有神經科學基礎</strong>，我們透過專業器材（如懸吊鞦韆、觸覺刷、平衡木），有系統地刺激孩子的「前庭覺、本體覺與觸覺」，目的是幫助大腦建立正確的神經連結，進而改善分心、過動或動作笨拙的問題。
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal-up" style="transition-delay: 0.2s;">
-            <button class="faq-question" aria-expanded="false">
-              <span>Q3. 孩子上課時，家長需要全程陪同嗎？</span>
-              <div class="faq-icon"></div>
-            </button>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer-inner">
-                <div class="faq-answer-text">
-                  針對 <strong>3 歲以下</strong> 的幼幼班，我們建議家長共同參與（週末親子班），因為這能大幅提升孩子的安全感，同時教練也能指導家長在家中如何陪玩。<br><br>
-                  如果是 <strong>3 歲以上</strong> 的孩子，我們鼓勵讓孩子獨立上課。家長可以在外面的休息區透過玻璃觀看，這有助於培養孩子的獨立性與教練間的信任感。
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal-up" style="transition-delay: 0.3s;">
-            <button class="faq-question" aria-expanded="false">
-              <span>Q4. 我的孩子比較坐不住、情緒容易失控，適合來上課嗎？</span>
-              <div class="faq-icon"></div>
-            </button>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer-inner">
-                <div class="faq-answer-text">
-                  <strong>這正是飛童最擅長協助的領域！</strong> 坐不住、易怒或過動，通常是因為大腦無法有效處理周遭的感官資訊（感統失調）。我們的教練受過專業訓練，能理解這些行為背後的原因，絕不會用打罵教育。我們會透過特定的前庭刺激運動，幫助孩子平復神經系統，學會自我調節情緒。
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal-up" style="transition-delay: 0.4s;">
-            <button class="faq-question" aria-expanded="false">
-              <span>Q5. 一期課程大約多久會看到效果？</span>
-              <div class="faq-icon"></div>
-            </button>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer-inner">
-                <div class="faq-answer-text">
-                  每個孩子的發展進程都不同，但根據我們的經驗與家長回饋，通常在 <strong>完整參與 12 堂課（約三個月）</strong> 後，家長會明顯感覺到孩子在「睡眠品質、情緒穩定度或動作靈活度」上有顯著的進步。我們每個月也會提供進度評估表，與家長保持密切溝通。
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </section>
 
-    </div> </main>
+    </div>
+  </main>
 
   <footer>
     <div class="footer-top">
@@ -496,7 +457,109 @@
     });
 
     // ──────────────────────────────────────────
-    //  2. 統一的滑入進場動畫
+    //  2. FAQ 動態資料庫與自動渲染引擎 (必須在動畫之前執行)
+    // ──────────────────────────────────────────
+    
+    // 📦 你的 FAQ 資料庫 (使用 HTML5 短標籤 <mark> 與 <ul><li>)
+    const faqData = [
+      {
+        q: "Q1. 何謂「動知覺」教育課程？",
+        a: `<strong>動知覺訓練課程</strong>是適合所有類型兒童提升課業學習與運動表現的訓練課程。我們激發水平能力孩童發展出更優質的學習潛能，更幫助許多<strong>發展遲緩或神經發展障礙</strong>的孩童達到<strong>正常學習表現</strong>並且展現<strong>情緒自制力</strong>。<br><br>
+            過去二十年從超過兩萬名具特殊發展教育需求孩童的成功學習表現證明 : 動知覺課程系統<strong>運用在發展遲緩或不同大腦文明病癥孩童</strong>的療育教育上，具有極強大的改善成效與見證。( 想進一步了解真實案例的家長可與我們聯繫或可自行與本網站內的國內成功案例分享的任一幼兒園所聯繫詢問了解動知覺教育的實績 )<br><br>
+            動知覺訓練課程以<mark>大腦科學為基礎，以動作發展為理論</mark>，結合空間環境與專屬運動處方課程，讓學員在特殊設計的訓練環境中透過縝密的運動企劃不斷優化動作與感官能力，大量創造感覺訊息接收，提升大腦意識運作，使大腦細胞與神經組織細胞運作功能順暢強大，快速促進先天六大能力( 運動、用手、語言、視覺、聽覺、觸覺 )全面提升。<br><br>
+            <mark>飛童動知覺快速發展運動教室 : </mark><br>
+            專門為<mark> 3~9歲具有不同發展問題</mark>，例如 : 早期療育經久仍未見明顯起色，發展遲緩，過動，專注力缺乏，有情緒問題，ADHD，ADD，ASD，妥瑞氏症等發展失衡的孩童，<mark>據成功訓練案例經驗</mark>，提供快速改善失衡發展的專業訓練課程。`
+      },
+      {
+        q: "Q2. 什麼是「運動企劃」？",
+        a: `失調落後或有神經發展障礙的孩童，或是希望激發潛能再提升學習力的孩童在透過專業測評分析後，把需要加強或優化特質的孩童安排在特殊設計的訓練環境裡，透過有系統的運動方式，根據動作發展標準，按部就班的恢復、強化應該具備的動作能力，經由這樣一個<mark>縝密的運動過程發展大腦皮質</mark>，優化<mark>動而知,知而動</mark>的能力，翻轉孩子的未來。`
+      },
+      {
+        q: "Q3. 哪些孩子適合動知覺運動教育？",
+        a: `大腦科學動知覺運動教育課程在兩岸已有超過二十年的教學實務，<mark>適合所有2~9歲的孩童</mark>。<br><br>
+            飛童動知覺永和運動教室特別針對3到6歲幼童，及7到9歲中低年級有特殊發展需求的學童進行客制化課程教學。我們將從2023年8月針對特殊需求孩童加開設<mark>9~12歲</mark>的動知覺體適能專班，強化孩童專注力，提升孩童學習表現。我們對於<mark>發展遲緩，接受早期療育效果不佳，學習專注力不佳，ADHD，ADD，ASD，妥瑞氏症，動作發展與動作技能落後</mark>等孩童皆有完整快速療育的課程系統與實例。`
+      },
+      {
+        q: "Q4. 飛童動知覺運動教室有什麼特色？",
+        a: `以<mark>個人專屬適能適性VIP級精緻教學訓練</mark>改善提升孩童失調落後的成長發育狀況，幫助孩童獲得快速進步，協助家長解決療育困難等問題是我們的最大特色。<br>
+            飛童動知覺運動教室的課程系統由不同專業經驗的體育教師共同設計，每一名學員均需先經過測評課進行身體智商分析，再由教學團隊會診討論開立專屬的運動處方課程以執行訓練。<br><br>
+            
+            <strong>我們特別針對不同能力需求的孩童開設了兩種類型的班級：</strong><br>
+            <ul class="faq-list">
+              <li><mark>動知覺健康體智能班</mark> – 具備水平能力希望再提升學習力的孩童</li>
+              <li><mark>動知覺專家指導班</mark> – <mark>發展失衡落後</mark>有特殊加強改善需求的孩童</li>
+            </ul>
+            <br>
+            <strong>動知覺運動教室強調個人專屬訓練課程，<mark>快速改善提升落後發展能力</mark>，課程強調：</strong><br>
+            <ul class="faq-list">
+              <li>學員專屬運動處方課程</li>
+              <li>執行強度</li>
+              <li>練習頻率</li>
+              <li>總時數</li>
+              <li>特殊 ( 綜合 )動作技能</li>
+            </ul>`
+      },
+      {
+        q: "Q5. 動知覺運動教育的市場發展狀況？",
+        a: `<mark>由0~6歲幼兒大腦科學教育權威 :</mark> <span style="color: var(--color-primary-light); font-weight: bold;">徐喜傑</span>老師，所創建的動知覺教育系統已在兩岸幼兒教學機構擁有超過二十年的課程實績，接受過動知覺教育的孩童已超過五十萬名。且高達兩萬名不同落後狀況的學童獲得了動知覺教育的幫助，翻轉落後進步成長。<br><br>
+            <mark>飛童動知覺快速發展運動教室</mark>是全台灣第一個服務特殊需求孩童提升落後失調能力的動知覺綜合運動教室，教學團隊結合徐喜傑老師大腦科學課程指導要點，設計出最快速最全面的訓練課程幫助每一個學員健康成長。<br><br>
+            團隊資深教練教學資歷超過三十年，從幼兒到成人，教練團隊具備不同的運動教學專長與培訓經驗，我們根據學員的個別發展需求施予訓練幫助學員<mark>快速提升落後能力</mark>。<br><br>
+            動知覺教育課程同時<mark>已成為全台灣幼兒園所中最多孩童學習的的大腦科學運動教育課程</mark>。(實績請參閱網站中的成功分享與徐老師專欄)`
+      }
+    ];
+
+    // 🛠️ 執行渲染 HTML
+    const faqContainer = document.getElementById('faq-container');
+    if (faqContainer) {
+      let faqHTML = '';
+      faqData.forEach((item, index) => {
+        // 動態計算 delay 秒數
+        const delay = index * 0.1;
+        faqHTML += `
+          <div class="faq-item reveal-up" style="transition-delay: ${delay}s;">
+            <button class="faq-question" aria-expanded="false">
+              <span>${item.q}</span>
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-text">${item.a}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      faqContainer.innerHTML = faqHTML;
+    }
+
+    // ──────────────────────────────────────────
+    //  3. FAQ 手風琴點擊特效 (必須在卡片產生後綁定)
+    // ──────────────────────────────────────────
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+        
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('is-active');
+            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
+        
+        if (isActive) {
+          item.classList.remove('is-active');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('is-active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ──────────────────────────────────────────
+    //  4. 統一的滑入進場動畫 (必須放在最後)
     // ──────────────────────────────────────────
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -508,35 +571,6 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
-
-    // ──────────────────────────────────────────
-    //  3. FAQ 手風琴特效 (Accordion Logic)
-    // ──────────────────────────────────────────
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-      const btn = item.querySelector('.faq-question');
-      btn.addEventListener('click', () => {
-        const isActive = item.classList.contains('is-active');
-        
-        // 排他性：關閉所有其他展開的項目
-        faqItems.forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('is-active');
-            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          }
-        });
-        
-        // 切換被點擊的項目狀態
-        if (isActive) {
-          item.classList.remove('is-active');
-          btn.setAttribute('aria-expanded', 'false');
-        } else {
-          item.classList.add('is-active');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
 
   });
 </script>
