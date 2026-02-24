@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>團隊介紹｜飛童動知覺</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,15 +34,21 @@
     --color-blue:   #4455AD;
     --color-purple: #8E6399;
     
+    --gradient-rainbow: linear-gradient(90deg, var(--color-red), var(--color-orange), var(--color-yellow), var(--color-green), var(--color-cyan), var(--color-blue), var(--color-purple));
     --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
     --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
-    --gradient-rainbow: linear-gradient(90deg, var(--color-red), var(--color-orange), var(--color-yellow), var(--color-green), var(--color-cyan), var(--color-blue), var(--color-purple));
+    --gradient-warm-180: linear-gradient(180deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
   }
 
   html { scroll-behavior: smooth; }
 
+  *{
+    padding: 0;
+    margin: 0;
+  }
+
   #feitong-app {
-    font-family:  'Chiron GoRound TC', sans-serif;
+    font-family: 'Chiron GoRound TC', sans-serif;
     background: var(--color-white);
     color: var(--color-text-dark);
     line-height: 1.65;
@@ -55,17 +62,22 @@
   #feitong-app section { padding: 100px 60px; }
 
   /* =========================================
-     2. 動畫類別 & 裝飾元件 (共用)
+     2. 共用動畫類別 & 裝飾元件
   ========================================= */
-  #feitong-app .reveal-up, #feitong-app .reveal-left, #feitong-app .reveal-right {
+  #feitong-app .reveal-up, 
+  #feitong-app .reveal-left, 
+  #feitong-app .reveal-right {
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   #feitong-app .reveal-up { transform: translateY(40px); }
   #feitong-app .reveal-left { transform: translateX(-40px); }
   #feitong-app .reveal-right { transform: translateX(40px); }
-  #feitong-app .reveal-up.is-visible, #feitong-app .reveal-left.is-visible, #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+  #feitong-app .reveal-up.is-visible, 
+  #feitong-app .reveal-left.is-visible, 
+  #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
 
+  /* 裝飾彩球 */
   #feitong-app .ui-deco-dots { position: absolute; top: 36px; right: 48px; display: flex; gap: 10px; align-items: center; z-index: 10; }
   #feitong-app .ui-deco-dot { border-radius: 50%; width: 16px; height: 16px; animation: dotBounce 2s ease-in-out infinite alternate; }
   #feitong-app .ui-deco-dot:nth-child(1) { background: var(--color-red);    animation-delay: 0s; }
@@ -75,8 +87,29 @@
   #feitong-app .ui-deco-dot:nth-child(5) { background: var(--color-cyan);    animation-delay: 0.60s; }
   @keyframes dotBounce { from { transform: translateY(0); } to { transform: translateY(-7px); } }
 
+  /* 童趣彩球分隔線 */
+  #feitong-app .ui-divider-dots {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin: 40px auto 100px auto; 
+    position: relative; max-width: 800px;
+  }
+  #feitong-app .ui-divider-dots::before,
+  #feitong-app .ui-divider-dots::after {
+    content: ''; height: 2px; flex-grow: 1; max-width: 200px;
+    background: linear-gradient(90deg, transparent, rgba(160, 104, 26, 0.15));
+  }
+  #feitong-app .ui-divider-dots::after {
+    background: linear-gradient(270deg, transparent, rgba(160, 104, 26, 0.15));
+  }
+  #feitong-app .ui-divider-dots span {
+    display: block; width: 8px; height: 8px; border-radius: 50%;
+  }
+  #feitong-app .ui-divider-dots span:nth-child(1) { background: var(--color-orange); }
+  #feitong-app .ui-divider-dots span:nth-child(2) { background: var(--color-green); transform: scale(1.3); }
+  #feitong-app .ui-divider-dots span:nth-child(3) { background: var(--color-cyan); }
+
   /* =========================================
-     3. 導覽列與下拉選單 (共用)
+     3. 導覽列與下拉選單
   ========================================= */
   #feitong-app nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px;
@@ -143,13 +176,48 @@
      5. 團隊介紹專屬版面 (Team Styles)
   ========================================= */
   #feitong-app .team-section {
-    background: #FAFCFC; position: relative; padding-top: 40px; padding-bottom: 120px;
+    background: #FAFCFC; position: relative; padding-top: 40px; padding-bottom: 120px; overflow: hidden;
   }
+
+  /* --- 5.1 圖文介紹區塊 (Team Intro Container) --- */
+  #feitong-app .team-container {
+    display: grid; 
+    grid-template-columns: 1fr 1.1fr; 
+    gap: 80px; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 40px auto 80px auto; 
+    position: relative; 
+    z-index: 2;
+  }
+  #feitong-app .image-wrapper {
+    position: relative; border-radius: 24px; overflow: hidden; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); aspect-ratio: 4/3; 
+  }
+  #feitong-app .image-wrapper img {
+    width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease;
+  }
+  #feitong-app .image-wrapper:hover img { transform: scale(1.05); }
+
+  #feitong-app .image-deco {
+    position: absolute; top: -20px; left: -20px; width: 120px; height: 120px;
+    background: var(--gradient-warm-135); border-radius: 24px; z-index: -1; opacity: 0.6;
+  }
+  #feitong-app .content-label {
+    display: inline-block; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-primary-mid); margin-bottom: 16px;
+  }
+  #feitong-app .content h2 {
+    font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 900; color: var(--color-dark-navy); margin-bottom: 24px; line-height: 1.3;
+  }
+  #feitong-app .content p {
+    font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.9; font-weight: 400; margin: 0;
+  }
+
+  /* --- 5.2 團隊教練卡片網格 (Team Grid) --- */
   #feitong-app .team-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
   }
-  
-  /* 團隊成員卡片 (玻璃擬物化) */
   #feitong-app .team-card {
     background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 48px 32px 40px; text-align: center;
@@ -158,35 +226,49 @@
   }
   #feitong-app .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
 
-  /* 頂部裝飾色帶 */
   #feitong-app .team-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
     background: var(--gradient-warm-135); opacity: 0; transition: opacity 0.4s;
   }
   #feitong-app .team-card:hover::before { opacity: 1; }
   
-  /* 成員大頭貼 */
+  /* --- 5.3 光束旋轉大頭貼 --- */
   #feitong-app .team-photo {
-    width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 24px; overflow: hidden;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1); border: 4px solid var(--color-white); position: relative;
+    width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 24px; 
+    overflow: hidden; box-shadow: 0 12px 24px rgba(0,0,0,0.1); position: relative;
   }
-  #feitong-app .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  #feitong-app .team-card:hover .team-photo img { transform: scale(1.08); }
+  #feitong-app .team-photo img { 
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+  #feitong-app .team-photo::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%; padding: 4px; 
+    background: conic-gradient(transparent 0%, transparent 50%, #F89938 75%, #F1495A 87%, #973B9F 100%);
+    
+    /* 給 Chrome, Safari 看的寫法 */
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    
+    /* 標準寫法 */
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    
+    pointer-events: none; animation: spinLight 10s linear infinite; 
+  }
   
-  /* 姓名與職稱 */
+  @keyframes spinLight {
+    from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+  }
+  #feitong-app .team-card:hover .team-photo img { transform: scale(1.08); }
+  #feitong-app .team-card:hover .team-photo::after { animation-duration: 1s; }
+  
+  /* --- 5.4 卡片文字內容 --- */
   #feitong-app .team-name { font-size: 1.6rem; font-weight: 900; color: var(--color-dark-navy); margin-bottom: 6px; }
   #feitong-app .team-role { font-size: 0.9rem; color: var(--color-primary-mid); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
-  
-  /* 專長標籤 */
   #feitong-app .team-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
-  #feitong-app .team-tag { 
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; padding: 4px 14px; border-radius: 50px; 
-  }
+  #feitong-app .team-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; padding: 4px 14px; border-radius: 50px; }
   #feitong-app .tag-blue { background: rgba(89, 183, 209, 0.12); color: var(--color-blue); }
   #feitong-app .tag-orange { background: rgba(237, 156, 64, 0.12); color: #B86000; }
   #feitong-app .tag-green { background: rgba(107, 201, 89, 0.12); color: #2E7A26; }
-  
-  /* 介紹內文 */
   #feitong-app .team-desc { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.8; font-weight: 400; }
 
   /* =========================================
@@ -208,13 +290,10 @@
   /* =========================================
      7. RWD 響應式設定
   ========================================= */
-  #feitong-app .mobile-only{
-      display: none;
-    }
+  #feitong-app .mobile-only { display: none; }
   @media (max-width: 1024px) {
-    #feitong-app .mobile-only{
-      display: block;
-    }
+    #feitong-app .mobile-only { display: block; }
+    
     #feitong-app nav { padding: 18px 32px; }
     #feitong-app .nav-logo { z-index: 10 !important; }
     #feitong-app .hamburger { display: flex; z-index: 100 !important; }
@@ -223,9 +302,7 @@
       background: rgba(250,252,252,0.98); 
       flex-direction: column; justify-content: flex-start; align-items: flex-start; 
       padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
-      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
-      gap: 0; 
-      z-index: 90 !important;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto; gap: 0; z-index: 90 !important;
     }
     #feitong-app .nav-links.is-open { right: 0; }
     #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
@@ -250,10 +327,11 @@
     #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
     #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
 
-    /* Layout RWD */
     #feitong-app section { padding: 80px 32px; }
     #feitong-app .inner-hero { padding: 130px 32px 60px; }
     #feitong-app .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    #feitong-app .team-container { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; }
+    #feitong-app .image-deco { display: none; }
     #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
   }
 </style>
@@ -275,7 +353,7 @@
       </li>
       <li class="nav-item">
         <div class="nav-item-top">
-          <a href="philosophy.html" class="nav-main-link" style="color: var(--color-primary-mid);">關於飛童</a>
+          <a href="#" class="nav-main-link" style="color: var(--color-primary-mid);">關於飛童</a>
           <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
         </div>
         <div class="nav-dropdown-menu">
@@ -312,53 +390,45 @@
     </header>
 
     <section class="team-section">
-      <div class="ui-deco-dots" aria-hidden="true" style="top: 0; left: 60px; right: auto;">
+      <div class="ui-deco-dots" aria-hidden="true" style="top: 10px; left: 60px; right: auto;">
         <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
       </div>
       <div style="position: absolute; top: 10%; right: 0%; width: 400px; height: 400px; background: var(--color-orange); filter: blur(120px); opacity: 0.1; z-index: 0; pointer-events: none;"></div>
-
-      <div class="team-grid">
+      
+      <div class="team-container">
+        <div class="image-wrapper reveal-left">
+          <div class="image-deco" aria-hidden="true"></div>
+          <img src="https://feitong-edu.com/wp-content/uploads/2024/04/IMG_8456-1-1024x683.jpg" alt="飛童動知覺 資深教學團隊" />
+        </div>
         
-        <div class="team-card reveal-up" style="transition-delay: 0s;">
-          <div class="team-photo">
-            <img src="../static/temp.jpg" alt="徐老師 照片" />
-          </div>
-          <h3 class="team-name">徐老師</h3>
-          <p class="team-role">動知覺首席教練 / 創辦人</p>
-          <div class="team-tags">
-            <span class="team-tag tag-blue">感覺統合評估</span>
-            <span class="team-tag tag-orange">兒童心理學</span>
-          </div>
-          <p class="team-desc">擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。</p>
+        <div class="content reveal-right">
+          <span class="content-label">EXPERIENCE</span>
+          <h2>資深教學團隊</h2>
+          <p>資深教學團隊人員具備豐富幼兒教育專業，擁有台灣與中國兩地超過三十年的教學經驗，透過幼兒體育活動執行、專業測評、各型親子活動辦理以及幼教老師培訓，指導超過百萬名不同發展程度的孩童與家長共同成長。</p>
         </div>
-
-        <div class="team-card reveal-up" style="transition-delay: 0.15s;">
-          <div class="team-photo">
-            <img src="../static/temp.jpg" alt="陳教練 照片" />
-          </div>
-          <h3 class="team-name">陳教練</h3>
-          <p class="team-role">資深體適能教練</p>
-          <div class="team-tags">
-            <span class="team-tag tag-green">兒童體適能</span>
-            <span class="team-tag tag-blue">粗動作發展</span>
-          </div>
-          <p class="team-desc">專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。</p>
-        </div>
-
-        <div class="team-card reveal-up" style="transition-delay: 0.3s;">
-          <div class="team-photo">
-            <img src="../static/temp.jpg" alt="林老師 照片" />
-          </div>
-          <h3 class="team-name">林老師</h3>
-          <p class="team-role">認知與職能治療師</p>
-          <div class="team-tags">
-            <span class="team-tag tag-orange">精細動作指導</span>
-            <span class="team-tag tag-green">專注力訓練</span>
-          </div>
-          <p class="team-desc">具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。</p>
-        </div>
-
       </div>
+
+      <div class="team-grid" id="senior-team-grid-container"></div>
+
+      <div class="ui-divider-dots reveal-up" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="team-container">
+        <div class="image-wrapper reveal-left">
+          <div class="image-deco" aria-hidden="true"></div>
+          <img src="https://feitong-edu.com/wp-content/uploads/2024/04/IMG_8521-1-1024x683.jpg" alt="飛童動知覺 青年教學團隊" />
+        </div>
+        
+        <div class="content reveal-right">
+          <span class="content-label">PASSION</span>
+          <h2>青年團隊</h2>
+          <p>我們是一群年輕的大學生，具備不同的專長，我們的共同點是對於教育的熱情。<br>我們各自擁有運動教學專業，也是成績優異的運動選手，在學主修教育，企業管理方面等專業。期待透過我們的努力，號召更多青年學生一起為兒少盡一份心力，為這個世界帶來一些正面的影響力。</p>
+        </div>
+      </div>
+
+      <div class="team-grid" id="junior-team-grid-container"></div>
+
     </section>
 
   </main>
@@ -439,7 +509,148 @@
     });
 
     // ──────────────────────────────────────────
-    //  2. 統一的滑入進場動畫
+    //  2. 團隊成員資料庫與自動渲染 (DRY 寫法)
+    // ──────────────────────────────────────────
+    
+    // 資料 1: 資深團隊
+    const seniorTeamData = [
+      {
+        name: "劉維誠",
+        role: `飛童動知覺運動教室發起人<br>執行長 / 課程指導教官`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8107-1.jpg", 
+        tags: [
+          { text: "感覺統合評估", colorClass: "tag-blue" },
+          { text: "兒童心理學", colorClass: "tag-orange" }
+        ],
+        desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
+      },
+      {
+        name: "徐喜傑",
+        role: `動知覺教育創始人<br>飛童教育首席教學顧問`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7916-1.jpg",
+        tags: [
+          { text: "兒童體適能", colorClass: "tag-green" },
+          { text: "粗動作發展", colorClass: "tag-blue" }
+        ],
+        desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。"
+      },
+      {
+        name: "黎寶文",
+        role: `認知與職能治療師動知覺兒童動作發展<br>早期療育課程 / 指導教官`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8049-1.jpg",
+        tags: [
+          { text: "精細動作指導", colorClass: "tag-orange" },
+          { text: "專注力訓練", colorClass: "tag-green" }
+        ],
+        desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
+      },
+      {
+        name: "郭皇孝",
+        role: "動知覺課程總教練",
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8087-1.jpg", 
+        tags: [
+          { text: "感覺統合評估", colorClass: "tag-blue" },
+          { text: "兒童心理學", colorClass: "tag-orange" }
+        ],
+        desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
+      },
+      {
+        name: "潘忠良",
+        role: "動知覺親師教育業務發展統籌",
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7950-1.jpg",
+        tags: [
+          { text: "兒童體適能", colorClass: "tag-green" },
+          { text: "粗動作發展", colorClass: "tag-blue" }
+        ],
+        desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。"
+      },
+      {
+        name: "李木寬",
+        role: "業務發展顧問",
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7928-1.jpg",
+        tags: [
+          { text: "精細動作指導", colorClass: "tag-orange" },
+          { text: "專注力訓練", colorClass: "tag-green" }
+        ],
+        desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
+      }
+    ];
+
+    // 資料 2: 青年團隊
+    const juniorTeamData = [
+      {
+        name: "劉毅群",
+        role: `青年部共同創辦人<br>動知覺資深指導教練`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8234-1.jpg", 
+        tags: [
+          { text: "感覺統合評估", colorClass: "tag-blue" },
+          { text: "兒童心理學", colorClass: "tag-orange" }
+        ],
+        desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
+      },
+      {
+        name: "謝宇祥",
+        role: `動知覺專項運動指導教練`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8308-1.jpg",
+        tags: [
+          { text: "兒童體適能", colorClass: "tag-green" },
+          { text: "粗動作發展", colorClass: "tag-blue" }
+        ],
+        desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。"
+      },
+      {
+        name: "周郁惟",
+        role: `動知覺課程指導教練`,
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7889-1.jpg",
+        tags: [
+          { text: "精細動作指導", colorClass: "tag-orange" },
+          { text: "專注力訓練", colorClass: "tag-green" }
+        ],
+        desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
+      }
+    ];
+
+    // 🌟 共用渲染函式：將指定的資料陣列，渲染到指定的容器 ID 中
+    function renderTeamGrid(dataArray, containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      let teamHTML = '';
+      dataArray.forEach((member, index) => {
+        // 優化延遲算法：每三個卡片一組重新計算 delay
+        const delay = (index % 3) * 0.15;
+        
+        let tagsHTML = '';
+        if (member.tags && member.tags.length > 0) {
+          tagsHTML = '<div class="team-tags">';
+          member.tags.forEach(tag => {
+            tagsHTML += `<span class="team-tag ${tag.colorClass}">${tag.text}</span>`;
+          });
+          tagsHTML += '</div>';
+        }
+
+        teamHTML += `
+          <div class="team-card reveal-up" style="transition-delay: ${delay}s;">
+            <div class="team-photo">
+              <img src="${member.img}" alt="${member.name} 照片" />
+            </div>
+            <h3 class="team-name">${member.name}</h3>
+            <p class="team-role">${member.role}</p>
+            ${tagsHTML}
+            <p class="team-desc">${member.desc}</p>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = teamHTML;
+    }
+
+    // 呼叫函式渲染兩個團隊
+    renderTeamGrid(seniorTeamData, 'senior-team-grid-container');
+    renderTeamGrid(juniorTeamData, 'junior-team-grid-container');
+
+    // ──────────────────────────────────────────
+    //  3. 統一的滑入進場動畫 (Observer 必須墊後)
     // ──────────────────────────────────────────
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -450,6 +661,8 @@
         }
       });
     }, { threshold: 0.1 });
+    
+    // 綁定所有帶有 reveal 類別的元素 (包含剛才由 JS 動態生成的 team-card)
     revealElements.forEach(el => revealObserver.observe(el));
 
   });

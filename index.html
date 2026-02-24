@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>飛童動知覺｜兒童動作感知覺整合教育</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,11 +159,14 @@
 
   #feitong-app .hero-right { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
   #feitong-app .hero-visual { position: relative; width: 100%; height: 420px; display: flex; align-items: center; justify-content: center; opacity: 0; animation: fadeIn 1.2s 0.6s forwards; }
-  #feitong-app .logo-animation-wrapper { position: relative; width: 100%; max-width: 500px; margin: 0 auto; cursor: pointer; animation: antiGravityFloat 4s ease-in-out 3s infinite alternate; }
+  #feitong-app .logo-animation-wrapper { position: relative; width: 100%; max-width: 500px; margin: 0 auto; cursor: pointer; animation: antiGravityFloat 4s ease-in-out 3s infinite alternate; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
 
   #feitong-app .hero-anim-layer {
     position: absolute; top: 0; left: 0; width: 100%; height: auto; opacity: 0;
     transition: translate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), scale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), rotate 0.4s ease, filter 0.4s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
   #feitong-app .hero-anim-layer.base-layer { position: relative; }
   
@@ -188,27 +192,53 @@
   @keyframes antiGravityFloat { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
 
   /* =========================================
-     5. 關於我們 (About Section)
+     5. 關於我們 (About Section) 🌟 橫幅大圖設計
   ========================================= */
-  #feitong-app #about { background: #FAFCFC; position: relative; overflow: hidden; padding: 100px 72px 30px 72px; }
-  #feitong-app .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 1; }
-  #feitong-app .about-left { position: sticky; top: 100px; }
-  #feitong-app .about-photo-wrap { position: relative; border-radius: 20px; overflow: visible; margin-bottom: 0; }
-  #feitong-app .about-photo { width: 100%; border-radius: 20px; overflow: hidden; position: relative; }
-  #feitong-app .about-photo img{ width: 100%; object-fit: cover; display: flex; align-items: center; justify-content: center; transition: transform 0.6s ease; }
-  #feitong-app .about-photo:hover .about-photo-inner { transform: scale(1.04); }
-  #feitong-app .about-photo::before { content: ''; position: absolute; inset: -3px; border-radius: 22px; z-index: -1; opacity: 0.6; transition: opacity 0.4s; }
-  #feitong-app .about-photo:hover::before { opacity: 1; }
+  #feitong-app #about { background: #FAFCFC; position: relative; overflow: hidden; padding: 100px 72px; }
+  #feitong-app #about::before{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.3) 0%, transparent 55%); pointer-events: none; }
+  
+  /* 改為上下排列 (Flex Column) */
+  #feitong-app .about-layout { 
+    display: flex; flex-direction: column; gap: 64px; 
+    max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; 
+  }
+  
+  /* 上方橫幅圖片區塊 */
+  #feitong-app .about-top { width: 100%; }
+  #feitong-app .about-photo-wrap { position: relative; border-radius: 24px; overflow: visible; margin-bottom: 0; }
+  #feitong-app .about-photo { 
+    width: 100%; border-radius: 24px; overflow: hidden; position: relative; 
+    aspect-ratio: 21/9; /* 強制設定為電影寬螢幕的橫幅比例 */
+    min-height: 250px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  }
+  #feitong-app .about-photo img{ width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
+  #feitong-app .about-photo:hover img { transform: scale(1.05); }
 
-  #feitong-app .about-title-block { margin: 40px 0; }
+  /* 下方文字與列表區塊 */
+  #feitong-app .about-bottom { width: 100%; max-width: 860px; margin: 0 auto; }
+  #feitong-app .about-title-block { margin: 0 0 48px 0; text-align: center; } /* 標題置中，呼應上方橫幅圖片 */
+  
   #feitong-app .about-label {
-    display: inline-flex; align-items: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
     background: var(--gradient-warm-135); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px;
   }
-  #feitong-app .about-label::before { content:''; width:24px; height:2px; background: var(--gradient-warm-135); -webkit-text-fill-color: transparent;  border-radius:1px; }
-  #feitong-app .about-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 12px; }
-  #feitong-app .about-subtitle { font-size: 0.9rem; color: var(--color-text-muted); font-weight: 400; line-height: 1.8; }
+  /* 為置中標籤加入左右雙線平衡 */
+  #feitong-app .about-label::before, #feitong-app .about-label::after { 
+    content:''; width:24px; height:2px; -webkit-text-fill-color: transparent; border-radius:1px; 
+  }
+  #feitong-app .about-label::before {
+    background: #F89938;
+  }
+  #feitong-app .about-label::after {
+    background: #973B9F;
+  }
+  
+  
+  #feitong-app .about-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.25; margin-bottom: 16px; }
+  #feitong-app .about-subtitle { font-size: 1rem; color: var(--color-text-muted); font-weight: 400; line-height: 1.8; }
 
+  /* 條列項目維持原樣，自然堆疊 */
   #feitong-app .about-list { display: flex; flex-direction: column; gap: 0; }
   #feitong-app .about-item { display: flex; align-items: flex-start; gap: 18px; padding: 28px 0; border-bottom: 1px solid rgba(0,0,0,0.06); position: relative; overflow: hidden; cursor: default; transition: padding-left 0.3s ease, background 0.3s, opacity 0.6s ease, transform 0.6s ease; }
   #feitong-app .about-item:last-child { border-bottom: none; }
@@ -218,7 +248,7 @@
   #feitong-app .about-item:nth-child(5)::before { background: var(--color-purple); }
   #feitong-app .about-item:hover::before { transform: scaleY(1); } #feitong-app .about-item:hover { padding-left: 12px; }
 
-  #feitong-app .about-number { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275); }
+  #feitong-app .about-number { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; transition: transform 0.15s cubic-bezier(0.175,0.885,0.32,1.275); }
   #feitong-app .about-item:hover .about-number { transform: scale(1.15) rotate(-6deg); }
   #feitong-app .about-item:nth-child(1) .about-number { background: rgba(89,183,209,0.12); color: var(--color-blue); }
   #feitong-app .about-item:nth-child(2) .about-number { background: rgba(237,156,64,0.12); color: #B86000; }
@@ -240,10 +270,9 @@
   /* =========================================
      6. 課程案例輪播 (Cases Section)
   ========================================= */
-  #feitong-app .cases-intro { background: var(--color-white); padding: 100px 28px 20px 28px; position: relative; overflow: hidden; }
-  #feitong-app .cases-intro::before{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.3) 0%, transparent 55%); pointer-events: none; }
+  #feitong-app .cases-intro { background: var(--color-white); padding: 100px 0px 40px 0px; position: relative; overflow: hidden; }
 
-  #feitong-app .cases-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; position: relative; z-index: 1; }
+  #feitong-app .cases-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; position: relative; z-index: 1; padding: 0 72px;}
   #feitong-app .cases-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; background: var(--gradient-warm-135); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   #feitong-app .cases-label::before { content: ''; width: 24px; height: 2px; border-radius: 1px; background: var(--gradient-warm-135); flex-shrink:0; -webkit-text-fill-color: unset; }
   #feitong-app .cases-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.25; }
@@ -297,8 +326,7 @@
 
   /* =========================================
      7. 黃金發展階段 (Timeline Section)
-  ========================================= */
-  /* 【修正 1】移除 overflow: hidden 讓球球順利 sticky */
+  ======================================== */
   #feitong-app .timeline-section { padding: 120px 20px; background: #1A1208; position: relative; }
   
   #feitong-app .bg-orb-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
@@ -379,7 +407,7 @@
   #feitong-app .venue-map-inner iframe { width: 100%; height: 100%; border: 0; display: block; }
   #feitong-app .venue-map-badge { position: absolute; top: -14px; right: 20px; background: var(--color-dark-navy); color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.15); z-index: 5; animation: badgeFloat 4s ease-in-out infinite alternate; }
   #feitong-app .venue-map-badge .badge-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--color-green); margin-right: 6px; animation: blink 1.5s ease-in-out infinite; }
-  @keyframes badgeFloat { from { transform: translateY(0) rotate(-1deg); } to   { transform: translateY(-5px) rotate(1deg); } }
+  @keyframes badgeFloat { from { transform: translateY(0) rotate(-1deg); } to  { transform: translateY(-5px) rotate(1deg); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
   /* =========================================
@@ -430,19 +458,11 @@
     #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
     #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
-    /* 主選單項目 */
-    #feitong-app .nav-item { 
-      width: 100%; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0; 
-      display: block; 
-    }
+    #feitong-app .nav-item { width: 100%; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0; display: block; }
     #feitong-app .nav-item:last-child { border-bottom: none; }
     
-    #feitong-app .nav-item-top { 
-      justify-content: space-between; align-items: stretch; width: 100%; display: flex; 
-      height: auto; 
-    }
+    #feitong-app .nav-item-top { justify-content: space-between; align-items: stretch; width: 100%; display: flex; height: auto; }
     
-    /* 主選單文字 */
     #feitong-app .nav-main-link { 
       padding: 16px 10px; flex-grow: 1; display: flex; align-items: center;
       color: var(--color-text-dark); font-size: 1rem; font-weight: 500; letter-spacing: 0.05em; 
@@ -450,7 +470,6 @@
     #feitong-app .nav-main-link::after { display: none; }
     #feitong-app .nav-main-link:hover { background-image: none; color: var(--color-primary-mid); -webkit-text-fill-color: unset; }
 
-    /* 右側專屬下拉按鈕 */
     #feitong-app .nav-dropdown-toggle {
       display: flex; align-items: center; justify-content: center;
       width: 54px; background: transparent; border: none; cursor: pointer;
@@ -464,18 +483,14 @@
     }
     #feitong-app .nav-item.is-open .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(-2px) translateX(-2px); }
 
-    /* 徹底關閉電腦版的 hover 展開 */
     #feitong-app .nav-item:hover .nav-dropdown-menu { transform: none; } 
     
-    /* 次選單容器：使用 position: static 確保正常往下推擠 */
     #feitong-app .nav-dropdown-menu {
       position: static !important; box-shadow: none; border: none; background: transparent;
       display: none; opacity: 1; visibility: visible; transform: none; padding: 0; width: 100%;
     }
-    /* 點擊展開時顯示 */
     #feitong-app .nav-item.is-open .nav-dropdown-menu { display: flex; flex-direction: column; }
     
-    /* 次選單項目 */
     #feitong-app .nav-dropdown-menu a { 
       text-align: left; padding: 14px 10px 14px 20px; 
       border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -483,12 +498,8 @@
     }
     #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
 
-    /* 立即報名按鈕 */
-    #feitong-app .nav-btn-cta {
-       margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center;
-    }
+    #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
 
-    /* 首頁 Hero RWD：反轉排列，Logo 在上並置中，字在下並置中 */
     #feitong-app .hero { display: flex; flex-direction: column-reverse; justify-content: center; padding: 120px 32px 80px; text-align: center; }
     #feitong-app .hero-left { margin-left: 0; margin-top: 20px; }
     #feitong-app .hero-label::before { background: #F89938; -webkit-text-fill-color: transparent; }
@@ -496,10 +507,9 @@
     #feitong-app .hero-right { width: 100%; }
     #feitong-app .hero-desc { margin: 0 auto 44px; }
     
-    #feitong-app #about { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
+    #feitong-app #about { padding: 80px 32px; }
+    #feitong-app .about-layout { gap: 48px; }
     #feitong-app .cases-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 24px; }
-    
-    /* 輪播點點指示器 (只在手機平板顯示) */
     #feitong-app .carousel-pagination { display: flex; justify-content: center; padding-right: 0; }
 
     #feitong-app section { padding: 80px 32px; }
@@ -508,17 +518,14 @@
 
   @media (max-width: 960px) {
     #feitong-app #about { padding: 72px 28px; }
-    #feitong-app .about-layout { grid-template-columns: 1fr; gap: 48px; }
-    #feitong-app .about-left { position: static; }
-    #feitong-app .about-photo { aspect-ratio: 4/3; }
+    #feitong-app .about-photo { aspect-ratio: 16/9; } /* 平板縮小時圖片變方一點 */
     #feitong-app #venue { padding: 72px 28px; }
     #feitong-app .venue-layout { grid-template-columns: 1fr; gap: 48px; }
     #feitong-app .venue-map-inner { aspect-ratio: 4/3; }
   }
 
   @media (max-width: 768px) {
-    /* 輪播卡片 RWD：直接展開、改為長方形，並縮減底部 Padding */
-    #feitong-app .cases-container { padding: 20px 0 60px; } /* 底部留白大幅縮減 */
+    #feitong-app .cases-container { padding: 20px 0 60px; }
     #feitong-app .case-card { flex: 0 0 280px; height: 570px; margin-right: 20px; }
     #feitong-app .card-inner { height: 570px !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     #feitong-app .card-img-wrap { height: 220px; }
@@ -536,6 +543,11 @@
     #feitong-app .sticky-text { font-size: 1.1rem; }
     #feitong-app .timeline-card { padding: 24px; border-radius: 16px; }
     #feitong-app .timeline-card h3 { font-size: 1.3rem; }
+
+    #feitong-app .about-photo { aspect-ratio: 4/3; } /* 手機上更方，確保內容完整 */
+    #feitong-app .about-title-block { text-align: left; }
+    #feitong-app .about-label { justify-content: flex-start; }
+    #feitong-app .about-label::after { display: none; }
   }
 </style>
 </head>
@@ -619,66 +631,6 @@
       </div>
     </section>
 
-    <section id="about">
-      <div class="ui-deco-dots" aria-hidden="true">
-        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
-      </div>
-
-      <div class="about-layout">
-        <div class="about-left reveal-left">
-          <div class="about-photo-wrap">
-            <div class="about-photo"><img src="static/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩"></div>
-          </div>
-        </div>
-
-        <div class="about-right">
-          <div class="about-title-block">
-            <div class="about-label">about</div>
-            <h2 class="about-title">關於孩子，<br>您是否也在煩惱⋯⋯</h2>
-            <p class="about-subtitle">這些擔憂，每天都有家長帶著它來到飛童。<br>您並不孤單，我們完全理解。</p>
-          </div>
-          
-          <div class="about-list">
-            <div class="about-item reveal-left" style="transition-delay: 0s;">
-              <div class="about-number">01</div>
-              <div class="about-content">
-                <span class="about-tag">發展落後</span>
-                <p class="about-text">跟同年齡的小孩相比，我的孩子卻總是<span class="about-highlight">聽不懂話</span>、活在自己的世界，聽話、說話、跑動與人互動各方面都<span class="about-highlight">嚴重落後</span>⋯⋯</p>
-              </div>
-            </div>
-            <div class="about-item reveal-left" style="transition-delay: 0.1s;">
-              <div class="about-number">02</div>
-              <div class="about-content">
-                <span class="about-tag">情緒行為</span>
-                <p class="about-text">孩子<span class="about-highlight">情緒經常失控</span>、常有過動的行為，總是精力無限動不停，不受教，有時甚至出現<span class="about-highlight">攻擊行為</span>，缺乏同理心⋯⋯</p>
-              </div>
-            </div>
-            <div class="about-item reveal-left" style="transition-delay: 0.2s;">
-              <div class="about-number">03</div>
-              <div class="about-content">
-                <span class="about-tag">療育停滯</span>
-                <p class="about-text">已參加不同的早期療育課程幾年了，一天天卻<span class="about-highlight">總覺得沒什麼進步</span>，不知道哪裡出了問題，該如何是好⋯⋯</p>
-              </div>
-            </div>
-            <div class="about-item reveal-left" style="transition-delay: 0.3s;">
-              <div class="about-number">04</div>
-              <div class="about-content">
-                <span class="about-tag">專注力不足</span>
-                <p class="about-text">孩子的<span class="about-highlight">專注學習力總是不足</span>，對於長輩或師長的叮嚀教導總是<span class="about-highlight">沒在聽</span>，讓人又心急又無奈⋯⋯</p>
-              </div>
-            </div>
-            <div class="about-item reveal-left" style="transition-delay: 0.4s;">
-              <div class="about-number">05</div>
-              <div class="about-content">
-                <span class="about-tag">資訊爆炸</span>
-                <p class="about-text">網上<span class="about-highlight">資訊好多好多</span>，到底哪個課程才真正適合我的孩子、能<span class="about-highlight">快速有效</span>地幫助孩子成長？</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="cases" class="cases-intro">
       <div class="cases-header reveal-up">
         <div>
@@ -745,6 +697,74 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="ui-deco-dots" aria-hidden="true">
+        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
+      </div>
+
+      <div class="about-layout">
+        
+        <div class="about-top reveal-up">
+          <div class="about-photo-wrap">
+            <div class="about-photo">
+              <img src="static/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-bottom">
+          <div class="about-title-block reveal-up" style="transition-delay: 0.1s;">
+            <div class="about-label">about</div>
+            <h2 class="about-title">關於孩子，<br class="mobile-only">您是否也在煩惱⋯⋯</h2>
+            <p class="about-subtitle">這些擔憂，每天都有家長帶著它來到飛童。<br>您並不孤單，我們完全理解。</p>
+          </div>
+          
+          <div class="about-list">
+            <div class="about-item reveal-up" style="transition-delay: 0.2s;">
+              <div class="about-number">01</div>
+              <div class="about-content">
+                <span class="about-tag">發展落後</span>
+                <p class="about-text">跟同年齡的小孩相比，我的孩子卻總是<span class="about-highlight">聽不懂話</span>、活在自己的世界，聽話、說話、跑動與人互動各方面都<span class="about-highlight">嚴重落後</span>⋯⋯</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.3s;">
+              <div class="about-number">02</div>
+              <div class="about-content">
+                <span class="about-tag">情緒行為</span>
+                <p class="about-text">孩子<span class="about-highlight">情緒經常失控</span>、常有過動的行為，總是精力無限動不停，不受教，有時甚至出現<span class="about-highlight">攻擊行為</span>，缺乏同理心⋯⋯</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.4s;">
+              <div class="about-number">03</div>
+              <div class="about-content">
+                <span class="about-tag">療育停滯</span>
+                <p class="about-text">已參加不同的早期療育課程幾年了，一天天卻<span class="about-highlight">總覺得沒什麼進步</span>，不知道哪裡出了問題，該如何是好⋯⋯</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.5s;">
+              <div class="about-number">04</div>
+              <div class="about-content">
+                <span class="about-tag">專注力不足</span>
+                <p class="about-text">孩子的<span class="about-highlight">專注學習力總是不足</span>，對於長輩或師長的叮嚀教導總是<span class="about-highlight">沒在聽</span>，讓人又心急又無奈⋯⋯</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.6s;">
+              <div class="about-number">05</div>
+              <div class="about-content">
+                <span class="about-tag">資訊爆炸</span>
+                <p class="about-text">網上<span class="about-highlight">資訊好多好多</span>，到底哪個課程才真正適合我的孩子、能<span class="about-highlight">快速有效</span>地幫助孩子成長？</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -847,7 +867,9 @@
       </div>
     </section>
 
-  </main> <footer>
+  </main> 
+  
+  <footer>
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">飛童<span>動知覺</span></span>
@@ -871,7 +893,9 @@
     </div>
   </footer>
 
-</div> <script>
+</div> 
+
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     
     // ──────────────────────────────────────────
@@ -907,25 +931,24 @@
       });
     }
 
-    // 手機版次選單展開按鈕
     // 手機版次選單展開按鈕 (加入手風琴排他效果)
     const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
     dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
+      toggle.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         const parentItem = toggle.closest('.nav-item');
         
         // 點擊時，先把其他已經打開的選單關閉
         document.querySelectorAll('.nav-item').forEach(item => {
-        if (item !== parentItem) {
-            item.classList.remove('is-open');
-        }
+          if (item !== parentItem) {
+              item.classList.remove('is-open');
+          }
         });
         
         // 切換目前的選單
         parentItem.classList.toggle('is-open');
-    });
+      });
     });
 
     // ──────────────────────────────────────────
