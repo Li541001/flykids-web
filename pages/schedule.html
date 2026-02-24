@@ -40,6 +40,10 @@
   }
 
   html { scroll-behavior: smooth; }
+  *{
+    padding: 0;
+    margin: 0;
+  }
 
   #feitong-app {
     font-family:  'Chiron GoRound TC', sans-serif;
@@ -193,7 +197,8 @@
     position: relative; background: var(--gradient-rainbow); padding: 2px; border-radius: 20px;
     background-size: 300% 100%; animation: borderFlow 8s linear infinite; margin-bottom: 32px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
+    }
+
   #feitong-app .schedule-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
   @keyframes borderFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
 
@@ -301,6 +306,81 @@
     #feitong-app .course-item { flex-direction: column; align-items: flex-start; gap: 12px; }
     #feitong-app .course-coach { align-self: flex-start; }
   }
+
+  /* =========================================
+     🌟 新增：圖片式課表區塊 (Image Schedule)
+  ========================================= */
+  #feitong-app .schedule-image-container {
+    display: grid;
+    grid-template-columns: 2fr 7fr; /* 左邊圖例較窄，右邊課表較寬 */
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 24px;
+  }
+
+  /* 左側圖例區塊：垂直排列 3 張圖 */
+  #feitong-app .schedule-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #feitong-app .schedule-legend img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  #feitong-app .schedule-legend img:hover { transform: translateY(-4px); }
+
+  /* 右側主課表區塊：單張大圖 */
+  #feitong-app .schedule-main {
+    width: 100%;
+  }
+  #feitong-app .schedule-main img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: contain;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+  }
+
+  /* 底部備註文字 */
+  #feitong-app .schedule-note {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-dark-navy);
+    letter-spacing: 0.05em;
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(237, 156, 64, 0.1); /* 帶有一點淡淡的橘色背景強調 */
+    border-radius: 12px;
+  }
+
+  /* RWD 手機版：改為上下排列 */
+  @media (max-width: 768px) {
+    #feitong-app .schedule-section {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+    }
+    #feitong-app .schedule-image-container {
+      grid-template-columns: 1fr; /* 單欄 */
+      gap: 24px;
+    }
+    /* 手機版可以讓左側的 3 張圖例變成橫向並排，節省空間 */
+    #feitong-app .schedule-legend {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    #feitong-app .schedule-legend img {
+      width: 32%; /* 讓三張小圖例平分橫向寬度 */
+      margin: 0;
+    }
+    #feitong-app .schedule-note { font-size: 0.85rem; margin-top: 16px;}
+  }
 </style>
 </head>
 <body>
@@ -365,7 +445,25 @@
 
       <div class="schedule-container">
         
-        <div class="schedule-tabs reveal-up">
+        <div class="schedule-image-container reveal-up">
+          
+          <div class="schedule-legend">
+            <img src="../static/legend1.png" alt="動知覺體智能班/專家加強班 圖例">
+            <img src="../static/legend2.png" alt="團體課程/跆拳道 圖例">
+            <img src="../static/legend3.png" alt="動知覺專家加強班 圖例">
+          </div>
+          
+          <div class="schedule-main">
+            <img src="../static/schedule.png" alt="飛童動知覺 完整課程表">
+          </div>
+          
+        </div>
+
+        <div class="schedule-note reveal-up" style="transition-delay: 0.2s;">
+          【線上報名時請加註希望參加動知覺課程測評或上課時間，將有專人回覆聯繫】
+        </div>
+
+        <!-- <div class="schedule-tabs reveal-up">
           <div class="tabs-wrapper">
             <div class="tab-indicator" id="tab-indicator"></div>
             <button class="tab-btn active" data-target="weekday" onclick="switchTab('weekday')">平日班 (一至五)</button>
@@ -481,8 +579,8 @@
               </div>
             </div>
           </div>
-        </div>
-        </div>
+        </div> 
+        </div>-->
 
       </div>
     </section>
