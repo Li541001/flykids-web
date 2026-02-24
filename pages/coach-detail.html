@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>劉維誠 執行長｜團隊介紹｜飛童動知覺</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================
+     1. 全站變數與基礎設定 (共用)
+  ========================================= */
+  :root {
+    --color-primary-dark: #7a570d;   
+    --color-primary-mid: #a0681a;    
+    --color-primary-light: #cc822d;  
+    --color-dark-navy: #351c0a;      
+    --color-white: #FAFCFC;
+    --color-text-dark: #31241a;      
+    --color-text-muted: #80715a;
+    --color-bg-cream: #F2EAE0;
+    --color-accent-gold: #C4933F;
+    --color-accent-orange: #ffa53f;
+    --color-cyan:   #59B7D1;
+    --color-blue:   #4455AD;
+    --color-green:  #6BC959;
+    --gradient-warm-135: linear-gradient(135deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+    --gradient-warm-90: linear-gradient(90deg, #F89938 0%, #F1495A 50%, #973B9F 100%);
+  }
+
+  html { scroll-behavior: smooth; }
+  * { padding: 0; margin: 0; box-sizing: border-box; }
+  #feitong-app p{
+    text-align: justify;
+  }
+
+  #feitong-app {
+    font-family: 'Chiron GoRound TC', sans-serif;
+    background: var(--color-white);
+    color: var(--color-text-dark);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #feitong-app section { padding: 100px 60px; }
+
+  /* =========================================
+     2. 共用動畫類別
+  ========================================= */
+  #feitong-app .reveal-up, #feitong-app .reveal-left, #feitong-app .reveal-right {
+    opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .reveal-up { transform: translateY(40px); }
+  #feitong-app .reveal-left { transform: translateX(-40px); }
+  #feitong-app .reveal-right { transform: translateX(40px); }
+  #feitong-app .reveal-up.is-visible, #feitong-app .reveal-left.is-visible, #feitong-app .reveal-right.is-visible { opacity: 1; transform: translate(0, 0); }
+
+  /* =========================================
+     3. 導覽列 (精簡共用版)
+  ========================================= */
+  #feitong-app nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,252,252,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,110,122,0.08); transition: padding 0.3s, opacity 0.5s ease; opacity: 1;
+  }
+  #feitong-app .nav-logo { font-weight: 900; font-size: 1.3rem; color: var(--color-primary-dark); letter-spacing: 0.05em; z-index: 102; position: relative; }
+  #feitong-app .nav-logo span { color: var(--color-accent-gold); }
+
+  #feitong-app .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+  #feitong-app .nav-item { position: relative; }
+  
+  #feitong-app .nav-item-top { display: flex; align-items: center; height: 100%; }
+  #feitong-app .nav-main-link { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--color-text-muted); letter-spacing: 0.08em; transition: color 0.25s; position: relative; padding: 10px 0; }
+  #feitong-app .nav-main-link::after { content: ''; position: absolute; bottom: 4px; left: 0; width: 0; height: 1.5px; background: var(--color-accent-gold); transition: width 0.3s; }
+  #feitong-app .nav-main-link:hover { background-image: var(--gradient-warm-90); color: transparent; background-clip: text; -webkit-background-clip: text; }
+  #feitong-app .nav-main-link:hover::after { width: 100%; }
+  
+  #feitong-app .nav-dropdown-toggle { display: none; } /* 電腦版隱藏下拉按鈕 */
+
+  #feitong-app .nav-dropdown-menu {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
+    background: rgba(250, 252, 252, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px; padding: 12px 0; min-width: 150px;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; z-index: 101;
+  }
+  #feitong-app .nav-item:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  #feitong-app .nav-dropdown-menu a { text-decoration: none; font-size: 0.85rem; color: var(--color-text-dark); padding: 10px 24px; letter-spacing: 0.08em; transition: all 0.2s ease; text-align: center; font-weight: 500; }
+  #feitong-app .nav-dropdown-menu a:hover { background: var(--color-bg-cream); color: var(--color-accent-gold); }
+
+  #feitong-app .nav-btn-cta {
+    background: var(--color-accent-orange); color: white !important; padding: 10px 24px !important;
+    border-radius: 2px; font-size: 0.8rem !important; letter-spacing: 0.12em !important; text-decoration: none;
+    transition: background 0.25s, transform 0.2s !important; overflow: hidden; z-index: 1; display: inline-block; position: relative;
+  }
+  #feitong-app .nav-btn-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--gradient-warm-90); opacity: 0; z-index: -1; transition: opacity 0.5s ease;  }
+  #feitong-app .nav-btn-cta:hover { transform: translateY(-1px); }
+  #feitong-app .nav-btn-cta:hover::before { opacity: 1; }
+
+  /* 漢堡選單按鈕 */
+  #feitong-app .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 102; position: relative; }
+  #feitong-app .hamburger span { width: 26px; height: 3px; background: var(--color-primary-dark); transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 3px; }
+
+  /* =========================================
+     4. 內頁共用標題 (Inner Hero)
+  ========================================= */
+  #feitong-app .inner-hero {
+    padding: 160px 60px 60px; 
+    background: linear-gradient(to bottom, var(--color-bg-cream) 0%, rgba(250,252,252,0) 100%);
+    text-align: center; position: relative; z-index: 1;
+  }
+  #feitong-app .inner-hero-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary-mid); margin-bottom: 16px; }
+  #feitong-app .inner-hero-title { font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 12px; }
+  
+  /* =========================================
+     5. 教練個人介紹專屬版面 (Coach Profile)
+  ========================================= */
+  #feitong-app .profile-section {
+    position: relative; overflow: hidden; padding-top: 20px; padding-bottom: 120px;
+  }
+  
+  /* 裝飾背景光暈 */
+  #feitong-app .profile-deco-orb {
+    position: absolute; width: 400px; height: 400px; background: var(--color-orange);
+    filter: blur(120px); opacity: 0.15; z-index: 0; border-radius: 50%; pointer-events: none;
+    top: 10%; right: -100px;
+  }
+
+  /* 雙欄排版 (左照片、右資訊) */
+  #feitong-app .profile-layout {
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px;
+    max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; align-items: start;
+  }
+
+  /* 左側照片區 */
+  #feitong-app .profile-photo-wrapper {
+    position: sticky; top: 120px; /* 滾動時照片固定 */
+  }
+  #feitong-app .profile-photo {
+    width: 100%; border-radius: 24px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08); aspect-ratio: 3/4;
+  }
+  #feitong-app .profile-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .profile-photo:hover img { transform: scale(1.05); }
+  
+  /* 左側裝飾線條 */
+  #feitong-app .profile-photo::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px;
+    background: var(--gradient-warm-135); z-index: 10;
+  }
+
+  /* 右側資訊區 (毛玻璃卡片) */
+  #feitong-app .profile-info-card {
+    background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px;
+    padding: 60px 48px; box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  }
+
+  /* 姓名與職稱 */
+  #feitong-app .profile-name { font-size: 2.2rem; font-weight: 900; color: var(--color-dark-navy); margin-bottom: 8px; }
+  #feitong-app .profile-role { font-size: 1.05rem; color: var(--color-primary-mid); font-weight: 700; letter-spacing: 0.08em; line-height: 1.6; margin-bottom: 24px; }
+  
+  /* 專長標籤 */
+  #feitong-app .profile-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  #feitong-app .profile-tag { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; padding: 6px 18px; border-radius: 50px; }
+  #feitong-app .tag-blue { background: rgba(89, 183, 209, 0.12); color: var(--color-blue); }
+  #feitong-app .tag-orange { background: rgba(237, 156, 64, 0.12); color: #B86000; }
+
+  /* 內容區塊標題 */
+  #feitong-app .profile-section-title {
+    font-size: 1.2rem; font-weight: 900; color: var(--color-dark-navy); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  #feitong-app .profile-section-title::before {
+    content: ''; display: block; width: 6px; height: 18px; border-radius: 4px; background: var(--gradient-warm-135);
+  }
+
+  /* 簡介內文 */
+  #feitong-app .profile-desc { font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.9; font-weight: 400; margin-bottom: 48px; }
+
+  /* 🌟 動態條列式項目 (依照 content.md 規範設計) */
+  #feitong-app .profile-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  #feitong-app .profile-list li {
+    position: relative; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 1rem; color: var(--color-text-muted); line-height: 1.6;
+    transition: padding-left 0.3s ease, color 0.3s ease; overflow: hidden;
+  }
+  #feitong-app .profile-list li:last-child { border-bottom: none; }
+  
+  /* 隱藏的左側彩色直線 */
+  #feitong-app .profile-list li::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; border-radius: 2px;
+    background: var(--color-primary-mid); transform: scaleY(0); transform-origin: top; transition: transform 0.35s ease;
+  }
+  #feitong-app .profile-list li:hover::before { transform: scaleY(1); }
+  #feitong-app .profile-list li:hover { padding-left: 16px; color: var(--color-text-dark); font-weight: 500; }
+
+  /* 返回按鈕 */
+  #feitong-app .back-btn-wrap { text-align: center; margin-top: 60px; }
+  #feitong-app .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; border-radius: 50px;
+    border: 2px solid rgba(0,0,0,0.1); color: var(--color-text-muted); text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; transition: all 0.3s ease;
+  }
+  #feitong-app .btn-outline:hover { border-color: var(--color-primary-mid); color: var(--color-primary-mid); background: var(--color-white); }
+
+  /* =========================================
+     6. RWD 響應式設定
+  ========================================= */
+    #feitong-app .mobile-only { display: none; }
+    @media (max-width: 1024px) {
+        #feitong-app .mobile-only { display: block; }
+        #feitong-app .nav-logo { z-index: 10 !important; }
+        #feitong-app nav { padding: 18px 32px; }
+        #feitong-app .hamburger { display: flex; z-index: 100 !important; }
+        #feitong-app .nav-links {
+        position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
+        background: rgba(250,252,252,0.98); 
+        flex-direction: column; justify-content: flex-start; align-items: flex-start; 
+        padding: 16px 20px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; overflow-y: auto;
+        gap: 0; 
+        z-index: 90 !important;
+        }
+        #feitong-app .nav-links.is-open { right: 0; }
+
+        #feitong-app .mobile-nav-logo { display: block; width: 100%; padding-bottom: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        #feitong-app .mobile-nav-logo img { height: 40px; } 
+        #feitong-app .hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        #feitong-app .hamburger.is-active span:nth-child(2) { opacity: 0; }
+        #feitong-app .hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        
+        #feitong-app .nav-item { width: 100%; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0; display: block; }
+        #feitong-app .nav-item:last-child { border-bottom: none; }
+        
+        #feitong-app .nav-item-top { justify-content: space-between; align-items: stretch; width: 100%; display: flex; height: auto; }
+        
+        #feitong-app .nav-main-link { 
+        padding: 16px 10px; flex-grow: 1; display: flex; align-items: center;
+        color: var(--color-text-dark); font-size: 1rem; font-weight: 500; letter-spacing: 0.05em; 
+        }
+        #feitong-app .nav-main-link::after { display: none; }
+        #feitong-app .nav-main-link:hover { background-image: none; color: var(--color-primary-mid); -webkit-text-fill-color: unset; }
+
+        #feitong-app .nav-dropdown-toggle {
+        display: flex; align-items: center; justify-content: center;
+        width: 54px; background: transparent; border: none; cursor: pointer;
+        border-left: 1px solid rgba(0, 0, 0, 0.05); 
+        }
+        #feitong-app .nav-dropdown-toggle::after {
+        content: ''; width: 8px; height: 8px; 
+        border-right: 2px solid var(--color-primary-mid); 
+        border-bottom: 2px solid var(--color-primary-mid); 
+        transform: rotate(45deg) translateY(-2px); transition: transform 0.3s ease;
+        }
+        #feitong-app .nav-item.is-open .nav-dropdown-toggle::after { transform: rotate(-135deg) translateY(-2px) translateX(-2px); }
+
+        #feitong-app .nav-item:hover .nav-dropdown-menu { transform: none; } 
+        
+        #feitong-app .nav-dropdown-menu {
+        position: static !important; box-shadow: none; border: none; background: transparent;
+        display: none; opacity: 1; visibility: visible; transform: none; padding: 0; width: 100%;
+        }
+        #feitong-app .nav-item.is-open .nav-dropdown-menu { display: flex; flex-direction: column; }
+        
+        #feitong-app .nav-dropdown-menu a { 
+        text-align: left; padding: 14px 10px 14px 20px; 
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        color: var(--color-text-muted); font-size: 0.9rem; display: block;
+        }
+        #feitong-app .nav-dropdown-menu a:hover { background: rgba(0, 0, 0, 0.03); color: var(--color-primary-dark); }
+
+        #feitong-app .nav-btn-cta { margin-top: 24px; width: calc(100% - 20px); margin-left: 10px; text-align: center; }
+        #feitong-app section { padding: 80px 32px; }
+        #feitong-app .inner-hero { padding: 130px 32px 40px; }
+    }
+  @media (max-width: 960px) {
+    #feitong-app .profile-layout { grid-template-columns: 1fr; gap: 40px; }
+    #feitong-app .profile-photo-wrapper { position: static; max-width: 400px; margin: 0 auto; }
+    #feitong-app .profile-photo { aspect-ratio: 1/1; /* 手機版改為正方形較省空間 */ }
+    #feitong-app .profile-info-card { padding: 40px 32px; }
+  }
+  @media (max-width: 768px) {
+    #feitong-app .profile-name { font-size: 1.8rem; }
+    #feitong-app .profile-role { font-size: 0.95rem; }
+    #feitong-app .profile-info-card { padding: 32px 24px; border-radius: 16px; }
+    #feitong-app .profile-list li { font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="feitong-app">
+    <nav id="main-nav">
+    <div class="nav-logo"><img src="../static/logo2.png" style="height: 60px;" alt="飛童動知覺"/></div>
+    
+    <div class="hamburger" id="nav-toggle" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li class="mobile-nav-logo mobile-only">
+        <img src="../static/logo2.png" alt="飛童動知覺"/>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top"><a href="index.html" class="nav-main-link">首頁</a></div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top">
+          <a href="#" class="nav-main-link">關於飛童</a>
+          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
+        </div>
+        <div class="nav-dropdown-menu">
+          <a href="pages/philosophy.html">經營理念</a>
+          <a href="pages/team.html">團隊介紹</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top">
+          <a href="#" class="nav-main-link">課程資訊</a>
+          <button class="nav-dropdown-toggle" aria-label="展開次選單"></button>
+        </div>
+        <div class="nav-dropdown-menu">
+          <a href="pages/schedule.html">課程表</a>
+          <a href="pages/highlights.html">課程花絮</a>
+          <a href="pages/faq.html">父母常問</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-item-top"><a href="pages/blog.html" class="nav-main-link">飛童知識專欄</a></div>
+      </li>
+      <li class="nav-item"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjyZ8X7VKIT4rid2ZpkjAsPpOeI10GSytSNQTR5fzE-tuNuQ/viewform" class="nav-btn-cta">立即報名</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <header class="inner-hero">
+      <span class="inner-hero-label reveal-up">Coach Profile</span>
+      <h1 class="inner-hero-title reveal-up" style="transition-delay: 0.1s;">團隊師資</h1>
+    </header>
+
+    <section class="profile-section">
+      <div class="profile-deco-orb" aria-hidden="true"></div>
+
+      <div class="profile-layout">
+        <div class="profile-photo-wrapper reveal-left" style="transition-delay: 0.2s;">
+          <div class="profile-photo">
+            <img id="coach-img" src="" alt="教練照片" />
+          </div>
+        </div>
+
+        <div class="profile-info-card reveal-right" style="transition-delay: 0.3s;">
+          <h2 class="profile-name" id="coach-name">讀取中...</h2>
+          <p class="profile-role" id="coach-role"></p>
+          
+          <div class="profile-tags" id="coach-tags">
+             </div>
+
+          <h3 class="profile-section-title">關於教練</h3>
+          <p class="profile-desc" id="coach-desc"></p>
+
+          <h3 class="profile-section-title">專業經歷與認證</h3>
+          <ul class="profile-list" id="coach-exp">
+             </ul>
+        </div>
+      </div>
+
+      <div class="back-btn-wrap reveal-up" style="transition-delay: 0.5s;">
+        <a href="team.html" class="btn-outline">← 返回團隊列表</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // ──────────────────────────────────────────
+    //  1. 導覽列與漢堡選單特效
+    // ──────────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    let isNavTicking = false;
+    window.addEventListener('scroll', () => {
+      if(!nav) return;
+      if (!isNavTicking) {
+        window.requestAnimationFrame(() => {
+          nav.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+          nav.style.opacity = window.scrollY > 60 ? 0.1 : 1;
+          
+          if(window.innerWidth <= 1024) {
+             nav.style.padding = window.scrollY > 60 ? '12px 32px' : '18px 32px';
+          }
+          isNavTicking = false;
+        });
+        isNavTicking = true;
+      }
+    });
+
+    // 漢堡選單展開
+    if(navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('is-active');
+        navLinks.classList.toggle('is-open');
+        if (navLinks.classList.contains('is-open')) nav.style.opacity = 1;
+      });
+    }
+
+    // 手機版次選單展開按鈕 (加入手風琴排他效果)
+    const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const parentItem = toggle.closest('.nav-item');
+        
+        // 點擊時，先把其他已經打開的選單關閉
+        document.querySelectorAll('.nav-item').forEach(item => {
+          if (item !== parentItem) {
+              item.classList.remove('is-open');
+          }
+        });
+        
+        // 切換目前的選單
+        parentItem.classList.toggle('is-open');
+      });
+    });
+    
+    // 🌟 1. 動畫綁定放最前面 (確保不管資料有沒有錯，畫面都一定會浮現)
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 🌟 2. 完整教練資料庫 (請注意這裡的 ID 必須跟 team.html 網址傳過來的一致)
+    const allCoaches = {
+      "A": {
+        name: "劉維誠",
+        role: "飛童動知覺運動教室發起人<br>執行長 / 課程指導教官",
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8107-1.jpg",
+        tags: [
+          { text: "感覺統合評估", colorClass: "tag-blue" },
+          { text: "兒童心理學", colorClass: "tag-orange" },
+          { text: "大腦科學與運動", colorClass: "tag-blue" }
+        ],
+        desc: "劉維誠教練擁有超過十年兒童早期療育與感覺統合教學經驗。他堅信「每個孩子都是一顆待發芽的種子」，擅長透過科學化的評估與客製化動作計畫，激發孩子的無限潛能。<br><br>在他的課堂中，沒有枯燥的訓練，只有充滿笑聲與挑戰的遊戲。他致力於推廣「動知覺」理念，將神經科學的理論轉化為孩子易於吸收的身體記憶。",
+        experience: [
+          "國立體育大學 運動保健學系 碩士",
+          "中華民國物理治療師公會 感覺統合專業認證",
+          "超過 1,000 小時兒童動作發展評估實務經驗"
+        ]
+      },
+      "B": {
+        name: "徐喜傑",
+        role: "動知覺教育創始人<br>飛童教育首席教學顧問",
+        img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7916-1.jpg",
+        tags: [
+          { text: "兒童體適能", colorClass: "tag-green" },
+          { text: "粗動作發展", colorClass: "tag-blue" }
+        ],
+        desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。",
+        experience: [] // 就算這裡空著也不會壞掉！會顯示「資料更新中」
+      }
+      // 你可以繼續往下新增 "C", "D" 等教練...
+    };
+
+    // 🌟 3. 抓取網址參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = urlParams.get('id');
+    const coachData = allCoaches[targetId];
+
+    // 🌟 4. 安全渲染資料 (加入 try-catch 與元素檢查防呆)
+    try {
+      if (coachData) {
+        // --- 找到資料：正常渲染 ---
+        document.title = `${coachData.name} ｜團隊介紹｜飛童動知覺`;
+        
+        const imgEl = document.getElementById('coach-img');
+        if (imgEl) {
+          imgEl.src = coachData.img || '';
+          imgEl.alt = `${coachData.name} 照片`;
+          imgEl.style.display = 'block';
+        }
+
+        const nameEl = document.getElementById('coach-name');
+        if (nameEl) nameEl.textContent = coachData.name || '';
+
+        const roleEl = document.getElementById('coach-role');
+        if (roleEl) roleEl.innerHTML = coachData.role || '';
+
+        const descEl = document.getElementById('coach-desc');
+        if (descEl) descEl.innerHTML = coachData.desc || '';
+
+        // 渲染標籤
+        const tagsContainer = document.getElementById('coach-tags');
+        if (tagsContainer) {
+          tagsContainer.innerHTML = '';
+          if (coachData.tags && Array.isArray(coachData.tags)) {
+            coachData.tags.forEach(tag => {
+              tagsContainer.innerHTML += `<span class="profile-tag ${tag.colorClass}">${tag.text}</span>`;
+            });
+          }
+        }
+
+        // 渲染經歷
+        const expContainer = document.getElementById('coach-exp');
+        if (expContainer) {
+          expContainer.innerHTML = '';
+          if (coachData.experience && Array.isArray(coachData.experience) && coachData.experience.length > 0) {
+            coachData.experience.forEach(exp => {
+              expContainer.innerHTML += `<li>${exp}</li>`;
+            });
+          } else {
+            expContainer.innerHTML = '<li>詳細經歷資料持續更新中...</li>';
+          }
+        }
+
+      } else {
+        // --- 找不到資料 (或 ID 打錯)：顯示防呆畫面 ---
+        const nameEl = document.getElementById('coach-name');
+        if (nameEl) nameEl.textContent = "找不到該教練資料";
+
+        const descEl = document.getElementById('coach-desc');
+        if (descEl) descEl.textContent = "請確認網址是否正確，或是該教練的資料尚未建檔。";
+
+        // 清空其他不需要的欄位
+        const roleEl = document.getElementById('coach-role');
+        if (roleEl) roleEl.innerHTML = "";
+
+        const tagsContainer = document.getElementById('coach-tags');
+        if (tagsContainer) tagsContainer.innerHTML = "";
+
+        const expContainer = document.getElementById('coach-exp');
+        if (expContainer) expContainer.innerHTML = "";
+
+        // 隱藏左側破圖的照片框
+        const imgEl = document.getElementById('coach-img');
+        if (imgEl) imgEl.style.display = 'none'; 
+      }
+    } catch (error) {
+      console.error("渲染教練資料時發生錯誤:", error);
+      const nameEl = document.getElementById('coach-name');
+      if (nameEl) nameEl.textContent = "資料讀取發生系統錯誤";
+    }
+
+  });
+</script>
+</body>
+</html>

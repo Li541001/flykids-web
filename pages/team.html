@@ -61,6 +61,10 @@
 
   #feitong-app section { padding: 100px 60px; }
 
+  #feitong-app p{
+    text-align: justify;
+  }
+
   /* =========================================
      2. 共用動畫類別 & 裝飾元件
   ========================================= */
@@ -169,7 +173,7 @@
     color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 24px;
   }
   #feitong-app .inner-hero-desc {
-    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400;
+    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400; text-align: justify; text-justify: inter-ideograph; text-align-last: center;
   }
 
   /* =========================================
@@ -223,6 +227,9 @@
     border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 48px 32px 40px; text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative; overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   #feitong-app .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
 
@@ -263,13 +270,44 @@
   
   /* --- 5.4 卡片文字內容 --- */
   #feitong-app .team-name { font-size: 1.6rem; font-weight: 900; color: var(--color-dark-navy); margin-bottom: 6px; }
-  #feitong-app .team-role { font-size: 0.9rem; color: var(--color-primary-mid); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
+  #feitong-app .team-role { font-size: 0.9rem; color: var(--color-primary-mid); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; text-align: justify; text-justify: inter-ideograph; text-align-last: center}
   #feitong-app .team-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
   #feitong-app .team-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; padding: 4px 14px; border-radius: 50px; }
   #feitong-app .tag-blue { background: rgba(89, 183, 209, 0.12); color: var(--color-blue); }
   #feitong-app .tag-orange { background: rgba(237, 156, 64, 0.12); color: #B86000; }
   #feitong-app .tag-green { background: rgba(107, 201, 89, 0.12); color: #2E7A26; }
   #feitong-app .team-desc { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.8; font-weight: 400; }
+
+  /* 🌟 卡片底部的點擊進入提示 (Action Button) */
+  #feitong-app .team-card-action {
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary-mid);
+    opacity: 0.8;
+    transition: gap 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  }
+  #feitong-app .team-card-action svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  /* 當滑鼠移至卡片時：箭頭往右推、顏色變亮 */
+  #feitong-app .team-card:hover .team-card-action {
+    gap: 14px; 
+    color: var(--color-accent-orange);
+    opacity: 1;
+  }
 
   /* =========================================
      6. 頁尾 (共用)
@@ -331,6 +369,7 @@
     #feitong-app .inner-hero { padding: 130px 32px 60px; }
     #feitong-app .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
     #feitong-app .team-container { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; }
+    #feitong-app .team-card { padding: 48px 20px 40px; }
     #feitong-app .image-deco { display: none; }
     #feitong-app .footer-top { grid-template-columns: 1fr; gap: 40px; }
   }
@@ -515,6 +554,7 @@
     // 資料 1: 資深團隊
     const seniorTeamData = [
       {
+        id: 'A',
         name: "劉維誠",
         role: `飛童動知覺運動教室發起人<br>執行長 / 課程指導教官`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8107-1.jpg", 
@@ -525,6 +565,7 @@
         desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
       },
       {
+        id: 'B',
         name: "徐喜傑",
         role: `動知覺教育創始人<br>飛童教育首席教學顧問`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7916-1.jpg",
@@ -535,6 +576,7 @@
         desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。"
       },
       {
+        id: 'C',
         name: "黎寶文",
         role: `認知與職能治療師動知覺兒童動作發展<br>早期療育課程 / 指導教官`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8049-1.jpg",
@@ -545,6 +587,7 @@
         desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
       },
       {
+        id: 'D',
         name: "郭皇孝",
         role: "動知覺課程總教練",
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8087-1.jpg", 
@@ -555,6 +598,7 @@
         desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
       },
       {
+        id: 'E',
         name: "李木寬",
         role: "業務發展顧問",
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_7928-1.jpg",
@@ -569,6 +613,7 @@
     // 資料 2: 青年團隊
     const juniorTeamData = [
       {
+        id: 'F',
         name: "劉毅群",
         role: `青年部共同創辦人<br>動知覺資深指導教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8234-1.jpg", 
@@ -579,6 +624,7 @@
         desc: "擁有超過十年兒童早期療育與感覺統合教學經驗。堅信每個孩子都是一顆待發芽的種子，擅長透過客製化動作計畫，激發孩子的無限潛能。"
       },
       {
+        id: 'G',
         name: "洪以憫",
         role: `動知覺課程資深指導教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8391-1.jpg",
@@ -589,6 +635,7 @@
         desc: "專精於兒童肌肉發展與心肺耐力訓練。善於將枯燥的體能訓練轉化為趣味闖關遊戲，讓孩子在充滿歡笑的過程中鍛鍊強健體魄。"
       },
       {
+        id: 'H',
         name: "詹昀翰",
         role: `戶外教學活動設計教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/IMG_8286-1.jpg",
@@ -599,6 +646,7 @@
         desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
       },
       {
+        id: 'I',
         name: "劉毅安",
         role: `動知覺課程指導教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/%E6%AF%85%E5%AE%89.jpg",
@@ -609,6 +657,7 @@
         desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
       },
       {
+        id: 'J',
         name: "劉毅宏",
         role: `動知覺課程指導教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/%E6%AF%85%E5%AE%8F.jpg",
@@ -619,6 +668,7 @@
         desc: "具備深厚的職能治療背景。細心觀察孩童在操作積木、畫筆時的精細動作，並提供家長實用的居家陪玩建議，延伸課堂學習成效。"
       },
       {
+        id: 'K',
         name: "詹明志",
         role: `動知覺專長課程指導教練`,
         img: "https://feitong-edu.com/wp-content/uploads/2024/05/%E6%98%8E%E5%BF%97.jpg",
@@ -649,8 +699,9 @@
           tagsHTML += '</div>';
         }
 
+      // 🌟 組裝單張卡片 HTML (加入底部的了解更多圖示)
         teamHTML += `
-          <div class="team-card reveal-up" style="transition-delay: ${delay}s;">
+          <a href="coach-detail.html?id=${member.id}" class="team-card reveal-up" style="transition-delay: ${delay}s; text-decoration: none; display: flex; flex-direction: column; height: 100%;">
             <div class="team-photo">
               <img src="${member.img}" alt="${member.name} 照片" />
             </div>
@@ -658,7 +709,15 @@
             <p class="team-role">${member.role}</p>
             ${tagsHTML}
             <p class="team-desc">${member.desc}</p>
-          </div>
+            
+            <div class="team-card-action">
+              <span>查看詳細介紹</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </a>
         `;
       });
       
