@@ -40,6 +40,10 @@
   }
 
   html { scroll-behavior: smooth; }
+  *{
+    padding: 0;
+    margin: 0;
+  }
 
   #feitong-app {
     font-family:  'Chiron GoRound TC', sans-serif;
@@ -54,6 +58,9 @@
   }
 
   #feitong-app section { padding: 100px 60px; }
+  #feitong-app p {
+    text-align: justify;
+  } 
 
   /* =========================================
      2. 動畫類別 & 裝飾 (共用)
@@ -121,7 +128,7 @@
     color: var(--color-dark-navy); line-height: 1.2; margin-bottom: 24px;
   }
   #feitong-app .inner-hero-desc {
-    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400;
+    font-size: 1.05rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 400; text-align: justify; text-justify: inter-ideograph; text-align-last: center;
   }
 
   /* =========================================
@@ -366,69 +373,7 @@
 
       <section class="blog-section">
         
-        <div class="blog-grid">
-          
-          <a href="#" class="blog-card reveal-up" style="transition-delay: 0s;">
-            <div class="blog-img-wrap">
-              <img src="../static/temp.jpg" class="blog-img" alt="感覺統合是什麼？">
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span class="blog-tag">感覺統合</span>
-                <span class="blog-date">2024.10.15</span>
-              </div>
-              <h2 class="blog-title">感覺統合是什麼？3分鐘帶你了解大腦的秘密</h2>
-              <p class="blog-excerpt">「感覺統合」聽起來很專業，其實它無時無刻都在我們大腦中運作。這篇文章將用最簡單的方式，為您拆解前庭覺、本體覺與觸覺的奧秘...</p>
-              <div class="blog-readmore">閱讀全文</div>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card reveal-up" style="transition-delay: 0.1s;">
-            <div class="blog-img-wrap">
-              <img src="../static/temp.jpg" class="blog-img" alt="孩子總是坐不住？">
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span class="blog-tag tag-orange">兒童心理</span>
-                <span class="blog-date">2024.09.28</span>
-              </div>
-              <h2 class="blog-title">孩子總是坐不住？這可能是「前庭覺」在求救</h2>
-              <p class="blog-excerpt">上課總是分心、扭來扭去？別急著責怪孩子！有時候這不是因為調皮，而是大腦在尋求足夠的前庭刺激，教你如何用運動幫助孩子穩定情緒...</p>
-              <div class="blog-readmore">閱讀全文</div>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card reveal-up" style="transition-delay: 0.2s;">
-            <div class="blog-img-wrap">
-              <img src="../static/temp.jpg" class="blog-img" alt="居家陪玩指南">
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span class="blog-tag tag-green">居家育兒</span>
-                <span class="blog-date">2024.08.10</span>
-              </div>
-              <h2 class="blog-title">居家陪玩指南：5個提升專注力的小遊戲</h2>
-              <p class="blog-excerpt">不需要昂貴的教具，只要利用家裡的抱枕、紙箱跟毛巾，就能在家中為孩子打造一場提升本體覺與專注力的感統大挑戰！</p>
-              <div class="blog-readmore">閱讀全文</div>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card reveal-up" style="transition-delay: 0s;">
-            <div class="blog-img-wrap">
-              <img src="../static/temp.jpg" class="blog-img" alt="粗動作發展對學齡前兒童的重要性">
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span class="blog-tag">動作發展</span>
-                <span class="blog-date">2024.07.22</span>
-              </div>
-              <h2 class="blog-title">為什麼「粗動作發展」對學齡前兒童這麼重要？</h2>
-              <p class="blog-excerpt">你知道嗎？在學會握筆寫字之前，孩子必須先有強壯的肩膀與核心肌群。粗大動作不僅關乎體能，更是精細動作與學習能力的基石...</p>
-              <div class="blog-readmore">閱讀全文</div>
-            </div>
-          </a>
-
-        </div>
+        <div class="blog-grid" id="blog-grid-container"></div>
 
         <div class="pagination reveal-up" style="transition-delay: 0.3s;">
           <a href="#" class="page-link active">1</a>
@@ -517,9 +462,94 @@
     });
 
     // ──────────────────────────────────────────
-    //  2. 統一的滑入進場動畫
+    //  2. 知識專欄文章資料庫與動態分頁渲染
     // ──────────────────────────────────────────
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    
+    // 🌟 在這裡管理所有的文章資料
+    const blogData = [
+      {
+        title: "晨跑提升專注力：從大腦生理看早晨跑步的奇妙效益",
+        excerpt: "在競爭激烈的職場和課堂上，擁有持久的專注力是一大優勢。然而，許多人早晨醒來時常感到腦霧沉沉，難以立即進入狀態。除了咖啡因外，有沒有更健康的方法喚醒大腦、提升專注？晨跑或許就是答案。",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_GKPixRZZ8degEUec-k4Kfw.webp",
+        date: "2025.08.10",
+        tagText: "感覺統合",
+        tagClass: "tag-blue", 
+        link: "https://medium.com/@titec0223/%E6%99%A8%E8%B7%91%E6%8F%90%E5%8D%87%E5%B0%88%E6%B3%A8%E5%8A%9B-%E5%BE%9E%E5%A4%A7%E8%85%A6%E7%94%9F%E7%90%86%E7%9C%8B%E6%97%A9%E6%99%A8%E8%B7%91%E6%AD%A5%E7%9A%84%E5%A5%87%E5%A6%99%E6%95%88%E7%9B%8A-28010d173623" 
+      },
+      {
+        title: "【跑步讓孩子更聰明？】有氧運動對大腦的 8 大好處",
+        excerpt: "跑步真的能讓孩子變得更聰明嗎？乍聽之下這似乎像是鼓勵孩子多動的口號，但科學研究正逐漸證實其中的真實性。美國一項針對 9 至 10 歲兒童的研究發現，體適能較佳的孩子海馬體（掌管學習記憶的腦區）體積更大，記憶測驗表現也更出色。",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_Fty9e87cupEdvMNHSkm3RQ.webp",
+        date: "2025.08.10",
+        tagText: "兒童心理",
+        tagClass: "tag-orange",
+        link: "https://medium.com/@titec0223/%E8%B7%91%E6%AD%A5%E8%AE%93%E5%AD%A9%E5%AD%90%E6%9B%B4%E8%81%B0%E6%98%8E-%E6%9C%89%E6%B0%A7%E9%81%8B%E5%8B%95%E5%B0%8D%E5%A4%A7%E8%85%A6%E7%9A%84-8-%E5%A4%A7%E5%A5%BD%E8%99%95-ac182f2506d7" 
+      },
+      {
+        title: "居家陪玩指南：5個提升專注力的小遊戲",
+        excerpt: "不需要昂貴的教具，只要利用家裡的抱枕、紙箱跟毛巾，就能在家中為孩子打造一場提升本體覺與專注力的感統大挑戰！",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_HuMMI_3xh__4DoQBIuCbGQ.webp",
+        date: "2024.08.10",
+        tagText: "居家育兒",
+        tagClass: "tag-green",
+        link: "https://medium.com/@titec0223/%E6%99%A8%E8%B7%91%E6%8F%90%E5%8D%87%E5%B0%88%E6%B3%A8%E5%8A%9B-%E5%BE%9E%E5%A4%A7%E8%85%A6%E7%94%9F%E7%90%86%E7%9C%8B%E6%97%A9%E6%99%A8%E8%B7%91%E6%AD%A5%E7%9A%84%E5%A5%87%E5%A6%99%E6%95%88%E7%9B%8A-28010d173623"
+      },
+      {
+        title: "為什麼「粗動作發展」對學齡前兒童這麼重要？",
+        excerpt: "你知道嗎？在學會握筆寫字之前，孩子必須先有強壯的肩膀與核心肌群。粗大動作不僅關乎體能，更是精細動作與學習能力的基石...",
+        img: "../static/temp.jpg",
+        date: "2024.07.22",
+        tagText: "動作發展",
+        tagClass: "tag-blue",
+        link: "https://medium.com/@titec0223/%E8%B7%91%E6%AD%A5%E8%AE%93%E5%AD%A9%E5%AD%90%E6%9B%B4%E8%81%B0%E6%98%8E-%E6%9C%89%E6%B0%A7%E9%81%8B%E5%8B%95%E5%B0%8D%E5%A4%A7%E8%85%A6%E7%9A%84-8-%E5%A4%A7%E5%A5%BD%E8%99%95-ac182f2506d7"
+      },
+      {
+        title: "晨跑提升專注力：從大腦生理看早晨跑步的奇妙效益",
+        excerpt: "在競爭激烈的職場和課堂上，擁有持久的專注力是一大優勢。然而，許多人早晨醒來時常感到腦霧沉沉，難以立即進入狀態。除了咖啡因外，有沒有更健康的方法喚醒大腦、提升專注？晨跑或許就是答案。",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_GKPixRZZ8degEUec-k4Kfw.webp",
+        date: "2025.08.10",
+        tagText: "感覺統合",
+        tagClass: "tag-blue", 
+        link: "https://medium.com/@titec0223/%E6%99%A8%E8%B7%91%E6%8F%90%E5%8D%87%E5%B0%88%E6%B3%A8%E5%8A%9B-%E5%BE%9E%E5%A4%A7%E8%85%A6%E7%94%9F%E7%90%86%E7%9C%8B%E6%97%A9%E6%99%A8%E8%B7%91%E6%AD%A5%E7%9A%84%E5%A5%87%E5%A6%99%E6%95%88%E7%9B%8A-28010d173623" 
+      },
+      {
+        title: "【跑步讓孩子更聰明？】有氧運動對大腦的 8 大好處",
+        excerpt: "跑步真的能讓孩子變得更聰明嗎？乍聽之下這似乎像是鼓勵孩子多動的口號，但科學研究正逐漸證實其中的真實性。美國一項針對 9 至 10 歲兒童的研究發現，體適能較佳的孩子海馬體（掌管學習記憶的腦區）體積更大，記憶測驗表現也更出色。",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_Fty9e87cupEdvMNHSkm3RQ.webp",
+        date: "2025.08.10",
+        tagText: "兒童心理",
+        tagClass: "tag-orange",
+        link: "https://medium.com/@titec0223/%E8%B7%91%E6%AD%A5%E8%AE%93%E5%AD%A9%E5%AD%90%E6%9B%B4%E8%81%B0%E6%98%8E-%E6%9C%89%E6%B0%A7%E9%81%8B%E5%8B%95%E5%B0%8D%E5%A4%A7%E8%85%A6%E7%9A%84-8-%E5%A4%A7%E5%A5%BD%E8%99%95-ac182f2506d7" 
+      },
+      {
+        title: "居家陪玩指南：5個提升專注力的小遊戲",
+        excerpt: "不需要昂貴的教具，只要利用家裡的抱枕、紙箱跟毛巾，就能在家中為孩子打造一場提升本體覺與專注力的感統大挑戰！",
+        img: "https://feitong-edu.com/wp-content/uploads/2025/08/1_HuMMI_3xh__4DoQBIuCbGQ.webp",
+        date: "2024.08.10",
+        tagText: "居家育兒",
+        tagClass: "tag-green",
+        link: "https://medium.com/@titec0223/%E6%99%A8%E8%B7%91%E6%8F%90%E5%8D%87%E5%B0%88%E6%B3%A8%E5%8A%9B-%E5%BE%9E%E5%A4%A7%E8%85%A6%E7%94%9F%E7%90%86%E7%9C%8B%E6%97%A9%E6%99%A8%E8%B7%91%E6%AD%A5%E7%9A%84%E5%A5%87%E5%A6%99%E6%95%88%E7%9B%8A-28010d173623"
+      },
+      {
+        title: "為什麼「粗動作發展」對學齡前兒童這麼重要？",
+        excerpt: "你知道嗎？在學會握筆寫字之前，孩子必須先有強壯的肩膀與核心肌群。粗大動作不僅關乎體能，更是精細動作與學習能力的基石...",
+        img: "../static/temp.jpg",
+        date: "2024.07.22",
+        tagText: "動作發展",
+        tagClass: "tag-blue",
+        link: "https://medium.com/@titec0223/%E8%B7%91%E6%AD%A5%E8%AE%93%E5%AD%A9%E5%AD%90%E6%9B%B4%E8%81%B0%E6%98%8E-%E6%9C%89%E6%B0%A7%E9%81%8B%E5%8B%95%E5%B0%8D%E5%A4%A7%E8%85%A6%E7%9A%84-8-%E5%A4%A7%E5%A5%BD%E8%99%95-ac182f2506d7"
+      },
+    ];
+
+    // 🌟 修改這裡：將 postsPerPage 改為 6，這樣第一頁就會顯示 6 篇文章！
+    const postsPerPage = 6; 
+    let currentPage = 1;
+
+    // 定義容器
+    const blogGridContainer = document.getElementById('blog-grid-container');
+    const paginationContainer = document.querySelector('.pagination');
+
+    // 統一的動畫 Observer 
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -528,7 +558,101 @@
         }
       });
     }, { threshold: 0.1 });
-    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 渲染文章卡片的函式
+    function renderBlogPosts(page) {
+      if (!blogGridContainer) return;
+      
+      const startIndex = (page - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const currentPosts = blogData.slice(startIndex, endIndex);
+      
+      let blogHTML = '';
+      
+      currentPosts.forEach((post, index) => {
+        const delay = (index % 3) * 0.15;
+        blogHTML += `
+          <a href="${post.link}" class="blog-card reveal-up" style="transition-delay: ${delay}s;" target="${post.link.startsWith('http') ? '_blank' : '_self'}">
+            <div class="blog-img-wrap">
+              <img src="${post.img}" class="blog-img" alt="${post.title}">
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-tag ${post.tagClass}">${post.tagText}</span>
+                <span class="blog-date">${post.date}</span>
+              </div>
+              <h2 class="blog-title">${post.title}</h2>
+              <p class="blog-excerpt">${post.excerpt}</p>
+              <div class="blog-readmore">閱讀全文</div>
+            </div>
+          </a>
+        `;
+      });
+      
+      blogGridContainer.innerHTML = blogHTML;
+
+      setTimeout(() => {
+        const newCards = blogGridContainer.querySelectorAll('.reveal-up');
+        newCards.forEach(el => {
+          el.classList.remove('is-visible'); 
+          revealObserver.observe(el);
+        });
+      }, 50);
+    }
+
+    // 渲染分頁按鈕的函式
+    function renderPagination() {
+      if (!paginationContainer) return;
+      
+      const totalPages = Math.ceil(blogData.length / postsPerPage);
+      
+      if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+      } else {
+        paginationContainer.style.display = 'flex';
+      }
+
+      let paginationHTML = '';
+
+      if (currentPage > 1) {
+        paginationHTML += `<a href="#blog-grid-container" class="page-link" data-page="${currentPage - 1}">«</a>`;
+      }
+
+      for (let i = 1; i <= totalPages; i++) {
+        const isActive = i === currentPage ? 'active' : '';
+        paginationHTML += `<a href="#blog-grid-container" class="page-link ${isActive}" data-page="${i}">${i}</a>`;
+      }
+
+      if (currentPage < totalPages) {
+        paginationHTML += `<a href="#blog-grid-container" class="page-link" data-page="${currentPage + 1}">»</a>`;
+      }
+
+      paginationContainer.innerHTML = paginationHTML;
+
+      const pageLinks = paginationContainer.querySelectorAll('.page-link');
+      pageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const newPage = parseInt(this.getAttribute('data-page'));
+          
+          if (newPage && newPage !== currentPage) {
+            currentPage = newPage;
+            renderBlogPosts(currentPage);
+            renderPagination(); 
+          }
+        });
+      });
+    }
+
+    // 初始執行
+    renderBlogPosts(currentPage);
+    renderPagination();
+
+    // ──────────────────────────────────────────
+    //  3. 🌟 關鍵修復：確保分頁按鈕與上方標題會觸發動畫
+    // ──────────────────────────────────────────
+    const otherRevealElements = document.querySelectorAll('.inner-hero .reveal-up, .pagination.reveal-up');
+    otherRevealElements.forEach(el => revealObserver.observe(el));
 
   });
 </script>
