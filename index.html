@@ -84,6 +84,7 @@
   @keyframes rainbowFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
 
   #feitong-app .ui-deco-dots { position: absolute; top: 36px; right: 48px; display: flex; gap: 10px; align-items: center; z-index: 10; }
+  #feitong-app .ui-deco-dots-left{ left: 48px!important; }
   #feitong-app .ui-deco-dot { border-radius: 50%; width: 16px; height: 16px; animation: dotBounce 2s ease-in-out infinite alternate; }
   #feitong-app .ui-deco-dot:nth-child(1) { background: var(--color-red);    animation-delay: 0s; }
   #feitong-app .ui-deco-dot:nth-child(2) { background: var(--color-orange);  animation-delay: 0.15s; }
@@ -195,7 +196,6 @@
      5. 關於我們 (About Section) 🌟 橫幅大圖設計
   ========================================= */
   #feitong-app #about { background: #FAFCFC; position: relative; overflow: hidden; padding: 100px 72px; }
-  #feitong-app #about::before{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.3) 0%, transparent 55%); pointer-events: none; }
   
   /* 改為上下排列 (Flex Column) */
   #feitong-app .about-layout { 
@@ -268,9 +268,92 @@
   #feitong-app .about-highlight { color: var(--color-dark-navy); font-weight: 600; }
 
   /* =========================================
+     🌟 飛童動知覺的 3 大特色區塊 (Features)
+  ========================================= */
+  #feitong-app .features-section {
+    background: #FAFCFC;
+    padding: 60px 20px 20px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #feitong-app .features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  #feitong-app .features-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  #feitong-app .features-img-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  #feitong-app .features-img-wrap img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #feitong-app .features-img-wrap:hover img {
+    transform: scale(1.05); /* 滑鼠懸浮微放大 */
+  }
+  
+  #feitong-app .features-right {
+    color: var(--color-dark-navy);
+  }
+  #feitong-app .features-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; background: var(--gradient-warm-135); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  #feitong-app .features-label::before { content: ''; width: 24px; height: 2px; border-radius: 1px; background: var(--gradient-warm-135); flex-shrink:0; -webkit-text-fill-color: unset; }
+  #feitong-app .features-title {
+    font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--color-dark-navy); line-height: 1.25; margin-bottom: 32px;
+  }
+  
+  #feitong-app .features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  #feitong-app .features-item {
+    position: relative;
+    padding-left: 28px;
+  }
+  
+  /* 繪製圖片中左側的「小方塊」裝飾 */
+  #feitong-app .features-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-dark-navy);
+    border-radius: 1px;
+    transition: transform 0.3s ease;
+  }
+  #feitong-app .features-item:hover::before {
+    transform: rotate(45deg); /* 滑鼠移過去方塊會旋轉變菱形 */
+  }
+  
+  #feitong-app .features-item-title {
+    font-size: 1.2rem; color: var(--color-dark-navy); margin: 0 0 16px 0; font-weight: 600; 
+  }
+  #feitong-app .features-item-desc {
+    font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.85; font-weight: 400; transition: color 0.3s;
+  }
+
+  /* =========================================
      6. 課程案例輪播 (Cases Section)
   ========================================= */
   #feitong-app .cases-intro { background: var(--color-white); padding: 100px 0px 40px 0px; position: relative; overflow: hidden; }
+  #feitong-app .cases-intro::before{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at -5% 50%, rgba(232,135,58,0.3) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 100% 100%, rgba(77,192,212,0.3) 0%, transparent 55%); pointer-events: none; }
 
   #feitong-app .cases-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; position: relative; z-index: 1; padding: 0 72px;}
   #feitong-app .cases-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; background: var(--gradient-warm-135); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -555,6 +638,29 @@
     #feitong-app .logo-animation-wrapper:hover .anim-person, #feitong-app .logo-animation-wrapper:hover .anim-ball { transform: translateY(-15px) scale(1.1) rotate(6deg); filter: drop-shadow(0px 10px 12px rgba(0,0,0,0.25)); }
     #feitong-app .logo-animation-wrapper:hover .anim-star { transform: scale(1.4) rotate(45deg); filter: brightness(1.3) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8)); }
   }
+  @media (max-width: 1024px) {
+    #feitong-app .features-container { gap: 40px; }
+    #feitong-app .features-title { font-size: 1.8rem; }
+  }
+  
+  @media (max-width: 960px) {
+    /* 平板與手機版改為上下排列 */
+    #feitong-app .features-container {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+    }
+    #feitong-app .features-title {
+      text-align: left;
+    }
+    #feitong-app .features-handwritten {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #feitong-app .features-section { padding: 80px 32px; }
+    #feitong-app .features-handwritten { font-size: 1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -609,10 +715,10 @@
       <div class="hero-left">
         <div class="hero-label">Profession</div>
         <h1 class="hero-title">
-          讓每個孩子<br>
-          都能<span class="accent">飛翔</span>的<br class="desktop-only">起點
+          掌握孩子<br>
+          大腦<span class="accent">發展</span>的黃金時刻<br class="desktop-only">
         </h1>
-        <p class="hero-desc">結合神經科學與動作教育，透過系統性的感覺統合訓練，幫助孩子建立健全的身體認知、動作協調與專注力，奠定學習的堅實基礎。</p>
+        <p class="hero-desc">結合神經科學與科學化運動訓練，系統性的誘發孩童突觸生長。幫助孩子建立深層身體認知與精確協調，從底層重構大腦執行功能與專注力，讓大腦發育走在黃金發展的最前線。</p>
       </div>
 
       <div class="hero-right">
@@ -637,11 +743,118 @@
       </div>
     </section>
 
+    <section id="about">
+      <div class="ui-deco-dots" aria-hidden="true">
+        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
+      </div>
+
+      <div class="about-layout">
+        
+        <div class="about-top reveal-up">
+          <div class="about-photo-wrap">
+            <div class="about-photo">
+              <img src="static/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+        <div class="about-bottom">
+          <div class="about-title-block reveal-up" style="transition-delay: 0.1s;">
+            <div class="about-label">about</div>
+            <h2 class="about-title">關於孩子，<br class="mobile-only">您是否也有以下煩惱？</h2>
+            <p class="about-subtitle">這些擔憂，每天都有家長帶著它來到飛童。<br>您並不孤單，我們完全理解。</p>
+          </div>
+          
+          <div class="about-list">
+            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
+              <div class="about-number">01</div>
+              <div class="about-content">
+                <span class="about-tag">發展落後</span>
+                <p class="about-text">看著同齡孩子靈活跑跳、對答如流，您的孩子卻聽<span class="about-highlight">不懂指令</span>、總是活在自己的世界。</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
+              <div class="about-number">02</div>
+              <div class="about-content">
+                <span class="about-tag">情緒失控</span>
+                <p class="about-text">孩子頻繁尖叫、失控、甚至出現<span class="about-highlight">攻擊行為</span>。每天在外面道歉、在家裡崩潰。</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
+              <div class="about-number">03</div>
+              <div class="about-content">
+                <span class="about-tag">療育停滯：看不見的進步</span>
+                <p class="about-text">奔波早療多年卻進入<span class="about-highlight">停滯期</span>，進步的速度無法達成預期效果。</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
+              <div class="about-number">04</div>
+              <div class="about-content">
+                <span class="about-tag">專注力不足</span>
+                <p class="about-text">指令左耳進右耳出，寫作業坐不住、眼神總在飄移。您深怕他不是不聰明，而是因為<span class="about-highlight">「靜不下來」</span>輸在了起跑點。</p>
+              </div>
+            </div>
+            
+            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
+              <div class="about-number">05</div>
+              <div class="about-content">
+                <span class="about-tag">找不到適合的訓練單位</span>
+                <p class="about-text">網上資訊紛雜，您不怕花錢，只怕選錯方法。大腦發育只有一次，您最恐懼的是<span class="about-highlight">「錯過孩子最寶貴的黃金轉骨期」</span>。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="features-section" id="features">
+      <div class="ui-deco-dots ui-deco-dots-left" aria-hidden="true">
+        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
+      </div>
+      <div class="features-container">
+        
+        <div class="features-left reveal-left">
+          <div class="features-img-wrap">
+            <img src="https://feitong-edu.com/wp-content/uploads/2024/04/IMG_8456-1-1024x683.jpg" alt="飛童動知覺 教學團隊" loading="lazy">
+          </div>
+        </div>
+
+        <div class="features-right reveal-right" style="transition-delay: 0.2s;">
+          <div>
+            <div class="cases-label">features</div>
+            <h2 class="features-title">飛童動知覺：<br>神經科學的三大核心優勢</h2>
+          </div>
+          
+          
+          <ul class="features-list">
+            <li class="features-item">
+              <h3 class="features-item-title">40年實戰經驗，專業腦科學團隊</h3>
+              <p class="features-item-desc">教學團隊累積超過 40 年大腦科學教育資歷，橫跨兩岸指導數萬名孩童。每位教練擁有數千小時教學經驗，並具備大腦生理專業知識，確保每一個訓練動作都能有效觸發神經連結。</p>
+            </li>
+            <li class="features-item">
+              <h3 class="features-item-title">因材施教專業測評，提供精準運動處方</h3>
+              <p class="features-item-desc">透過專業動知覺測評，解析孩子前額葉（執行功能）、小腦（協調平衡）與頂葉（空間感知）的發育現況。我們針對大腦不同部位的發育缺口，量身定制「神經運動處方」，透過高頻率、高精準度的刺激，重塑大腦神經元發展。
+</p>
+            </li>
+            <li class="features-item">
+              <h3 class="features-item-title">2對1客製化教學，12 堂課見證突觸優化</h3>
+              <p class="features-item-desc">循大腦神經可塑性規律，採 2 對 1 高配比輔助，確保孩子在安全的挑戰中達成目標。透過數位化的紀錄與追蹤，我們讓進步數據化，在 12 堂課的黃金週期內，由底層神經反射整合至高階動作計畫，有效提升孩童神經元發展。</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
     <section id="cases" class="cases-intro">
       <div class="cases-header reveal-up">
         <div>
           <div class="cases-label">case</div>
-          <h2 class="cases-title">為不同孩子<br>打造專屬課程</h2>
+          <h2 class="cases-title">家長案例見證：<br>飛童學員的成長紀錄</h2>
         </div>
         <a href="cases.html" class="btn-ghost-warm">探索所有案例</a>
       </div>
@@ -706,73 +919,7 @@
       </div>
     </section>
 
-    <section id="about">
-      <div class="ui-deco-dots" aria-hidden="true">
-        <div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div><div class="ui-deco-dot"></div>
-      </div>
-
-      <div class="about-layout">
-        
-        <div class="about-top reveal-up">
-          <div class="about-photo-wrap">
-            <div class="about-photo">
-              <img src="static/temp.jpg" class="about-photo-inner" alt="孩子們在教室遊玩" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-
-        <div class="about-bottom">
-          <div class="about-title-block reveal-up" style="transition-delay: 0.1s;">
-            <div class="about-label">about</div>
-            <h2 class="about-title">關於孩子，<br class="mobile-only">您是否也在煩惱⋯⋯</h2>
-            <p class="about-subtitle">這些擔憂，每天都有家長帶著它來到飛童。<br>您並不孤單，我們完全理解。</p>
-          </div>
-          
-          <div class="about-list">
-            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
-              <div class="about-number">01</div>
-              <div class="about-content">
-                <span class="about-tag">發展落後</span>
-                <p class="about-text">跟同年齡的小孩相比，我的孩子卻總是<span class="about-highlight">聽不懂話</span>、活在自己的世界，聽話、說話、跑動與人互動各方面都<span class="about-highlight">嚴重落後</span>⋯⋯</p>
-              </div>
-            </div>
-            
-            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
-              <div class="about-number">02</div>
-              <div class="about-content">
-                <span class="about-tag">情緒行為</span>
-                <p class="about-text">孩子<span class="about-highlight">情緒經常失控</span>、常有過動的行為，總是精力無限動不停，不受教，有時甚至出現<span class="about-highlight">攻擊行為</span>，缺乏同理心⋯⋯</p>
-              </div>
-            </div>
-            
-            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
-              <div class="about-number">03</div>
-              <div class="about-content">
-                <span class="about-tag">療育停滯</span>
-                <p class="about-text">已參加不同的早期療育課程幾年了，一天天卻<span class="about-highlight">總覺得沒什麼進步</span>，不知道哪裡出了問題，該如何是好⋯⋯</p>
-              </div>
-            </div>
-            
-            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
-              <div class="about-number">04</div>
-              <div class="about-content">
-                <span class="about-tag">專注力不足</span>
-                <p class="about-text">孩子的<span class="about-highlight">專注學習力總是不足</span>，對於長輩或師長的叮嚀教導總是<span class="about-highlight">沒在聽</span>，讓人又心急又無奈⋯⋯</p>
-              </div>
-            </div>
-            
-            <div class="about-item reveal-up" style="transition-delay: 0.1s;">
-              <div class="about-number">05</div>
-              <div class="about-content">
-                <span class="about-tag">資訊爆炸</span>
-                <p class="about-text">網上<span class="about-highlight">資訊好多好多</span>，到底哪個課程才真正適合我的孩子、能<span class="about-highlight">快速有效</span>地幫助孩子成長？</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
+    
 
     <div class="rainbow-bar" aria-hidden="true"></div>
 
