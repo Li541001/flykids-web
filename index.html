@@ -425,6 +425,7 @@
   #feitong-app .section-label::before, #feitong-app .section-label::after { content: ''; width: 24px; height: 2px; border-radius: 2px; }
   #feitong-app .section-label::before { background: #F89938; } #feitong-app .section-label::after { background: #973B9F; }
   #feitong-app .section-title { color: var(--color-white); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; line-height: 1.3; margin: 0; }
+  #feitong-app .timeline-subtitle { font-size: 1rem; color: var(--color-text-muted); font-weight: 400; line-height: 1.8; }
 
   #feitong-app .timeline { position: relative; padding-bottom: 40px; }
   #feitong-app .timeline-spine { position: absolute; top: 0; bottom: 0; left: 25%; width: 8px; background: rgb(74, 74, 74); transform: translateX(-50%); border-radius: 8px; z-index: 1; }
@@ -453,6 +454,42 @@
   #feitong-app .timeline-desc { font-size: 1.05rem; line-height: 1.8; color: var(--color-text-muted); margin: 0 0 20px 0; text-align: justify;}
   #feitong-app .timeline-desc:last-child { margin-bottom: 0; }
   #feitong-app .highlight-box { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 16px 20px; border-left: 4px solid var(--color-yellow); font-size: 1rem; font-weight: 400; color: var(--color-text-light); text-align: justify;}
+
+  #feitong-app .interactive-pill {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* 移除手機點擊閃爍 */
+  }
+  /* 標籤 Hover 狀態：浮起變亮 */
+  #feitong-app .interactive-pill:hover,
+  #feitong-app .interactive-pill.is-active {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* 目標文字基礎樣式 */
+  #feitong-app .hl-target {
+    transition: all 0.01s ease;
+    border-radius: 4px;
+    padding: 2px 0;
+  }
+
+  /* 🌟 魔法 1：當卡片正在被互動時，未被選中的目標文字「變暗淡」 */
+  #feitong-app .timeline-card.is-interacting .hl-target:not(.is-highlighted) {
+    opacity: 0.3;
+    filter: grayscale(100%);
+  }
+
+  /* 🌟 魔法 2：被選中的目標文字「螢光筆高亮」 */
+  #feitong-app .timeline-card.is-interacting .hl-target.is-highlighted {
+    color: var(--color-white);
+    font-weight: 700;
+    padding: 2px 6px;
+    margin: 0 -6px; /* 抵銷 padding 避免文字跳動 */
+  }
 
   /* =========================================
      8. 上課場地 (Venue Section)
@@ -932,6 +969,7 @@
           <div class="section-header">
             <div class="section-label">Seize the moment</div>
             <h2 class="section-title">把握孩子的<br class="mobile-only">黃金發展階段</h2>
+            <p class="timeline-subtitle">「大腦的成長，源自於精準的動作誘發大腦突觸的生長。」</p>
           </div>
 
           <div class="timeline" id="timeline-container">
@@ -942,9 +980,13 @@
               <div class="timeline-left"><div class="sticky-container"><div class="sticky-text">0 ~ 12個月</div><div class="sticky-ball"></div></div></div>
               <div class="timeline-right">
                 <div class="timeline-card">
-                  <h3>感覺與初動作探索</h3>
-                  <div class="skill-pills"><span class="skill-pill" style="color: var(--color-green);">感覺統合</span><span class="skill-pill">粗動作</span><span class="skill-pill">初期語言</span></div>
-                  <p class="timeline-desc">0~12個月是孩子探索世界的啟蒙階段。該階段須具備抬頭、翻身、蠕行、倚坐等能力，並能對外界刺激做出適當的反饋。</p>
+                  <h3>感覺運動與原始神經整合期</h3>
+                  <div class="skill-pills">
+                    <span class="skill-pill interactive-pill" data-target="s1-1" style="color: var(--color-green);">大腦發展關鍵</span>
+                    <span class="skill-pill interactive-pill" data-target="s1-2">發展核心</span>
+                    <span class="skill-pill interactive-pill" data-target="s1-3">飛童引導重點</span>
+                  </div>
+                  <p class="timeline-desc"><span class="hl-target s1-1">孩子透過感官接收環境刺激，並轉化為最初的神經連結。</span><br><span class="hl-target s1-2">建立抬頭、翻身、蠕行、倚坐等基礎，這關乎未來大腦「整合與協調」的能力。</span><br><span class="hl-target s1-3">強化聽覺與觸覺的靈敏度，對外界刺激做出適當的神經反饋。著重「感知覺」的精準接收，透過被動與主動的動作誘發，啟動大腦的語言與情緒感知區。</span></p>
                   <div class="highlight-box" style="border-left-color: var(--color-green);">課程注重在孩子的語言教育及感官能力接收與反應，是培養感知覺的最佳時機。</div>
                 </div>
               </div>
@@ -954,9 +996,19 @@
               <div class="timeline-left"><div class="sticky-container"><div class="sticky-text">13 ~ 36個月</div><div class="sticky-ball"></div></div></div>
               <div class="timeline-right">
                 <div class="timeline-card">
-                  <h3>感官、語言與大腦開發</h3>
-                  <div class="skill-pills"><span class="skill-pill" style="color: var(--color-orange);">感官刺激</span><span class="skill-pill">語言表達</span><span class="skill-pill">大腦發展</span></div>
-                  <p class="timeline-desc"><strong>13~18個月</strong>為粗動作與感官建立期，發展對於往後成長有極大關聯，課程著重於走、攀爬、動態平衡的經驗累積。<br><br><strong>19~36個月</strong>為具體運思能力建立階段，對大腦各種能力開發相當關鍵。</p>
+                  <h3>感官探索與空間認知爆發期</h3>
+                  <div class="skill-pills">
+                    <span class="skill-pill interactive-pill" data-target="s2-1" style="color: var(--color-orange);">大腦發展關鍵</span>
+                    <span class="skill-pill interactive-pill" data-target="s2-2">13~18 個月 (基礎動作期)</span>
+                    <span class="skill-pill interactive-pill" data-target="s2-3">19~36 個月 (具體運思期)</span>
+                    <span class="skill-pill interactive-pill" data-target="s2-4">飛童引導重點</span>
+                  </div>
+                  <p class="timeline-desc">
+                    <span class="hl-target s2-1">小腦發育、平衡覺與突觸爆發連結這階段是大腦神經網絡最忙碌的時刻，動作的精準度直接決定了未來學習的穩定度。</span><br>
+                    <span class="hl-target s2-2">側重走、爬、攀、跨等動態平衡經驗。這能強化小腦的協調功能，為日後的運動根基。</span><br>
+                    <span class="hl-target s2-3">大腦開始將「動作」與「認知」結合。透過豐富的智能運動遊戲，刺激額葉發育，提升孩子解決問題的原始能力。</span><br>
+                    <span class="hl-target s2-4">強化本體覺與前庭覺的協作，讓孩子在挑戰動作的過程中，同步開發語言表達與邏輯萌芽。</span>
+                  </p>
                   <div class="highlight-box" style="border-left-color: var(--color-orange);">透過豐富的智能訓練遊戲，能使孩子全面智能獲得更完善的發展。</div>
                 </div>
               </div>
@@ -967,8 +1019,16 @@
               <div class="timeline-right">
                 <div class="timeline-card">
                   <h3>綜合運動與心智成熟</h3>
-                  <div class="skill-pills"><span class="skill-pill" style="color: var(--color-cyan);">進階運動</span><span class="skill-pill">前庭/本體覺</span><span class="skill-pill">創造力</span><span class="skill-pill">認知閱讀</span></div>
-                  <p class="timeline-desc">37~72個月為孩子落實本體覺與前庭覺的階段，是整體運動企劃的統整及心智成熟的黃金期。</p>
+                  <div class="skill-pills">
+                    <span class="skill-pill interactive-pill" data-target="s3-1" style="color: var(--color-cyan);">大腦發展關鍵</span>
+                    <span class="skill-pill interactive-pill" data-target="s3-2">發展核心</span>
+                    <span class="skill-pill interactive-pill" data-target="s3-3">心智成熟與自律</span>
+                  </div>
+                  <p class="timeline-desc">
+                    <span class="hl-target s3-1">前額葉皮質 整合與情緒調控這是孩子從「身體控制」轉向「心智成熟」的黃金期，也是準備銜接學齡教育的關鍵。</span><br>
+                    <span class="hl-target s3-2">高階運動企劃， 落實本體覺與前庭覺的深度統整，讓孩子具備複雜、連續性的動作規劃能力。</span><br>
+                    <span class="hl-target s3-3">透過運動強化大腦的抑制控制</span>
+                  </p>
                   <div class="highlight-box" style="border-left-color: var(--color-cyan);">課程搭配專業器材訓練感知與運動的整合，並培養創造力、閱讀力與自學能力，訓練孩子獨自進步的能力。</div>
                 </div>
               </div>
@@ -1264,6 +1324,71 @@
     }
 
   });
+  // ──────────────────────────────────────────
+    //  5. 技能標籤 (Skill Pills) 互動連動高亮
+    // ──────────────────────────────────────────
+    const interactivePills = document.querySelectorAll('.interactive-pill');
+    
+    interactivePills.forEach(pill => {
+      
+      // 啟動高亮效果
+      const activateHighlight = () => {
+        const targetClass = pill.getAttribute('data-target');
+        const card = pill.closest('.timeline-card');
+        
+        if (card && targetClass) {
+          // 讓卡片進入互動模式 (其他未選中文字變暗)
+          card.classList.add('is-interacting');
+          // 讓按鈕本身發亮
+          pill.classList.add('is-active');
+          
+          // 找到對應的文字並加上螢光筆效果
+          const targets = card.querySelectorAll(`.hl-target.${targetClass}`);
+          targets.forEach(t => t.classList.add('is-highlighted'));
+        }
+      };
+
+      // 關閉高亮效果
+      const deactivateHighlight = () => {
+        const targetClass = pill.getAttribute('data-target');
+        const card = pill.closest('.timeline-card');
+        
+        if (card && targetClass) {
+          card.classList.remove('is-interacting');
+          pill.classList.remove('is-active');
+          
+          const targets = card.querySelectorAll(`.hl-target.${targetClass}`);
+          targets.forEach(t => t.classList.remove('is-highlighted'));
+        }
+      };
+
+      // 【電腦版】綁定 Hover 事件
+      pill.addEventListener('mouseenter', activateHighlight);
+      pill.addEventListener('mouseleave', deactivateHighlight);
+      
+      // 【手機版】觸控點擊體驗優化
+      pill.addEventListener('touchstart', (e) => {
+        // 防止手機雙重觸發
+        e.preventDefault(); 
+        
+        // 先清除全畫面其他正在亮起的狀態
+        document.querySelectorAll('.timeline-card.is-interacting').forEach(c => c.classList.remove('is-interacting'));
+        document.querySelectorAll('.interactive-pill.is-active').forEach(p => p.classList.remove('is-active'));
+        document.querySelectorAll('.hl-target.is-highlighted').forEach(t => t.classList.remove('is-highlighted'));
+        
+        // 點擊後亮起
+        activateHighlight();
+      }, {passive: false});
+    });
+
+    // 【手機版】點擊卡片以外的空白處，自動取消高亮恢復原狀
+    document.addEventListener('touchstart', (e) => {
+      if (!e.target.closest('.interactive-pill')) {
+        document.querySelectorAll('.timeline-card.is-interacting').forEach(c => c.classList.remove('is-interacting'));
+        document.querySelectorAll('.interactive-pill.is-active').forEach(p => p.classList.remove('is-active'));
+        document.querySelectorAll('.hl-target.is-highlighted').forEach(t => t.classList.remove('is-highlighted'));
+      }
+    }, {passive: true});
 </script>
 </body>
 </html>
